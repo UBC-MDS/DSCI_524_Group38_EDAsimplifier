@@ -27,7 +27,14 @@ To use eda_simplifier in your code:
 >>> eda_simplifier.hello_world()
 ```
 
+## Contributors
+
+- Diana Cornescu
+- Johnson Chuang
+- Lavanya Gupta
+- Tiantong Yin
+
 ## Copyright
 
-- Copyright © 2026 Group 38.
+- Copyright © Diana Cornescu, Johnson Chuang, Lavanya Gupta & Tiantong Yin.
 - Free software distributed under the [MIT License](./LICENSE).
