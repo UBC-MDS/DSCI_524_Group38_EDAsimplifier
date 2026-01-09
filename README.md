@@ -8,7 +8,20 @@
 *TODO: the above badges that indicate python version and package version will only work if your package is on PyPI.
 If you don't plan to publish to PyPI, you can remove them.*
 
+## Package Summary
+
 EDA_simplifier is a project that (describe what it does here).
+
+## Functions
+
+- `dataset_overview(df)`:  
+  Generates a consolidated exploratory summary of a dataset by combining
+  key information typically obtained from multiple pandas methods such as
+  `.info()`, `.describe()`, and `.shape`. The function returns the dataset
+  dimensions, column data types, missing value counts, and summary
+  statistics in a single simplified structure to streamline the
+  initial exploratory data analysis process.
+
 
 ## Get started
 
