@@ -2,7 +2,7 @@
 A module that simplifies the EDA process.
 
 This module contains functions that consolidate many of the steps used in the
-preliminary EDA process for a given pandas DataFrame. It uses Altair, which is
+preliminary EDA process for any given pandas DataFrame. It uses Altair, which is
 powerful but verbose, so some functions abstract common patterns and apply smart 
 defaults to streamline EDA exploration.
 
@@ -21,8 +21,7 @@ all_distributions
 def all_distributions(
             pd_dataframe: pd.DataFrame, 
             columns: list = None,
-            ambiguous_column_types: dict = None) -> int:
-
+            ambiguous_column_types: dict = None) -> None:
     """
     Generate column-level distribution plots for numeric and categorical columns.
 
