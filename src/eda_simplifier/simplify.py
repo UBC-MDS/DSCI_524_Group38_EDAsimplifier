@@ -1,9 +1,21 @@
 """
-A module that adds numbers together.
+A module that simplifies the EDA process.
 
-You may want to delete this module or modify it for your package.
-It's generally good practice to have a docstring
-that explains the purpose of the module, at the top.
+This module contains functions that consolidate many of the steps used in the
+preliminary EDA process for a given pandas DataFrame. It uses Altair, which is
+powerful but verbose, so some functions abstract common patterns and apply smart 
+defaults to streamline EDA exploration.
+
+Functions
+---------
+<function_1>
+    _________________________
+<function_2>
+    _________________________
+<function_3>
+    _________________________
+all_distributions
+    Generate column-level distribution plots for numeric and categorical columns.
 """
 
 def all_distributions(
