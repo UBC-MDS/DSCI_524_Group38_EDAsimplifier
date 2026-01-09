@@ -8,7 +8,38 @@
 *TODO: the above badges that indicate python version and package version will only work if your package is on PyPI.
 If you don't plan to publish to PyPI, you can remove them.*
 
-EDA_simplifier is a project that (describe what it does here).
+## Package Summary
+
+EDA_simplifier is a project that streamlines exploratory data analysis (EDA) for any pandas DataFrame. 
+This package provides functions that consolidate many repetitive steps in EDA, serving as a first pass 
+to quickly gain a holistic view of a dataset. Within the larger Python ecosystem, it requires Pandas 
+and primarily builds upon Altair. While Altair is powerful, it can also be verbose and syntactically restrictive. 
+As a result, many functions in this project act as wrappers around Altair, providing sensible defaults 
+and abstractions to simplify the EDA process. Although automated EDA reporting libraries exist, most focus on large-scale HTML reports or one-liner 
+summaries. Therefore the EDA simplifier package provides a intermediate between raw Altair-based EDA plotting and full-automated report libraries.
+
+## Functions
+- `dataset_overview(df)`:  
+  Generates a consolidated exploratory summary of a dataset by combining
+  key information typically obtained from multiple pandas methods such as
+  `.info()`, `.describe()`, and `.shape`. The function returns the dataset
+  dimensions, column data types, missing value counts, and summary
+  statistics in a single simplified structure to streamline the
+  initial exploratory data analysis process.
+    
+- `function_2`
+    
+- `function_3`
+    
+- `all_distributions(
+            pd_dataframe: pd.DataFrame, 
+            columns: list = None,
+            ambiguous_column_types: dict = None) -> None`.
+  The main interface for column-level EDA distribution visualizations for numeric and categorical columns. Automatically identifies each columns data types and routes them to the appropriate plotting functions (`function_2` and `function_3`). However, also includes a manual overrides for ambiguous columns via explicit user input where the default columns data types may be incorrectly represented.
+
+
+
+
 
 ## Get started
 
