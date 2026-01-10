@@ -117,6 +117,48 @@ def numeric(df, numeric_features):
     dict_keys(['histograms', 'correlation_plot', 'missing_vals', 'outliers'])
     """
     pass
+    
+def categorical_plot(
+        df: pd.DataFrame, 
+        categorical_features: list, 
+        categorical_target: bool
+        ) -> list:
+    """
+    Perform EDA on categorical columns in a dataset.
+
+    
+    This function creates Altair plots for the specified columns, assuming 
+    them to contain categorical data. It creates bar charts to show the 
+    frequency of the categories, pie charts to show the proportion of each 
+    categories. Also create box plots for features vs target if the target is 
+    numerical, or stacked bar charts if the target is categorical.
+   
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        A pandas DataFrame containing the dataset
+    numeric_features : list
+        A list of strings containing column names of the categorical features.
+    categorical_target : bool
+        A boolean value indicating if the target column is categorical or not.
+
+    Returns
+    -------
+    list
+        A list of Altair plot objects of all the plots created
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     "artist": ["A", "B", "C", "D"],
+    ...     "popularity": [80, 75, 90, 85],
+    ...     "danceability": [0.8, 0.6, 0.9, 0.7],
+    ...     "energy": [0.7, 0.8, 0.6, 0.9]
+    ... })
+    >>> plots = categorical_plot(df, ["artist"])
+    """
+    pass
 
 def all_distributions(
             pd_dataframe: pd.DataFrame, 
