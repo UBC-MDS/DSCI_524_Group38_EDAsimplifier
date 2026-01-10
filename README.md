@@ -57,7 +57,7 @@ EDA plotting and full-automated report libraries.
     The main interface for column-level EDA distribution visualizations
     for numeric and categorical columns. Automatically identifies each
     columns data types and routes them to the appropriate plotting
-    functions (`function_2` and `function_3`). However, also includes a
+    functions (`numeric` and `categorical_plot`). However, also includes a
     manual overrides for ambiguous columns via explicit user input where
     the default columns data types may be incorrectly represented.
 
