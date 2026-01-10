@@ -107,7 +107,7 @@ def numeric(df, numeric_features):
     """
     Perform exploratory data analysis (EDA) on numerical features in a dataset.
 
-    This function generates visualizations specified numerical columns to
+    This function generates visualizations for specified numerical columns to
     help with initial exploratory analysis. It produces histogram plots to
     examine distributions, correlation plots to identify relationships between
     features, missing values, and other relevant numerical summaries.
