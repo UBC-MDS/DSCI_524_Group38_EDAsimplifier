@@ -113,14 +113,14 @@ def categorical_plot(
         df: pd.DataFrame, 
         categorical_features: list, 
         categorical_target: bool
-        ):
+        ) -> list:
     """
     Perform EDA on categorical columns in a dataset.
 
     
     This function creates Altair plots for the specified columns, assuming 
     them to contain categorical data. It creates bar charts to show the 
-    frequency of the categories, pie chart to show the proportion of each 
+    frequency of the categories, pie charts to show the proportion of each 
     categories. Also create box plots for features vs target if the target is 
     numerical, or stacked bar charts if the target is categorical.
    
