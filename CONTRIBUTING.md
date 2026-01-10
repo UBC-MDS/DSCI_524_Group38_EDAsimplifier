@@ -1,7 +1,9 @@
 # Contributing
 
-Contributions of all kinds are welcome here, and they are greatly appreciated!
-Every little bit helps, and credit will always be given.
+This repository is developed as part of a collaborative, course based software
+development project. Contributions are primarily made by student team members
+following an agreed-upon workflow and milestone plan. External contributions
+are welcome but may be reviewed within the constraints of the course timeline.
 
 ## Example Contributions
 
@@ -23,10 +25,10 @@ detailed your report, the easier and thus faster we can help you.**
 ### Fix Bugs
 
 Look through the GitHub issues for bugs. Anything labelled with `bug` and
-`help wanted` is open to whoever wants to implement it. When you decide to work on such
-an issue, please assign yourself to it and add a comment that you'll be working on that,
-too. If you see another issue without the `help wanted` label, just post a comment, the
-maintainers are usually happy for any support that they can get.
+`help wanted` is open to whoever wants to implement it. When you decide to work on an issue,
+please assign yourself to it. For this project, each core feature or function
+should be owned by a single team member to ensure equal contribution across the team.
+
 
 ### Implement Features
 
@@ -95,12 +97,26 @@ local development.
 7. Open the link displayed in the message when pushing your new branch in order
    to submit a pull request.
 
+## Development Workflow
+
+This project follows a GitHub Flow–based workflow:
+
+- All work is tracked through GitHub issues
+- New work is done on feature or fix branches created from `main`
+- All changes must be submitted via pull requests
+- Each pull request should be reviewed by at least one other team member before merging
+
 ### Pull Request Guidelines
 
 Before you submit a pull request, check that it meets these guidelines:
 
-1. The pull request should include tests.
+1. The pull request should include tests when functionality is implemented.
+   Documentation-only changes (e.g., Milestone 1 specifications) are not expected
+   to include tests.
 2. If the pull request adds functionality, the docs should be updated. Put your
    new functionality into a function with a docstring.
 3. Your pull request will automatically be checked by the full test suite.
    It needs to pass all of them before it can be considered for merging.
+4. For early milestones, function docstrings serve as formal specifications and
+   may exist without an implementation.
+
