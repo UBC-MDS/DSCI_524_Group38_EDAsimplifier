@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Welcome to EDA_simplifier
 
 |  |  |
@@ -32,7 +26,7 @@ EDA plotting and full-automated report libraries.
 
 ## Functions
 
--   `dataset_overview(df)`:\
+-   `dataset_overview(df)`:
     Generates a consolidated exploratory summary of a dataset by
     combining key information typically obtained from multiple pandas
     methods such as `.info()`, `.describe()`, and `.shape`. The function
@@ -47,13 +41,13 @@ EDA plotting and full-automated report libraries.
     correlation plots to identify relationships between features,
     missing values, and other relevant numerical summaries.
 
--   `categorical_plot(``df: pd.DataFrame, categorical_features, categorical_target)`:
+-   `categorical_plot(df: pd.DataFrame, categorical_features, categorical_target)`:
     Creates Altair plots for the specified categorical columns. Creates
     bar charts and pie charts for each features. Also create box plots
     or stacked bar charts for each feature against the target depending
     on if the target is categorical or numerical.
 
--   `all_distributions(             pd_dataframe: pd.DataFrame,              columns: list = None,             ambiguous_column_types: dict = None) -> None`.
+-   `all_distributions(pd_dataframe: pd.DataFrame, columns: list = None, ambiguous_column_types: dict = None) -> None`.
     The main interface for column-level EDA distribution visualizations
     for numeric and categorical columns. Automatically identifies each
     columns data types and routes them to the appropriate plotting
