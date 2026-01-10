@@ -4,6 +4,7 @@ This repository is developed as part of a collaborative, course based software
 development project. Contributions are primarily made by student team members
 following an agreed-upon workflow and milestone plan. External contributions
 are welcome but may be reviewed within the constraints of the course timeline.
+All contributions must follow and accept the [Code of Conduct ](./code_of_conduct.md).
 
 ## Example Contributions
 
