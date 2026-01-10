@@ -27,7 +27,13 @@ summaries. Therefore the EDA simplifier package provides a intermediate between 
   statistics in a single simplified structure to streamline the
   initial exploratory data analysis process.
     
-- `function_2`
+- `numeric(df, numeric_features)`:
+  Perform exploratory data analysis (EDA) on numerical features in a
+  dataset. Generates visualizations for specified numerical columns to
+  help with initial exploratory analysis. It produces histogram plots to
+  examine distributions, correlation plots to identify relationships
+  between features, missing values, and other relevant numerical
+  summaries.
     
 - `function_3`
     
