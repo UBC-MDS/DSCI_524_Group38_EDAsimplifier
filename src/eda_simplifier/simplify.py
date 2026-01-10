@@ -101,3 +101,47 @@ def dataset_overview(df):
     }
     """
     pass
+
+
+def numeric(df, numeric_features):
+    """
+    Perform exploratory data analysis (EDA) on numerical features in a dataset.
+
+    This function generates visualizations for specified numerical columns to
+    help with initial exploratory analysis. It produces histogram plots to
+    examine distributions, correlation plots to identify relationships between
+    features, missing values, and other relevant numerical summaries.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        A pandas DataFrame containing the dataset to be analyzed.
+    numeric_features : list of str
+        A list of column names representing the numerical features to analyze.
+
+    Returns
+    -------
+    dict
+        A dictionary containing:
+        - plots: Altair figures for distribution plots, correlation plots, 
+        missing values, and potential outliers
+
+    Raises
+    ------
+    TypeError
+        If df is not a pandas DataFrame or numeric_features is not a list
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     "artist": ["A", "B", "C", "D"],
+    ...     "popularity": [80, 75, 90, 85],
+    ...     "danceability": [0.8, 0.6, 0.9, 0.7],
+    ...     "energy": [0.7, 0.8, 0.6, 0.9]
+    ... })
+    >>> result = numeric(df, ["popularity", "danceability", "energy"])
+    >>> result.keys()
+    dict_keys(['histograms', 'correlation_plot', 'missing_vals', 'outliers'])
+    """
+    pass
