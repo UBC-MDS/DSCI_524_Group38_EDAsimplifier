@@ -1,40 +1,3 @@
-"""
-A module that adds numbers together.
-
-You may want to delete this module or modify it for your package.
-It's generally good practice to have a docstring
-that explains the purpose of the module, at the top.
-"""
-
-def add_numbers(a, b):
-    """
-    Add two numbers together and return the result.
-
-    This is an example function with a numpy style docstring.
-    We recommend using this style for consistency and readability.
-
-    Parameters
-    ----------
-    a : float
-        The first number to add.
-    b : float
-        The second number to add.
-
-    Returns
-    -------
-    float
-        The sum of the two numbers.
-
-    Examples
-    --------
-    >>> add_numbers(3, 5)
-    8
-    >>> add_numbers(-2, 7)
-    5
-
-    """
-    return a + b
-
 def dataset_overview(df):
     """
     Generates a consolidated exploratory summary of the dataset.
@@ -143,5 +106,47 @@ def numeric(df, numeric_features):
     >>> result = numeric(df, ["popularity", "danceability", "energy"])
     >>> result.keys()
     dict_keys(['histograms', 'correlation_plot', 'missing_vals', 'outliers'])
+    """
+    pass
+    
+def categorical_plot(
+        df: pd.DataFrame, 
+        categorical_features: list, 
+        categorical_target: bool
+        ):
+    """
+    Perform EDA on categorical columns in a dataset.
+
+    
+    This function creates Altair plots for the specified columns, assuming 
+    them to contain categorical data. It creates bar charts to show the 
+    frequency of the categories, pie chart to show the proportion of each 
+    categories. Also create box plots for features vs target if the target is 
+    numerical, or stacked bar charts if the target is categorical.
+   
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        A pandas DataFrame containing the dataset
+    numeric_features : list
+        A list of strings containing column names of the categorical features.
+    categorical_target : bool
+        A boolean value indicating if the target column is categorical or not.
+
+    Returns
+    -------
+    list
+        A list of Altair plot objects of all the plots created
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     "artist": ["A", "B", "C", "D"],
+    ...     "popularity": [80, 75, 90, 85],
+    ...     "danceability": [0.8, 0.6, 0.9, 0.7],
+    ...     "energy": [0.7, 0.8, 0.6, 0.9]
+    ... })
+    >>> plots = categorical_plot(df, ["artist"])
     """
     pass
