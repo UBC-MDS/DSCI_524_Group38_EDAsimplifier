@@ -33,7 +33,7 @@ classifiers = [
 # TODO: add keywords
 keywords = []
 # TODO: add dependencies
-dependencies = []
+dependencies = ["pandas>=2.0"]
 
 [project.urls]
 Homepage = "https://github.com/UBC-MDS/eda_simplifier"
@@ -96,6 +96,7 @@ packages = ["src/eda_simplifier"]
 [tool.pytest.ini_options]
 testpaths = ["tests"] # Tells pytest what directory tests are in
 markers = ["raises"] # Tells pytest to not raise a warning if you use @pytest.mark.raises
+pythonpath = ["src"]
 
 [tool.coverage.paths]
 source = [
