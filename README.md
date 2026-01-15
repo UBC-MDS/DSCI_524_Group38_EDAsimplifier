@@ -69,8 +69,16 @@ TODO: Add a brief example of how to use the package to this section
 To use eda_simplifier in your code:
 
 ``` python
->>> import eda_simplifier
->>> eda_simplifier.hello_world()
+>>> import pandas as pd
+>>> from eda_simplifier.simplify import dataset_overview
+
+>>> df = pd.DataFrame({
+    "artist": ["A", "B", "C"],
+    "popularity": [80, 75, None],
+    "danceability": [0.8, 0.6, 0.9]
+})
+
+>>>summary = dataset_overview(df)
 ```
 
 ## Contributors
