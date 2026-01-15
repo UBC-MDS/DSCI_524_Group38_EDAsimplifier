@@ -170,10 +170,10 @@ def categorical_plot(
     for feature in categorical_features:
         # filter based on class count limit
         top_features = df[feature].value_counts().nlargest(max_categories).index.tolist()
-        df = df[df[feature].isin(top_categories)].copy()
+        df = df[df[feature].isin(top_features)].copy()
         
         # sorted horizontal bar chart
-        bar_chart = alt.Chart(filtered_df).mark_bar().encode(
+        bar_chart = alt.Chart(df).mark_bar().encode(
             y=alt.Y(f"{feature}:N", sort='-x', title=feature),
             x=alt.X("count():Q"),
         ).properties(
@@ -183,7 +183,23 @@ def categorical_plot(
         plots.append(bar_chart)
         
         if categorical_target:
+            vs_target = alt.Chart(df).mark_bar().encode(
+                y=alt.Y(f"{feature}:N", sort='-x', title=feature),
+                x=alt.X("count():Q"),
+                color=alt.Color(f"{target_column}:N", title=target_column)
+            ).properties(
+                title=f"{feature} vs {target_column}",
+            )
         else:
+            vs_target = alt.Chart(df).mark_boxplot().encode(
+                y=alt.Y(f"{feature}:N", sort='-x', title=feature),
+                x=alt.X(f"{target_column}:Q", title=target_column),
+                color=alt.Color(f"{feature}:N", title=target_column)
+            ).properties(
+                title=f"{feature} vs {target_column}",
+            )
+        
+        plots.append(vs_target)
     return plots
 
 def all_distributions(

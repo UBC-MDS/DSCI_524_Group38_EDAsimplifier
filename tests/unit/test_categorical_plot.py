@@ -19,10 +19,10 @@ def test_categorical_plot():
 
     # bar chart
     bar_chart = plots[0].to_dict()
-    assert bar_chart['mark'] == 'bar'
+    assert bar_chart['mark']['type'] == 'bar'
     assert bar_chart['encoding']['y']['field'] == 'genre'
     assert 'count' in str(bar_chart['encoding']['x'])
-    assert 'sort' in bar_chart['y'], "y should be sorted"
+    assert 'sort' in bar_chart['encoding']['y'], "y should be sorted"
 
     # box plot
     box_plot = plots[1].to_dict()
@@ -36,7 +36,7 @@ def test_categorical_plot():
     
     # stacked bar chart
     stacked = plots2[1].to_dict()
-    assert stacked['mark'] == 'bar'
+    assert stacked['mark']['type'] == 'bar'
     assert stacked['encoding']['color']['field'] == 'is_explicit'
     assert stacked['encoding']['y']['field'] == 'genre'
 
