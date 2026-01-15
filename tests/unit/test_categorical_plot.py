@@ -56,3 +56,15 @@ def test_categorical_plot():
     plot_empty = categorical_plot(df, [], 'popularity', False)
     assert isinstance(plot_empty, list)
     assert len(plot_empty) == 0
+    
+    plot_none_df = categorical_plot(None, ['genre'], 'popularity', False)
+    assert isinstance(plot_none_df, list)
+    assert len(plot_none_df) == 0
+    
+    plot_empty_df = categorical_plot(pd.DataFrame({}), ['genre'], 'popularity', False)
+    assert isinstance(plot_empty_df, list)
+    assert len(plot_empty_df) == 0
+    
+    feat_target_not_exist = categorical_plot(df, ['someFeature'], 'someTarget', False)
+    assert isinstance(feat_target_not_exist, list)
+    assert len(feat_target_not_exist) == 0

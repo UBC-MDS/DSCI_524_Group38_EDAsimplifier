@@ -167,6 +167,8 @@ def categorical_plot(
     >>> plots = categorical_plot(df, ["artist"], 'popularity', False)
     """
     plots = []
+    if df is None:
+        return plots
     for feature in categorical_features:
         # filter based on class count limit
         top_features = df[feature].value_counts().nlargest(max_categories).index.tolist()
