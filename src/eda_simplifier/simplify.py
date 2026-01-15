@@ -167,8 +167,20 @@ def categorical_plot(
     >>> plots = categorical_plot(df, ["artist"], 'popularity', False)
     """
     plots = []
-    if df is None:
+    if df is None or df.empty:
+        print('Dataframe must not be None or empty')
         return plots
+    if len(categorical_features) == 0:
+        print('List of categorical features is empty, nothing to plot')
+        return plots
+    if target_column not in df.columns:
+        print('Target column not found in dataframe')
+        return plots
+    for feature in categorical_features:
+        if feature not in df.columns:
+            print(f'Column {feature} not found in dataframe')
+            return plots
+    
     for feature in categorical_features:
         # filter based on class count limit
         top_features = df[feature].value_counts().nlargest(max_categories).index.tolist()
