@@ -122,10 +122,10 @@ def numeric(df, numeric_features):
     
 def categorical_plot(
         df: pd.DataFrame, 
-        categorical_features: list, 
         target_column: str,
         categorical_target: bool,
-        max_categories:int = 10
+        max_categories:int = 10,
+        categorical_features: list = None
         ) -> list:
     """
     Perform EDA on categorical columns in a dataset.
@@ -141,14 +141,15 @@ def categorical_plot(
     ----------
     df : pandas.DataFrame
         A pandas DataFrame containing the dataset
-    categorical_features : list
-        A list of strings containing column names of the categorical features.
     target_column: str
         The name of the target column.
     categorical_target : bool
         A boolean value indicating if the target column is categorical or not.
     max_categories: int
         The maximum categories to plot for high cardinality features
+    categorical_features : list
+        A list of strings containing column names of the categorical features.
+        If this is not passed, keep all
 
     Returns
     -------
@@ -167,6 +168,11 @@ def categorical_plot(
     >>> plots = categorical_plot(df, ["artist"], 'popularity', False)
     """
     plots = []
+    
+    if not categorical_features:
+        categorical_features = df.columns.values.tolist()
+        categorical_features.remove(target_column)
+        
     if df is None or df.empty:
         print('Dataframe must not be None or empty')
         return plots

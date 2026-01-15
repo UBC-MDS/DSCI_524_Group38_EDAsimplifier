@@ -12,7 +12,7 @@ def test_categorical_plot():
     }
     df = pd.DataFrame(data)
 
-    plots = categorical_plot(df, ['genre'], 'popularity', categorical_target=False)
+    plots = categorical_plot(df, 'popularity', categorical_target=False, categorical_features = ['genre'])
     
     assert isinstance(plots, list)
     assert len(plots) == 2, "Should return a bar chart and a box plot"
@@ -32,7 +32,7 @@ def test_categorical_plot():
     assert box_plot['encoding']['x']['field'] == 'popularity'
     assert box_plot['encoding']['y']['field'] == 'genre'
 
-    plots2 = categorical_plot(df, ['genre'], 'is_explicit', categorical_target=True)
+    plots2 = categorical_plot(df, 'is_explicit', categorical_target=True, categorical_features = ['genre'])
     
     # stacked bar chart
     stacked = plots2[1].to_dict()
@@ -43,7 +43,7 @@ def test_categorical_plot():
 
     # LLM revision: test max categories
     limit = 3
-    plots_limit = categorical_plot(df, ['track_id'], 'popularity', False, max_categories=limit)
+    plots_limit = categorical_plot(df, 'popularity', False, max_categories=limit, categorical_features = ['track_id'])
     plot_data = plots_limit[0].data
     if plot_data is not None:
         assert plot_data['track_id'].nunique() <= limit
@@ -53,18 +53,19 @@ def test_categorical_plot():
         unique_ids = len(set(v['track_id'] for v in values))
         assert unique_ids <= limit
 
-    plot_empty = categorical_plot(df, [], 'popularity', False)
-    assert isinstance(plot_empty, list)
-    assert len(plot_empty) == 0
+    # test for using all columns
+    plot_all = categorical_plot(df, 'popularity', False, categorical_features = [])
+    assert isinstance(plot_all, list)
+    assert len(plot_all) == 6
     
-    plot_none_df = categorical_plot(None, ['genre'], 'popularity', False)
+    plot_none_df = categorical_plot(None, 'popularity', False, categorical_features = ['genre'])
     assert isinstance(plot_none_df, list)
     assert len(plot_none_df) == 0
     
-    plot_empty_df = categorical_plot(pd.DataFrame({}), ['genre'], 'popularity', False)
+    plot_empty_df = categorical_plot(pd.DataFrame({}), 'popularity', False, categorical_features = ['genre'])
     assert isinstance(plot_empty_df, list)
     assert len(plot_empty_df) == 0
     
-    feat_target_not_exist = categorical_plot(df, ['someFeature'], 'someTarget', False)
+    feat_target_not_exist = categorical_plot(df, 'someTarget', False, categorical_features = ['someFeature'])
     assert isinstance(feat_target_not_exist, list)
     assert len(feat_target_not_exist) == 0
