@@ -7,6 +7,7 @@ powerful but verbose, so some functions abstract common patterns and apply smart
 defaults to streamline EDA exploration.
 """
 import pandas as pd
+import altair as alt
 
 def dataset_overview(df):
     """
@@ -165,7 +166,25 @@ def categorical_plot(
     ... })
     >>> plots = categorical_plot(df, ["artist"], 'popularity', False)
     """
-    pass
+    plots = []
+    for feature in categorical_features:
+        # filter based on class count limit
+        top_features = df[feature].value_counts().nlargest(max_categories).index.tolist()
+        df = df[df[feature].isin(top_categories)].copy()
+        
+        # sorted horizontal bar chart
+        bar_chart = alt.Chart(filtered_df).mark_bar().encode(
+            y=alt.Y(f"{feature}:N", sort='-x', title=feature),
+            x=alt.X("count():Q"),
+        ).properties(
+            title=f"Frequency count of {feature}"
+        )
+        
+        plots.append(bar_chart)
+        
+        if categorical_target:
+        else:
+    return plots
 
 def all_distributions(
             pd_dataframe: pd.DataFrame, 
