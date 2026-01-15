@@ -78,7 +78,7 @@ To use eda_simplifier in your code:
     "danceability": [0.8, 0.6, 0.9]
 })
 
->>>summary = dataset_overview(df)
+>>> summary = dataset_overview(df)
 ```
 
 ## Contributors
