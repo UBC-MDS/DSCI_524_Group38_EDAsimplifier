@@ -1,0 +1,41 @@
+def all_distributions(
+            pd_dataframe: pd.DataFrame, 
+            columns: list = None,
+            ambiguous_column_types: dict = None) -> None:
+    """
+    Generate distribution visualizations (e.g., histograms and bar charts) for numeric 
+    and categorical columns in a DataFrame.
+
+    This is the main interface for column-level EDA distribution visualizations.
+    The function automatically infers whether columns are numeric or categorical. 
+    Allows manual overrides for ambiguous columns, ambiguous columns are cases where 
+    a numeric datatype column should be treated as categorical or vice versa.
+
+    Parameters
+    ----------
+    pd_dataframe : pandas.DataFrame
+        Input DataFrame containing the data to be analyzed. Expects a tidy dataframe (one 
+        value or string per cell) but can handle some common messy data issue such as incorrect datatypes 
+        via ambiguous_column_types parameter.
+
+    columns : list of str, optional
+        Subset of columns to include in the analysis. Invalid or non-existent column names are ignored.
+        All columns in the provided DataFrame are considered if not specified .
+
+    ambiguous_column_types : dict, optional
+        Dictionary specifying column type overrides for ambiguous cases.
+        Expected keys are ``"numeric"`` and ``"categorical"``, with values
+        being lists of column names to force into each category. If a column appears in both lists,
+        will raise a ValueError. Invalid or non-existent column names are ignored.
+
+        Example:
+            ambiguous_column_types = {"numeric" : ['year'], "categorical": ['zip_code]}
+                                    
+    Returns
+    -------
+    None
+        This function produces distribution plots as a side effect and
+        does not return a value or object. Plots would be returned inline (e.g., Jupyter cell).
+
+    """
+    pass
