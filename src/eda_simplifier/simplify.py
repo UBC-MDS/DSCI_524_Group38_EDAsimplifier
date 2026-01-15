@@ -28,12 +28,18 @@ def dataset_overview(df):
     Returns
     -------
     dict
-        A dictionary containing:
-        - dataset shape (number of rows/columns)
-        - column names
-        - data types for each column
-        - count of missing and non missing values per column
-        - summary statistics for the numeric columns
+        A dictionary with the following fixed structure:
+        - "shape" : tuple[int, int]
+            Number of rows and columns in the DataFrame.
+        - "columns" : list[str]
+            List of column names, in the order they appear in the DataFrame.
+        - "dtypes" : dict[str, str]
+            Mapping of column names to their pandas data types (as strings).
+        - "missing_values" : dict[str, int]
+            Count of missing (NaN) values per column.
+        - "summary_statistics" : dict[str, pandas.Series]
+            Descriptive statistics for numeric columns only, as returned by
+            `pandas.DataFrame.describe()`.
 
     Raises
     ------
@@ -42,9 +48,12 @@ def dataset_overview(df):
 
     Notes
     -----
-    This function is designed for quick exploratory analysis and does not
-    modify the input dataFrame. The exact structure of the returned summary
-    will be documented and finalized in later development stages.
+    - This function does not modify the input DataFrame.
+    - If the DataFrame is empty, all returned values will be empty but valid.
+    - If the DataFrame contains no numeric columns, "summary_statistics"
+      will be an empty dictionary.
+    - The returned dictionary follows a fixed structure to support
+      deterministic unit testing.
 
     Examples
     --------
@@ -74,7 +83,33 @@ def dataset_overview(df):
         }
     }
     """
-    pass
+    #Input validation
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Input must be a pandas DataFrame")
+
+    #Baseline components
+    shape = df.shape
+    columns = list(df.columns)
+    dtypes = {col: str(dtype) for col, dtype in df.dtypes.items()}
+    missing_values = df.isna().sum().to_dict()
+
+    #Summary statistics for numeric columns only
+    numeric_df = df.select_dtypes(include="number")
+    if numeric_df.empty:
+        summary_statistics = {}
+    else:
+        summary_statistics = {
+            col: numeric_df[col].describe()
+            for col in numeric_df.columns
+        }
+
+    return {
+        "shape": shape,
+        "columns": columns,
+        "dtypes": dtypes,
+        "missing_values": missing_values,
+        "summary_statistics": summary_statistics,
+    }
 
 
 def numeric(df, numeric_features):
