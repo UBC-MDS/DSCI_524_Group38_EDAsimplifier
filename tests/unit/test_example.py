@@ -7,7 +7,7 @@ is up to you. This test example provides a single test for the example.py
 module.
 """
 
-from eda_simplifier.example import add_numbers
+#from eda_simplifier.example import add_numbers
 
 def test_add_numbers():
     """
