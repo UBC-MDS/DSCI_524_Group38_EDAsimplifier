@@ -206,7 +206,7 @@ def categorical_plot(
             vs_target = alt.Chart(df).mark_bar().encode(
                 y=alt.Y(f"{feature}:N", sort='-x', title=feature),
                 x=alt.X("count():Q"),
-                color=alt.Color(f"{target_column}:N", title=target_column)
+                color=alt.Color(f"{target_column}:N")
             ).properties(
                 title=f"{feature} vs {target_column}",
             )
@@ -214,7 +214,7 @@ def categorical_plot(
             vs_target = alt.Chart(df).mark_boxplot().encode(
                 y=alt.Y(f"{feature}:N", sort='-x', title=feature),
                 x=alt.X(f"{target_column}:Q", title=target_column),
-                color=alt.Color(f"{feature}:N", title=target_column)
+                color=alt.Color(f"{feature}:N")
             ).properties(
                 title=f"{feature} vs {target_column}",
             )
