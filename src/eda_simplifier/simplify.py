@@ -81,7 +81,33 @@ def dataset_overview(df):
         }
     }
     """
-    pass
+    #Input validation
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Input must be a pandas DataFrame")
+
+    #Baseline components
+    shape = df.shape
+    columns = list(df.columns)
+    dtypes = {col: str(dtype) for col, dtype in df.dtypes.items()}
+    missing_values = df.isna().sum().to_dict()
+
+    #Summary statistics for numeric columns only
+    numeric_df = df.select_dtypes(include="number")
+    if numeric_df.empty:
+        summary_statistics = {}
+    else:
+        summary_statistics = {
+            col: numeric_df[col].describe()
+            for col in numeric_df.columns
+        }
+
+    return {
+        "shape": shape,
+        "columns": columns,
+        "dtypes": dtypes,
+        "missing_values": missing_values,
+        "summary_statistics": summary_statistics,
+    }
 
 
 def numeric(df, numeric_features):
