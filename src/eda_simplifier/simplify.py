@@ -7,6 +7,7 @@ powerful but verbose, so some functions abstract common patterns and apply smart
 defaults to streamline EDA exploration.
 """
 import pandas as pd
+import altair as alt
 
 def dataset_overview(df):
     """
@@ -156,27 +157,34 @@ def numeric(df, numeric_features):
     
 def categorical_plot(
         df: pd.DataFrame, 
-        categorical_features: list, 
-        categorical_target: bool
+        target_column: str,
+        categorical_target: bool,
+        max_categories:int = 10,
+        categorical_features: list = None
         ) -> list:
     """
     Perform EDA on categorical columns in a dataset.
 
     
     This function creates Altair plots for the specified columns, assuming 
-    them to contain categorical data. It creates bar charts to show the 
-    frequency of the categories, pie charts to show the proportion of each 
-    categories. Also create box plots for features vs target if the target is 
-    numerical, or stacked bar charts if the target is categorical.
+    them to contain categorical data. It creates sorted horizontal bar charts 
+    to show the frequency and the proportion of each categories. Also create
+    box plots for features vs target if the target is numerical, or stacked
+    bar charts if the target is categorical.
    
     Parameters
     ----------
     df : pandas.DataFrame
         A pandas DataFrame containing the dataset
-    numeric_features : list
-        A list of strings containing column names of the categorical features.
+    target_column: str
+        The name of the target column.
     categorical_target : bool
         A boolean value indicating if the target column is categorical or not.
+    max_categories: int
+        The maximum categories to plot for high cardinality features
+    categorical_features : list
+        A list of strings containing column names of the categorical features.
+        If this is not passed, keep all
 
     Returns
     -------
@@ -192,9 +200,62 @@ def categorical_plot(
     ...     "danceability": [0.8, 0.6, 0.9, 0.7],
     ...     "energy": [0.7, 0.8, 0.6, 0.9]
     ... })
-    >>> plots = categorical_plot(df, ["artist"])
+    >>> plots = categorical_plot(df, ["artist"], 'popularity', False)
     """
-    pass
+    plots = []
+    
+    if not categorical_features:
+        categorical_features = df.columns.values.tolist()
+        categorical_features.remove(target_column)
+        
+    if df is None or df.empty:
+        print('Dataframe must not be None or empty')
+        return plots
+    if len(categorical_features) == 0:
+        print('List of categorical features is empty, nothing to plot')
+        return plots
+    if target_column not in df.columns:
+        print('Target column not found in dataframe')
+        return plots
+    for feature in categorical_features:
+        if feature not in df.columns:
+            print(f'Column {feature} not found in dataframe')
+            return plots
+    
+    for feature in categorical_features:
+        # filter based on class count limit
+        top_features = df[feature].value_counts().nlargest(max_categories).index.tolist()
+        df = df[df[feature].isin(top_features)].copy()
+        
+        # sorted horizontal bar chart
+        bar_chart = alt.Chart(df).mark_bar().encode(
+            y=alt.Y(f"{feature}:N", sort='-x', title=feature),
+            x=alt.X("count():Q"),
+        ).properties(
+            title=f"Frequency count of {feature}"
+        )
+        
+        plots.append(bar_chart)
+        
+        if categorical_target:
+            vs_target = alt.Chart(df).mark_bar().encode(
+                y=alt.Y(f"{feature}:N", sort='-x', title=feature),
+                x=alt.X("count():Q"),
+                color=alt.Color(f"{target_column}:N")
+            ).properties(
+                title=f"{feature} vs {target_column}",
+            )
+        else:
+            vs_target = alt.Chart(df).mark_boxplot().encode(
+                y=alt.Y(f"{feature}:N", sort='-x', title=feature),
+                x=alt.X(f"{target_column}:Q", title=target_column),
+                color=alt.Color(f"{feature}:N")
+            ).properties(
+                title=f"{feature} vs {target_column}",
+            )
+        
+        plots.append(vs_target)
+    return plots
 
 def all_distributions(
             pd_dataframe: pd.DataFrame, 
