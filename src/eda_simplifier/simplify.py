@@ -299,7 +299,8 @@ def all_distributions(
     """
     pass
 
-def _ambiguous_columns_split(pd_dataframe, ambiguous_column_types: dict = None):
+def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
+                            ambiguous_column_types: dict = None) -> dict:
     """
     Separate numeric and categorical columns, applying type overrides for ambiguous cases.
 
@@ -324,5 +325,32 @@ def _ambiguous_columns_split(pd_dataframe, ambiguous_column_types: dict = None):
 
     # TO-DO raise issue if a column is in both lists in ambiguous_column_types
     """
-    pass
+        # Default to empty lists if no overrides provided
+    if ambiguous_column_types is None:
+        ambiguous_column_types = {"numeric": [], "categorical": []}
+    
+    # Get initial dtype columns
+    numeric_cols = set(pd_dataframe.select_dtypes(include="number").columns)
+    categorical_cols = set(pd_dataframe.select_dtypes(exclude="number").columns)
+
+    # Extract override lists, filtering for existing columns
+    numeric_overrides = set(ambiguous_column_types.get("numeric", [])) & set(pd_dataframe.columns)
+    categorical_overrides = set(ambiguous_column_types.get("categorical", [])) & set(pd_dataframe.columns)
+    
+    # Check for conflicts
+    overlap = numeric_overrides & categorical_overrides
+    if overlap:
+        raise ValueError(f"Column(s) {overlap} cannot appear in both 'numeric' and 'categorical' lists")
+    
+
+    
+    # Apply overrides
+    numeric_cols = (numeric_cols | numeric_overrides) - categorical_overrides
+    categorical_cols = (categorical_cols | categorical_overrides) - numeric_overrides
+    
+    # Create filtered dataframes
+    numeric_df = pd_dataframe[sorted(numeric_cols)] if numeric_cols else pd_dataframe[[]]
+    categorical_df = pd_dataframe[sorted(categorical_cols)] if categorical_cols else pd_dataframe[[]]
+    
+    return {"numeric": numeric_df, "categorical": categorical_df}
 
