@@ -257,6 +257,7 @@ def categorical_plot(
         plots.append(vs_target)
     return plots
 
+
 def all_distributions(
             pd_dataframe: pd.DataFrame, 
             columns: list = None,
@@ -295,6 +296,33 @@ def all_distributions(
     None
         This function produces distribution plots as a side effect and
         does not return a value or object. Plots would be returned inline (e.g., Jupyter cell).
-
     """
     pass
+
+def _ambiguous_columns_split(pd_dataframe, ambiguous_column_types: dict = None):
+    """
+    Separate numeric and categorical columns, applying type overrides for ambiguous cases.
+
+    Parameters
+    ----------
+    pd_dataframe : pandas.DataFrame
+        Input DataFrame to separate into numeric and categorical columns.
+    ambiguous_column_types : dict, optional
+        Dictionary with keys "numeric" and "categorical", containing lists of column names
+        to force into each category.
+
+        Numeric definded as: int, float, and complex, 
+            including int/float 32/64, np.number and boolean columns too (Pandas behaviour).
+        Categorical definded as: Non-numeric columns, including object, string,
+            datetime, and categorical dtypes. 
+
+    Returns
+    -------
+    dict
+        A dictionary with keys "numeric" and "categorical", each containing a filtered
+        DataFrame with only the columns of that type.
+
+    # TO-DO raise issue if a column is in both lists in ambiguous_column_types
+    """
+    pass
+
