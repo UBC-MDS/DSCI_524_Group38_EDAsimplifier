@@ -1,3 +1,6 @@
+import pandas as pd
+import altair as alt
+
 """
 A module that simplifies the EDA process.
 
@@ -75,48 +78,174 @@ def dataset_overview(df):
     pass
 
 
-def numeric(df, numeric_features):
+def numeric(df: pd.DataFrame, target: str):
     """
     Perform exploratory data analysis (EDA) on numerical features in a dataset.
 
-    This function generates visualizations for specified numerical columns to
-    help with initial exploratory analysis. It produces histogram plots to
-    examine distributions, correlation plots to identify relationships between
-    features, missing values, and other relevant numerical summaries.
+    This function generates visualizations for numerical columns to
+    help with initial exploratory analysis. It produces a missing values plot,
+    box plots for each feature, distribution histograms, and a correlation
+    matrix heatmap.
 
     Parameters
     ----------
     df : pandas.DataFrame
-        A pandas DataFrame containing the dataset to be analyzed.
-    numeric_features : list of str
-        A list of column names representing the numerical features to analyze.
+        A pandas DataFrame containing the numeric dataset to be analyzed.
+    target : str
+        The name of the target column.
 
     Returns
     -------
     dict
-        A dictionary containing:
-        - plots: Altair figures for distribution plots, correlation plots, 
-        missing values, and potential outliers
+        A dictionary containing Altair plot objects:
+        - 'missing_vals': Bar chart showing missing value counts per column
+        - 'box_plot': Box plots for each feature column
+        - 'distribution': Histograms for each feature stacked vertically
+        - 'correlation': Correlation matrix heatmap of features
 
     Raises
     ------
     TypeError
-        If df is not a pandas DataFrame or numeric_features is not a list
+        If df is not a pandas DataFrame or target is not a string
+
+    ValueError
+        If target name is not found in the DataFrame
 
     Examples
     --------
     >>> import pandas as pd
     >>> df = pd.DataFrame({
-    ...     "artist": ["A", "B", "C", "D"],
     ...     "popularity": [80, 75, 90, 85],
     ...     "danceability": [0.8, 0.6, 0.9, 0.7],
-    ...     "energy": [0.7, 0.8, 0.6, 0.9]
+    ...     "energy": [0.7, 0.8, 0.6, 0.9],
+    ...     "target": [1, 0, 0, 1]
     ... })
-    >>> result = numeric(df, ["popularity", "danceability", "energy"])
+    >>> result = numeric(df, "target")
     >>> result.keys()
-    dict_keys(['histograms', 'correlation_plot', 'missing_vals', 'outliers'])
+    dict_keys(['missing_vals', 'box_plot', 'distribution', 'correlation'])
     """
-    pass
+    
+    ###
+    ### Numerical plot #1: Missing values
+    ###
+
+    # Calculate missing values per column
+    missing_data = df.isnull().sum().reset_index()
+    missing_data.columns = ['column', 'missing_count']
+
+    # Create bar chart for missing values
+    missing_plot = alt.Chart(missing_data).mark_bar().encode(
+        x=alt.X('column:N', title='Column'),
+        y=alt.Y('missing_count:Q', title='Missing Values Count'),
+        tooltip=['column', 'missing_count']
+    ).properties(
+        title='Missing Values by Column'
+    )
+
+
+
+    ###
+    ### Numerical plot #2: Box plots
+    ###
+
+    # Create box plots for each column (except target)
+    feature_cols = [col for col in df.columns if col != target]
+
+    # Melt the dataframe to long format for faceted box plots
+    df_melted = df[feature_cols].melt(var_name='column', value_name='value')
+
+    box_plot = alt.Chart(df_melted).mark_boxplot().encode(
+        x=alt.X('column:N', title='Column'),
+        y=alt.Y('value:Q', title='Value'),
+        color='column:N'
+    ).properties(
+        title='Box Plots by Column'
+    )
+
+    ###
+    ### Numerical plot #3: Distribution plots (histograms)
+    ###
+
+    # Create a histogram for each feature, stacked vertically
+    hist_plots = []
+    for col in feature_cols:
+        hist = alt.Chart(df).mark_bar().encode(
+            x=alt.X(f'{col}:Q', bin=True, title=col),
+            y=alt.Y('count()', title='Count')
+        ).properties(
+            title=f'Distribution of {col}',
+            width=400,
+            height=150
+        )
+        hist_plots.append(hist)
+
+    # Stack all histograms vertically
+    distribution_plot = alt.vconcat(*hist_plots).properties(
+        title='Feature Distributions'
+    )
+
+    ###
+    ### Numerical plot #4: Correlation matrix
+    ###
+
+    # Calculate correlation matrix
+    corr_matrix = df[feature_cols].corr().reset_index().melt(id_vars='index')
+    corr_matrix.columns = ['feature_1', 'feature_2', 'correlation']
+
+    # Create correlation heatmap
+    correlation_plot = alt.Chart(corr_matrix).mark_rect().encode(
+        x=alt.X('feature_1:N', title='Feature'),
+        y=alt.Y('feature_2:N', title='Feature'),
+        color=alt.Color('correlation:Q', scale=alt.Scale(scheme='blueorange', domain=[-1, 1])),
+        tooltip=['feature_1', 'feature_2', 'correlation']
+    ).properties(
+        title='Feature Correlation Matrix',
+        width=300,
+        height=300
+    )
+
+    # Add correlation values as text
+    correlation_text = alt.Chart(corr_matrix).mark_text().encode(
+        x='feature_1:N',
+        y='feature_2:N',
+        text=alt.Text('correlation:Q', format='.2f')
+    )
+
+    correlation_plot = correlation_plot + correlation_text
+
+    ###
+    ### Summary plot: 2x2 grid of all plots
+    ###
+
+    # Create smaller versions for the summary
+    missing_small = missing_plot.properties(width=300, height=200)
+    box_small = box_plot.properties(width=300, height=200)
+    corr_small = correlation_plot.properties(width=300, height=200)
+
+    # For distribution, just take the first histogram to fit in the grid
+    dist_small = hist_plots[0].properties(width=300, height=200) if hist_plots else alt.Chart().mark_text()
+
+    # Combine into 2x2 grid
+    summary_plot = alt.vconcat(
+        alt.hconcat(missing_small, box_small),
+        alt.hconcat(dist_small, corr_small)
+    ).properties(
+        title='Numeric EDA Summary'
+    )
+
+    ###
+    ### Check to see that the plot looks correct
+    ###
+    
+    # Uncomment the following to see the plots saved out to a html
+    summary_plot.save('summary.html')
+
+    return {
+        'missing_vals': missing_plot,
+        'box_plot': box_plot,
+        'distribution': distribution_plot,
+        'correlation': correlation_plot
+    }
     
 def categorical_plot(
         df: pd.DataFrame, 
