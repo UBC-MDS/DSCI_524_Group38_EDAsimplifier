@@ -67,8 +67,10 @@ EDA plotting and full-automated report libraries.
 You can install this package into your preferred Python environment:
 
 ``` bash
-conda create -n eda_simplifier # create a new empty conda environment
-conda activate eda_simplifier # activate the new environment
+# create a new empty conda environment with Python 3.11 (and pip by proxy):
+conda create -n eda_simplifier python=3.11 
+# activate the new environment
+conda activate eda_simplifier 
 ```
 
 To verify the package passes all the unit tests:
@@ -77,7 +79,7 @@ To verify the package passes all the unit tests:
 # To install and use package (in edit mode with dev dependencies):
 pip install -e ".[dev]"  
 # Run unit tests:
-pytest
+pytest -v
 
 # Deactivate the conda environment when done:
 conda deactivate
