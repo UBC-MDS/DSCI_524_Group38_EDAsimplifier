@@ -18,7 +18,7 @@ def test_basic_separation():
     assert set(result['categorical'].columns) == {'genre', 'is_explicit', "track_id"}
 
 def test_override_numeric_to_categorical():
-    '''Test that ambiguous columns can be overridden to categorical.'''
+    """Test that ambiguous columns can be overridden to categorical."""
     df = pd.DataFrame({'year': [2020, 2021, 2022], 
                        'genre': ['Pop', 'Pop', 'Rock']})
     target_column = 'genre'
@@ -29,7 +29,7 @@ def test_override_numeric_to_categorical():
     assert 'year' not in result['numeric'].columns
 
 def test_override_categorical_to_numeric():
-    '''Test that ambiguous columns can be overridden to numeric.'''
+    """Test that ambiguous columns can be overridden to numeric."""
     df = pd.DataFrame({'rank': ["1", "2", "5"], 
                        'genre': ['Pop', 'Jazz', 'Rock']})
     target_column = 'genre'
@@ -40,7 +40,7 @@ def test_override_categorical_to_numeric():
     assert 'rank' not in result['categorical'].columns
 
 def test_none_ambiguous_columns():
-    '''Test that passing None for ambiguous columns uses default behavior.'''
+    """Test that passing None for ambiguous columns uses default behavior."""
     df = pd.DataFrame({
         'genre': ['Pop', 'Pop', 'Rock', 'Jazz', 'Jazz', 'Jazz', 'Hip-Hop', 'Pop', 'Rock', 'Indie'],
         'popularity': [88, 92, 55, 30, 25, 35, 70, 95, 40, 60],
@@ -55,7 +55,7 @@ def test_none_ambiguous_columns():
 
 # Error handling:
 def test_conflict_raises_error():
-    '''Test that conflicting overrides raise a ValueError.'''
+    """Test that conflicting overrides raise a ValueError."""
     df = pd.DataFrame({'rank': ["1", "2", "5"], 
                        'genre': ['Pop', 'Jazz', 'Rock']})
     with pytest.raises(ValueError):
@@ -63,7 +63,7 @@ def test_conflict_raises_error():
 
 # Edge cases:
 def test_invalid_columns_ignored():
-    '''Test that invalid column names are ignored.'''
+    """Test that invalid column names are ignored."""
     df = pd.DataFrame({
         'genre': ['Pop', 'Pop', 'Rock', 'Jazz', 'Jazz', 'Jazz', 'Hip-Hop', 'Pop', 'Rock', 'Indie'],
         'popularity': [88, 92, 55, 30, 25, 35, 70, 95, 40, 60],
