@@ -322,16 +322,26 @@ def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
     dict
         A dictionary with keys "numeric" and "categorical", each containing a filtered
         DataFrame with only the columns of that type.
-
-    # TO-DO raise issue if a column is in both lists in ambiguous_column_types
     """
+    
     # Default to empty lists if no overrides provided
     if ambiguous_column_types is None:
         ambiguous_column_types = {"numeric": [], "categorical": []}
     
-    # Get initial dtype columns
+    ambiguously_numeric = set(ambiguous_column_types["numeric"])
+    ambiguously_categorical = set(ambiguous_column_types["categorical"])
+
+    # Get default dtype columns
     numeric_cols = set(pd_dataframe.select_dtypes(include="number").columns)
     categorical_cols = set(pd_dataframe.select_dtypes(exclude="number").columns)
+
+    # Add relevent ambiguous set then ambiguous/false set
+    numeric_overriden = (numeric_cols | ambiguously_numeric) - ambiguously_categorical
+    categorical_overriden = (categorical_cols | ambiguously_categorical) - ambiguously_numeric
     
+    # Create filtered dataframes
+    numeric_df = pd_dataframe[list(numeric_overriden)]
+    categorical_df = pd_dataframe[list(categorical_overriden)]
+
     return {"numeric": numeric_df, "categorical": categorical_df}
 
