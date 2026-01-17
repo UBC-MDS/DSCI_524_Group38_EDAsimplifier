@@ -78,7 +78,7 @@ def dataset_overview(df):
     pass
 
 
-def numeric(df: pd.DataFrame, target: str):
+def numeric(df: pd.DataFrame, target: str = "target"):
     """
     Perform exploratory data analysis (EDA) on numerical features in a dataset.
 
@@ -124,7 +124,17 @@ def numeric(df: pd.DataFrame, target: str):
     >>> result.keys()
     dict_keys(['missing_vals', 'box_plot', 'distribution', 'correlation'])
     """
-    
+
+    # Raise TypeError if input arguments have wrong types
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("df must be a pandas DataFrame")
+    if not isinstance(target, str):
+        raise TypeError("target must be a string")
+
+    # Raise ValueError if target is not in data frame
+    if target not in df.columns:
+        raise ValueError(f"target '{target}' not found in DataFrame")
+
     ###
     ### Numerical plot #1: Missing values
     ###
@@ -216,7 +226,7 @@ def numeric(df: pd.DataFrame, target: str):
     ###
     ### Summary plot: 2x2 grid of all plots
     ###
-
+    """
     # Create smaller versions for the summary
     missing_small = missing_plot.properties(width=300, height=200)
     box_small = box_plot.properties(width=300, height=200)
@@ -232,13 +242,14 @@ def numeric(df: pd.DataFrame, target: str):
     ).properties(
         title='Numeric EDA Summary'
     )
-
+    
     ###
     ### Check to see that the plot looks correct
     ###
     
     # Uncomment the following to see the plots saved out to a html
-    summary_plot.save('summary.html')
+    #summary_plot.save('summary.html')
+    """
 
     return {
         'missing_vals': missing_plot,

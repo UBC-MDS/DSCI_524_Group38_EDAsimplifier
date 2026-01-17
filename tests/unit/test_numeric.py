@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import altair as alt
+import pytest
 
 from eda_simplifier.simplify import numeric
 
@@ -36,6 +37,63 @@ def test_numeric():
         assert isinstance(value, (alt.Chart, alt.VConcatChart, alt.LayerChart)), f"Value for '{key}' should be an Altair chart"
 
 
-#if __name__ == "__main__":
+def test_nonexistent_target():
+    # Test that ValueError is raised when target column doesn't exist in DataFrame
+    df = pd.DataFrame({
+        'feature1': [1, 2, 3],
+        'feature2': [4, 5, 6],
+        'target': [0, 1, 0]
+    })
+
+    with pytest.raises(ValueError):
+        numeric(df, target="nonexistent_column")
+
+
+def test_df_not_dataframe():
+    # Test that TypeError is raised when df is not a pandas DataFrame
+    with pytest.raises(TypeError):
+        numeric([1, 2, 3], target="target")
+
+    with pytest.raises(TypeError):
+        numeric({"a": 1, "b": 2}, target="target")
+
+    with pytest.raises(TypeError):
+        numeric(None, target="target")
+
+
+def test_target_not_string():
+    # Test that TypeError is raised when target is not a string
+    df = pd.DataFrame({
+        'feature1': [1, 2, 3],
+        'feature2': [4, 5, 6],
+        'target': [0, 1, 0]
+    })
+
+    with pytest.raises(TypeError):
+        numeric(df, target=123)
+
+    with pytest.raises(TypeError):
+        numeric(df, target=['target'])
+
+    with pytest.raises(TypeError):
+        numeric(df, target=None)
+
+
+def test_empty_dataframe():
+    # Test behavior when DataFrame is empty
+    df = pd.DataFrame({'feature1': [], 'feature2': [], 'target': []})
+    result = numeric(df, target="target")
+
+    # Check that result is still a dictionary with expected keys
+    assert isinstance(result, dict)
+    expected_keys = {'missing_vals', 'box_plot', 'distribution', 'correlation'}
+    assert set(result.keys()) == expected_keys
+
+
+# if __name__ == "__main__":
+#    test_nonexistent_target()
+#    test_df_not_dataframe()
+#    test_target_not_string()
+#    test_empty_dataframe()
 #    test_numeric()
 #    print("Test passed!")
