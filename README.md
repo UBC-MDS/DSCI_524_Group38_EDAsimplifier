@@ -26,7 +26,7 @@ EDA plotting and full-automated report libraries.
 
 ## Functions
 
--   `dataset_overview(df)`:
+-   `dataset_overview`:
     Generates a consolidated exploratory summary of a dataset by
     combining key information typically obtained from multiple pandas
     methods such as `.info()`, `.describe()`, and `.shape`. The function
@@ -34,35 +34,21 @@ EDA plotting and full-automated report libraries.
     counts, and summary statistics in a single simplified structure to
     streamline the initial exploratory data analysis process.
 
--   `numeric(df: pd.DataFrame, target: str = "target")`: Perform exploratory data analysis
+-   `numeric`:
+    Perform exploratory data analysis
     (EDA) on numerical features in a dataset. Generates visualizations
     for specified numerical columns to help with initial exploratory
     analysis. It produces histogram plots to examine distributions,
     correlation plots to identify relationships between features,
     missing values, and other relevant numerical summaries.
 
--   ```categorical_plot(
-        df: pd.DataFrame, 
-        target_column: str,
-        categorical_target: bool,
-        max_categories:int = 10,
-        categorical_features: list = None
-        ) -> list
-    ```:
+-   `categorical_plot`:
     Creates Altair plots for the specified categorical columns. Creates
     bar charts and pie charts for each features. Also create box plots
     or stacked bar charts for each feature against the target depending
     on if the target is categorical or numerical.
 
--   ```
-    all_distributions(
-            pd_dataframe: pd.DataFrame, 
-            target_column: str,
-            categorical_target: bool,
-            max_categories: int = 10,
-            categorical_features: list = None,
-            ambiguous_column_types: dict = None) -> None
-    ```:
+-   `all_distributions`:
     The main interface for column-level EDA distribution visualizations
     for numeric and categorical columns. Automatically identifies each
     columns data types and routes them to the appropriate plotting
@@ -71,9 +57,7 @@ EDA plotting and full-automated report libraries.
     the default columns data types may be incorrectly represented 
     (using the hidden _ambiguous_columns_split function).
 
--   ```_ambiguous_columns_split(pd_dataframe: pd.DataFrame,
-                            target_column: str,
-                            ambiguous_column_types: dict = None) -> dict:```
+-   `_ambiguous_columns_split`:
     Separates numeric and categorical columns for a pandas Dataframe, 
     and applies overrides for ambiguous cases via input. Hidden function used purely for 
     all_distributions function.
