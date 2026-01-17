@@ -260,13 +260,16 @@ def categorical_plot(
 
 def all_distributions(
             pd_dataframe: pd.DataFrame, 
-            columns: list = None,
+            target_column: str,
+            categorical_target: bool,
+            max_categories: int = 10,
+            categorical_features: list = None,
             ambiguous_column_types: dict = None) -> None:
     """
     Generate distribution visualizations (e.g., histograms and bar charts) for numeric 
     and categorical columns in a DataFrame.
 
-    This is the main interface for column-level EDA distribution visualizations.
+    This is the main function for column-level EDA distribution visualizations.
     The function automatically infers whether columns are numeric or categorical. 
     Allows manual overrides for ambiguous columns, ambiguous columns are cases where 
     a numeric datatype column should be treated as categorical or vice versa.
@@ -278,11 +281,20 @@ def all_distributions(
         value or string per cell) but can handle some common messy data issue such as incorrect datatypes 
         via ambiguous_column_types parameter.
 
-    columns : list of str, optional
-        Subset of columns to include in the analysis. Invalid or non-existent column names are ignored.
-        All columns in the provided DataFrame are considered if not specified .
+    target_column: str
+        The name of the target column. Funneled to categorical_plot function and numeric function.
+        
+    categorical_target : bool
+        A boolean value indicating if the target column is categorical or not.
 
-    ambiguous_column_types : dict, optional
+    max_categories: int
+        The maximum categories to plot for high cardinality features. Funneled to categorical_plot function
+
+    categorical_features : list
+        Subset of columns to use for categorical plots. If this is not passed, keep all.
+        Subset of columns to include in the analysis. Invalid or non-existent column names are ignored.
+
+    ambiguous_column_types: dict, optional
         Dictionary specifying column type overrides for ambiguous cases.
         Expected keys are ``"numeric"`` and ``"categorical"``, with values
         being lists of column names to force into each category. If a column appears in both lists,
@@ -293,11 +305,23 @@ def all_distributions(
                                     
     Returns
     -------
-    None
-        This function produces distribution plots as a side effect and
-        does not return a value or object. Plots would be returned inline (e.g., Jupyter cell).
+    dict
+        This function produces distribution plots as a side effect and returns a 
+        dictionary of plots types: {"numeric" : cat_plots, "categorical": numeric_plots}. 
+        Currently the categorical_plots contains plots in the form of an appended plot 
+        object / list, and numeric_plots contains plots organized in a dictionary according to plot type.
+        
     """
-    pass
+    subset_df = _ambiguous_columns_split(pd_dataframe, ambiguous_column_types)
+
+    numeric_plots = numeric(subset_df["numeric"], target_column)
+
+    categorical_plots = categorical_plot(subset_df["categorical"], target_column, 
+                    categorical_target = categorical_target,
+                    max_categories = max_categories,
+                    categorical_features = categorical_features)
+    
+    return {"numeric" : numeric_plots, "categorical": categorical_plots} 
 
 def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
                             ambiguous_column_types: dict = None) -> dict:
