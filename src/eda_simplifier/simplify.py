@@ -282,7 +282,7 @@ def all_distributions(
         via ambiguous_column_types parameter.
 
     target_column: str
-        The name of the target column. Funneled to categorical_plot function and numeric function.
+        The name of the target column. Funneled to all subfunctions.
         
     categorical_target : bool
         A boolean value indicating if the target column is categorical or not.
@@ -312,7 +312,7 @@ def all_distributions(
         object / list, and numeric_plots contains plots organized in a dictionary according to plot type.
         
     """
-    subset_df = _ambiguous_columns_split(pd_dataframe, ambiguous_column_types)
+    subset_df = _ambiguous_columns_split(pd_dataframe, target_column, ambiguous_column_types)
 
     numeric_plots = numeric(subset_df["numeric"], target_column)
 
@@ -324,6 +324,7 @@ def all_distributions(
     return {"numeric" : numeric_plots, "categorical": categorical_plots} 
 
 def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
+                            target_column: str,
                             ambiguous_column_types: dict = None) -> dict:
     """
     Separates numeric and categorical columns for a pandas Dataframe, 
@@ -338,6 +339,11 @@ def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
     ----------
     pd_dataframe : pandas.DataFrame
         Input DataFrame to separate into numeric and categorical columns.
+
+    target_column: str
+        The name of the target column. Regardless of dtype, target column is included
+        in both numeric and categorical outputs.
+
     ambiguous_column_types : dict, optional
         Dictionary specifying column type overrides for ambiguous cases.
         Expected keys are "numeric" and "categorical", each containing a list of 
@@ -389,6 +395,10 @@ def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
     numeric_overriden = (numeric_cols | ambiguously_numeric) - ambiguously_categorical
     categorical_overriden = (categorical_cols | ambiguously_categorical) - ambiguously_numeric
 
+    # Always include target column in both
+    numeric_overriden.add(target_column)
+    categorical_overriden.add(target_column)
+    
     # Create filtered dataframes
     numeric_df = pd_dataframe[list(numeric_overriden)]
     categorical_df = pd_dataframe[list(categorical_overriden)]

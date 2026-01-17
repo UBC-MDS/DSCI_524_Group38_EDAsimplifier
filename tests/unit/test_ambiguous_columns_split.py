@@ -11,16 +11,18 @@ def test_basic_separation():
         'is_explicit': ['Explicit', 'Clean', 'Clean', 'Clean', 'Explicit', 'Clean', 'Explicit', 'Clean', 'Clean', 'Clean'],
         'track_id': [i for i in range(10)]
     })
-    result = _ambiguous_columns_split(df)
+    target_column = 'track_id'
+    result = _ambiguous_columns_split(df, target_column)
 
     assert set(result['numeric'].columns) == {'popularity', 'track_id'}
-    assert set(result['categorical'].columns) == {'genre', 'is_explicit'}
+    assert set(result['categorical'].columns) == {'genre', 'is_explicit', "track_id"}
 
 def test_override_numeric_to_categorical():
     '''Test that ambiguous columns can be overridden to categorical.'''
     df = pd.DataFrame({'year': [2020, 2021, 2022], 
                        'genre': ['Pop', 'Pop', 'Rock']})
-    result = _ambiguous_columns_split(df, {'numeric': [], 'categorical': ['year']})
+    target_column = 'genre'
+    result = _ambiguous_columns_split(df, target_column, {'numeric': [], 'categorical': ['year']})
 
     # BOTH that year IS in categorical and NOT in numeric
     assert 'year' in result['categorical'].columns
@@ -30,7 +32,9 @@ def test_override_categorical_to_numeric():
     '''Test that ambiguous columns can be overridden to numeric.'''
     df = pd.DataFrame({'rank': ["1", "2", "5"], 
                        'genre': ['Pop', 'Jazz', 'Rock']})
-    result = _ambiguous_columns_split(df, {'numeric': ['rank'], 'categorical': []})
+    target_column = 'genre'
+    result = _ambiguous_columns_split(df, target_column, {'numeric': ['rank'], 'categorical': []})
+    
     # BOTH that rank IS in numeric and NOT in categorical
     assert 'rank' in result['numeric'].columns
     assert 'rank' not in result['categorical'].columns
@@ -43,11 +47,11 @@ def test_none_ambiguous_columns():
         'is_explicit': ['Explicit', 'Clean', 'Clean', 'Clean', 'Explicit', 'Clean', 'Explicit', 'Clean', 'Clean', 'Clean'],
         'track_id': [i for i in range(10)],
         'rank': ["1", "2", "5","3", "4", "6", "7", "8", "9", "10"]})
-    result = _ambiguous_columns_split(df, None)
+    result = _ambiguous_columns_split(df, "track_id", None)
     
     #if None passed, all ambiguous should go to their default dtype label
     assert set(result['numeric'].columns) == {'popularity', 'track_id'}
-    assert set(result['categorical'].columns) == {'genre', 'is_explicit', 'rank'}
+    assert set(result['categorical'].columns) == {'genre', 'is_explicit', 'rank', "track_id"}
 
 # Error handling:
 def test_conflict_raises_error():
@@ -55,7 +59,7 @@ def test_conflict_raises_error():
     df = pd.DataFrame({'rank': ["1", "2", "5"], 
                        'genre': ['Pop', 'Jazz', 'Rock']})
     with pytest.raises(ValueError):
-        _ambiguous_columns_split(df, {'numeric': ['rank'], 'categorical': ['rank']})
+        _ambiguous_columns_split(df, "genre", {'numeric': ['rank'], 'categorical': ['rank']})
 
 # Edge cases:
 def test_invalid_columns_ignored():
@@ -65,9 +69,9 @@ def test_invalid_columns_ignored():
         'popularity': [88, 92, 55, 30, 25, 35, 70, 95, 40, 60],
         'is_explicit': ['Explicit', 'Clean', 'Clean', 'Clean', 'Explicit', 'Clean', 'Explicit', 'Clean', 'Clean', 'Clean'],
         'track_id': [i for i in range(10)]})
-    result = _ambiguous_columns_split(df, {'numeric': ['rank',], 'categorical': ['nonexistent_col']})
+    result = _ambiguous_columns_split(df, "popularity", {'numeric': ['rank',], 'categorical': ['nonexistent_col']})
     
     assert set(result['numeric'].columns) == {'popularity', 'track_id'}
-    assert set(result['categorical'].columns) == {'genre', 'is_explicit'}
+    assert set(result['categorical'].columns) == {'genre', 'is_explicit', "popularity"}
     assert 'rank' not in result['numeric'].columns
     assert 'nonexistent_col' not in result['categorical'].columns
