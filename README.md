@@ -55,7 +55,7 @@ EDA plotting and full-automated report libraries.
     functions (`numeric` and `categorical_plot`). Also includes a
     manual overrides for ambiguous columns via explicit user input where
     the default columns data types may be incorrectly represented 
-    (using the hidden _ambiguous_columns_split function).
+    (using the hidden `_ambiguous_columns_split` function).
 
 -   `_ambiguous_columns_split`:
     Separates numeric and categorical columns for a pandas Dataframe, 
