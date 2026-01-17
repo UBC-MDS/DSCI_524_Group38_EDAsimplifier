@@ -302,27 +302,39 @@ def all_distributions(
 def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
                             ambiguous_column_types: dict = None) -> dict:
     """
-    Separate numeric and categorical columns, applying type overrides for ambiguous cases.
+    Separates numeric and categorical columns for a pandas Dataframe, 
+    and applies overrides for ambiguous cases via input. Hidden function used purely for 
+    all_distributions function. 
+
+    This function automatically classifies DataFrame columns as numeric or categorical
+    based on their data types. Supports manual overrides when automatic 
+    classification is incorrect (e.g., a numeric zip code that should be treated as categorical).
 
     Parameters
     ----------
     pd_dataframe : pandas.DataFrame
         Input DataFrame to separate into numeric and categorical columns.
     ambiguous_column_types : dict, optional
-        Dictionary with keys "numeric" and "categorical", containing lists of column names
-        to force into each category.
+        Dictionary specifying column type overrides for ambiguous cases.
+        Expected keys are "numeric" and "categorical", each containing a list of 
+        column names to force into that category. Invalid or non-existent column 
+        names are silently ignored.
 
         Numeric definded as: int, float, and complex, 
             including int/float 32/64, np.number and boolean columns too (Pandas behaviour).
         Categorical definded as: Non-numeric columns, including object, string,
             datetime, and categorical dtypes. 
 
+        Example:
+            ambiguous_column_types = {"numeric": ["year"], "categorical": ["zip_code"]}
+
     Returns
     -------
     dict
         A dictionary with keys "numeric" and "categorical", each containing a filtered
         DataFrame with only the columns of that type.
-        Raises
+    
+    Raises
     ------
     ValueError
         If the input DataFrame is empty.
