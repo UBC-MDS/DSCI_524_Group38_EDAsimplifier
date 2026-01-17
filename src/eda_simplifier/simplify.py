@@ -331,6 +331,15 @@ def categorical_plot(
     list
         A list of Altair plot objects of all the plots created
 
+    Raises
+    ------
+    TypeError
+        If df is not a dataframe, target_column is not a string, or 
+        categorical_features is not a list
+    ValueError
+        If df is empty, target_column is not in the DataFrame, or 
+        categorical_features is empty or contains columns not in the DataFrame
+
     Examples
     --------
     >>> import pandas as pd
@@ -340,28 +349,35 @@ def categorical_plot(
     ...     "danceability": [0.8, 0.6, 0.9, 0.7],
     ...     "energy": [0.7, 0.8, 0.6, 0.9]
     ... })
-    >>> plots = categorical_plot(df, ["artist"], 'popularity', False)
+    >>> plots = categorical_plot(df, 'popularity', False, categorical_features=["artist"])
     """
-    plots = []
-    
-    if not categorical_features:
-        categorical_features = df.columns.values.tolist()
-        categorical_features.remove(target_column)
-        
-    if df is None or df.empty:
-        print('Dataframe must not be None or empty')
-        return plots
-    if len(categorical_features) == 0:
-        print('List of categorical features is empty, nothing to plot')
-        return plots
+    # Input Validation
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("df must be a dataframe")
+
+    if df.empty:
+        raise ValueError("df must not be empty")
+
+    if not isinstance(target_column, str):
+        raise TypeError("target_column must be a string")
+
     if target_column not in df.columns:
-        print('Target column not found in dataframe')
-        return plots
+        raise ValueError(f"Target column '{target_column}' not found in dataframe")
+
+    if categorical_features is None or len(categorical_features) == 0:
+        categorical_features = [col for col in df.columns if col != target_column]
+
+    if not isinstance(categorical_features, list):
+        raise TypeError("categorical_features must be a list")
+
+    if len(categorical_features) == 0:
+        raise ValueError("No categorical features to plot")
+
     for feature in categorical_features:
         if feature not in df.columns:
-            print(f'Column {feature} not found in dataframe')
-            return plots
+            raise ValueError(f"Column '{feature}' not found in dataframe")
     
+    plots = []
     for feature in categorical_features:
         # filter based on class count limit
         top_features = df[feature].value_counts().nlargest(max_categories).index.tolist()
@@ -397,46 +413,151 @@ def categorical_plot(
         plots.append(vs_target)
     return plots
 
+
 def all_distributions(
             pd_dataframe: pd.DataFrame, 
-            columns: list = None,
+            target_column: str,
+            categorical_target: bool,
+            max_categories: int = 10,
+            categorical_features: list = None,
             ambiguous_column_types: dict = None) -> None:
     """
-    Generate column-level distribution plots for numeric and categorical columns.
+    Generate distribution visualizations (e.g., histograms and bar charts) for numeric 
+    and categorical columns in a DataFrame.
 
-    This is the main interface for column-level EDA distribution visualizations.
-    The function automatically infers whether columns are numeric or categorical
-    and routes them to the appropriate plotting functions. Allows manual overrides 
-    for ambiguous columns via explicit user input. Ambiguous columns are cases where 
-    a column of a numeric data type should be treated as categorical and vis versa.
-
-    (Optional Future functionally: 
-        Allow for dataframe modifications to correct ambiguous column data types.
-        [inplace: bool = True argument])
+    This is the main function for column-level EDA distribution visualizations.
+    The function automatically infers whether columns are numeric or categorical. 
+    Allows manual overrides for ambiguous columns, ambiguous columns are cases where 
+    a numeric datatype column should be treated as categorical or vice versa.
 
     Parameters
     ----------
     pd_dataframe : pandas.DataFrame
-        Input DataFrame containing the data to be analyzed.
+        Input DataFrame containing the data to be analyzed. Expects a tidy dataframe (one 
+        value or string per cell) but can handle some common messy data issue such as incorrect datatypes 
+        via ambiguous_column_types parameter.
 
-    columns : list of str, optional
-        Subset of columns to include in the analysis. 
-        All columns in the DataFrame are considered if left as None.
+    target_column: str
+        The name of the target column. Funneled to all subfunctions.
+        
+    categorical_target : bool
+        A boolean value indicating if the target column is categorical or not.
 
-    ambiguous_column_types : dict, optional
+    max_categories: int
+        The maximum categories to plot for high cardinality features. Funneled to categorical_plot function
+
+    categorical_features : list
+        Subset of columns to use for categorical plots. If this is not passed, keep all.
+        Subset of columns to include in the analysis. Invalid or non-existent column names are ignored.
+
+    ambiguous_column_types: dict, optional
         Dictionary specifying column type overrides for ambiguous cases.
         Expected keys are ``"numeric"`` and ``"categorical"``, with values
-        being lists of column names to force into each category.
+        being lists of column names to force into each category. If a column appears in both lists,
+        will raise a ValueError. Invalid or non-existent column names are ignored.
 
         Example:
-            ambiguous_column_types = {"numeric" : ['year'], 
-                                    "categorical": [zip_code]}
+            ambiguous_column_types = {"numeric" : ['year'], "categorical": ['zip_code]}
                                     
     Returns
     -------
-    None
-        This function produces distribution plots as a side effect and
-        does not return a value or object.
-
+    dict
+        This function produces distribution plots as a side effect and returns a 
+        dictionary of plots types: {"numeric" : cat_plots, "categorical": numeric_plots}. 
+        Currently the categorical_plots contains plots in the form of an appended plot 
+        object / list, and numeric_plots contains plots organized in a dictionary according to plot type.
+        
     """
-    pass
+    subset_df = _ambiguous_columns_split(pd_dataframe, target_column, ambiguous_column_types)
+
+    numeric_plots = numeric(subset_df["numeric"], target_column)
+
+    categorical_plots = categorical_plot(subset_df["categorical"], target_column, 
+                    categorical_target = categorical_target,
+                    max_categories = max_categories,
+                    categorical_features = categorical_features)
+    
+    return {"numeric" : numeric_plots, "categorical": categorical_plots} 
+
+def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
+                            target_column: str,
+                            ambiguous_column_types: dict = None) -> dict:
+    """
+    Separates numeric and categorical columns for a pandas Dataframe, 
+    and applies overrides for ambiguous cases via input. Hidden function used purely for 
+    all_distributions function. 
+
+    This function automatically classifies DataFrame columns as numeric or categorical
+    based on their data types. Supports manual overrides when automatic 
+    classification is incorrect (e.g., a numeric zip code that should be treated as categorical).
+
+    Parameters
+    ----------
+    pd_dataframe : pandas.DataFrame
+        Input DataFrame to separate into numeric and categorical columns.
+
+    target_column: str
+        The name of the target column. Regardless of dtype, target column is included
+        in both numeric and categorical outputs.
+
+    ambiguous_column_types : dict, optional
+        Dictionary specifying column type overrides for ambiguous cases.
+        Expected keys are "numeric" and "categorical", each containing a list of 
+        column names to force into that category. Invalid or non-existent column 
+        names are silently ignored.
+
+        Numeric definded as: int, float, and complex, 
+            including int/float 32/64, np.number and boolean columns too (Pandas behaviour).
+        Categorical definded as: Non-numeric columns, including object, string,
+            datetime, and categorical dtypes. 
+
+        Example:
+            ambiguous_column_types = {"numeric": ["year"], "categorical": ["zip_code"]}
+
+    Returns
+    -------
+    dict
+        A dictionary with keys "numeric" and "categorical", each containing a filtered
+        DataFrame with only the columns of that type.
+    
+    Raises
+    ------
+    ValueError
+        If the input DataFrame is empty.
+    ValueError
+        If a column is specified in both "numeric" and "categorical" lists in ambiguous_column_types.
+    """
+    if pd_dataframe.empty:
+        raise ValueError("Input DataFrame cannot be empty")
+        
+    # Default to empty lists if no overrides provided
+    if ambiguous_column_types is None:
+        ambiguous_column_types = {"numeric": [], "categorical": []}
+
+    # Split column referances and ignores invalid / non-existent columns 
+    ambiguously_numeric = set(ambiguous_column_types["numeric"]).intersection(pd_dataframe.columns)
+    ambiguously_categorical = set(ambiguous_column_types["categorical"]).intersection(pd_dataframe.columns)
+
+    # Check for conflicts
+    overlap = ambiguously_numeric & ambiguously_categorical
+    if overlap:
+        raise ValueError(f"Column(s) {overlap} cannot be both 'numeric' and 'categorical'")
+
+    # Get default dtype columns
+    numeric_cols = set(pd_dataframe.select_dtypes(include="number").columns)
+    categorical_cols = set(pd_dataframe.select_dtypes(exclude="number").columns)
+
+    # Add relevent ambiguous set then ambiguous/false set
+    numeric_overriden = (numeric_cols | ambiguously_numeric) - ambiguously_categorical
+    categorical_overriden = (categorical_cols | ambiguously_categorical) - ambiguously_numeric
+
+    # Always include target column in both
+    numeric_overriden.add(target_column)
+    categorical_overriden.add(target_column)
+    
+    # Create filtered dataframes
+    numeric_df = pd_dataframe[list(numeric_overriden)]
+    categorical_df = pd_dataframe[list(categorical_overriden)]
+
+    return {"numeric": numeric_df, "categorical": categorical_df}
+
