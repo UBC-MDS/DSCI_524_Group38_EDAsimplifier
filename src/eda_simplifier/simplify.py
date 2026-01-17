@@ -191,6 +191,15 @@ def categorical_plot(
     list
         A list of Altair plot objects of all the plots created
 
+    Raises
+    ------
+    TypeError
+        If df is not a dataframe, target_column is not a string, or 
+        categorical_features is not a list
+    ValueError
+        If df is empty, target_column is not in the DataFrame, or 
+        categorical_features is empty or contains columns not in the DataFrame
+
     Examples
     --------
     >>> import pandas as pd
@@ -200,28 +209,35 @@ def categorical_plot(
     ...     "danceability": [0.8, 0.6, 0.9, 0.7],
     ...     "energy": [0.7, 0.8, 0.6, 0.9]
     ... })
-    >>> plots = categorical_plot(df, ["artist"], 'popularity', False)
+    >>> plots = categorical_plot(df, 'popularity', False, categorical_features=["artist"])
     """
-    plots = []
-    
-    if not categorical_features:
-        categorical_features = df.columns.values.tolist()
-        categorical_features.remove(target_column)
-        
-    if df is None or df.empty:
-        print('Dataframe must not be None or empty')
-        return plots
-    if len(categorical_features) == 0:
-        print('List of categorical features is empty, nothing to plot')
-        return plots
+    # Input Validation
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("df must be a dataframe")
+
+    if df.empty:
+        raise ValueError("df must not be empty")
+
+    if not isinstance(target_column, str):
+        raise TypeError("target_column must be a string")
+
     if target_column not in df.columns:
-        print('Target column not found in dataframe')
-        return plots
+        raise ValueError(f"Target column '{target_column}' not found in dataframe")
+
+    if categorical_features is None or len(categorical_features) == 0:
+        categorical_features = [col for col in df.columns if col != target_column]
+
+    if not isinstance(categorical_features, list):
+        raise TypeError("categorical_features must be a list")
+
+    if len(categorical_features) == 0:
+        raise ValueError("No categorical features to plot")
+
     for feature in categorical_features:
         if feature not in df.columns:
-            print(f'Column {feature} not found in dataframe')
-            return plots
+            raise ValueError(f"Column '{feature}' not found in dataframe")
     
+    plots = []
     for feature in categorical_features:
         # filter based on class count limit
         top_features = df[feature].value_counts().nlargest(max_categories).index.tolist()

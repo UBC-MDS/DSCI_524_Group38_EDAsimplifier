@@ -58,14 +58,11 @@ def test_categorical_plot():
     assert isinstance(plot_all, list)
     assert len(plot_all) == 6
     
-    plot_none_df = categorical_plot(None, 'popularity', False, categorical_features = ['genre'])
-    assert isinstance(plot_none_df, list)
-    assert len(plot_none_df) == 0
+    with pytest.raises(TypeError):
+        categorical_plot(None, 'popularity', False, categorical_features=['genre'])
     
-    plot_empty_df = categorical_plot(pd.DataFrame({}), 'popularity', False, categorical_features = ['genre'])
-    assert isinstance(plot_empty_df, list)
-    assert len(plot_empty_df) == 0
+    with pytest.raises(ValueError):
+        categorical_plot(pd.DataFrame({}), 'popularity', False, categorical_features=['genre'])
     
-    feat_target_not_exist = categorical_plot(df, 'someTarget', False, categorical_features = ['someFeature'])
-    assert isinstance(feat_target_not_exist, list)
-    assert len(feat_target_not_exist) == 0
+    with pytest.raises(ValueError):
+        categorical_plot(df, 'someTarget', False, categorical_features = ['someFeature'])
