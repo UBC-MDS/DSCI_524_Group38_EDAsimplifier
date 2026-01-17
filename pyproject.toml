@@ -49,6 +49,7 @@ Download = "https://pypi.org/project/eda_simplifier/#files"
 dev = [
     "hatch",
     "pre-commit",
+    "pytest"
 ]
 
 docs = [
