@@ -15,7 +15,7 @@ format:
     toc: true
 
 quartodoc:
-  package: EDA_simplifier
+  package: eda_simplifier
   dir: reference
   sections:
     - title: EDA Tools Simplified
