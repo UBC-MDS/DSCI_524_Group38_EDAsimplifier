@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "EDA Simplifier"
+  navbar:
+    left:
+      - text: "Reference"
+        href: reference/index.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+
+quartodoc:
+  package: EDA_simplifier
+  dir: reference
+  sections:
+    - title: EDA Tools Simplified
+      desc: Functions to help you quickly and easily get high-level EDA visuals 
+      contents:
+        - simplify.dataset_overview
+        - simplify.numeric
+        - simplify.categorical_plot
+        - simplify.all_distributions
+        - simplify._ambiguous_columns_split
+        
