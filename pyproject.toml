@@ -72,7 +72,8 @@ tests = [
     "pytest-raises",
     "pytest-randomly",
     "pytest-xdist",
-    "ruff"
+    "ruff",
+    "black"
 ]
 
 
