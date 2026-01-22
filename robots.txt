@@ -1,0 +1,1 @@
+Sitemap: https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/sitemap.xml
