@@ -9,8 +9,6 @@ preliminary EDA process for any given pandas DataFrame. It uses Altair, which is
 powerful but verbose, so some functions abstract common patterns and apply smart 
 defaults to streamline EDA exploration.
 """
-import pandas as pd
-import altair as alt
 
 def dataset_overview(df):
     """
