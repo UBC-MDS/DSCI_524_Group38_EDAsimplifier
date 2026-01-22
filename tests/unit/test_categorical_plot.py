@@ -1,7 +1,6 @@
 from eda_simplifier.simplify import categorical_plot
 import pandas as pd
 import pytest
-import altair as alt
 
 def test_categorical_plot():
     data = {
