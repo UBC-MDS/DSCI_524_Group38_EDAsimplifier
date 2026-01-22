@@ -60,7 +60,7 @@ docs = [
     #"sphinx-autoapi>=3.6.0",
     #"sphinx_design>=0.6.1",
     #"sphinx-copybutton>=0.5.2",
-    quartodoc
+    "quartodoc"
 ]
 
 build = [
