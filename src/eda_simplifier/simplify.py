@@ -10,6 +10,7 @@ powerful but verbose, so some functions abstract common patterns and apply smart
 defaults to streamline EDA exploration.
 """
 
+
 def dataset_overview(df):
     """
     Generates a consolidated exploratory summary of the dataset.
@@ -84,24 +85,23 @@ def dataset_overview(df):
         }
     }
     """
-    #Input validation
+    # Input validation
     if not isinstance(df, pd.DataFrame):
         raise TypeError("Input must be a pandas DataFrame")
 
-    #Baseline components
+    # Baseline components
     shape = df.shape
     columns = list(df.columns)
     dtypes = {col: str(dtype) for col, dtype in df.dtypes.items()}
     missing_values = df.isna().sum().to_dict()
 
-    #Summary statistics for numeric columns only
+    # Summary statistics for numeric columns only
     numeric_df = df.select_dtypes(include="number")
     if numeric_df.empty:
         summary_statistics = {}
     else:
         summary_statistics = {
-            col: numeric_df[col].describe()
-            for col in numeric_df.columns
+            col: numeric_df[col].describe() for col in numeric_df.columns
         }
 
     return {
@@ -176,18 +176,19 @@ def numeric(df: pd.DataFrame, target: str = "target"):
 
     # Calculate missing values per column
     missing_data = df.isnull().sum().reset_index()
-    missing_data.columns = ['column', 'missing_count']
+    missing_data.columns = ["column", "missing_count"]
 
     # Create bar chart for missing values
-    missing_plot = alt.Chart(missing_data).mark_bar().encode(
-        x=alt.X('column:N', title='Column'),
-        y=alt.Y('missing_count:Q', title='Missing Values Count'),
-        tooltip=['column', 'missing_count']
-    ).properties(
-        title='Missing Values by Column'
+    missing_plot = (
+        alt.Chart(missing_data)
+        .mark_bar()
+        .encode(
+            x=alt.X("column:N", title="Column"),
+            y=alt.Y("missing_count:Q", title="Missing Values Count"),
+            tooltip=["column", "missing_count"],
+        )
+        .properties(title="Missing Values by Column")
     )
-
-
 
     ###
     ### Numerical plot #2: Box plots
@@ -197,14 +198,17 @@ def numeric(df: pd.DataFrame, target: str = "target"):
     feature_cols = [col for col in df.columns if col != target]
 
     # Melt the dataframe to long format for faceted box plots
-    df_melted = df[feature_cols].melt(var_name='column', value_name='value')
+    df_melted = df[feature_cols].melt(var_name="column", value_name="value")
 
-    box_plot = alt.Chart(df_melted).mark_boxplot().encode(
-        x=alt.X('column:N', title='Column'),
-        y=alt.Y('value:Q', title='Value'),
-        color='column:N'
-    ).properties(
-        title='Box Plots by Column'
+    box_plot = (
+        alt.Chart(df_melted)
+        .mark_boxplot()
+        .encode(
+            x=alt.X("column:N", title="Column"),
+            y=alt.Y("value:Q", title="Value"),
+            color="column:N",
+        )
+        .properties(title="Box Plots by Column")
     )
 
     ###
@@ -214,19 +218,20 @@ def numeric(df: pd.DataFrame, target: str = "target"):
     # Create a histogram for each feature, stacked vertically
     hist_plots = []
     for col in feature_cols:
-        hist = alt.Chart(df).mark_bar().encode(
-            x=alt.X(f'{col}:Q', bin=True, title=col),
-            y=alt.Y('count()', title='Count')
-        ).properties(
-            title=f'Distribution of {col}',
-            width=400,
-            height=150
+        hist = (
+            alt.Chart(df)
+            .mark_bar()
+            .encode(
+                x=alt.X(f"{col}:Q", bin=True, title=col),
+                y=alt.Y("count()", title="Count"),
+            )
+            .properties(title=f"Distribution of {col}", width=400, height=150)
         )
         hist_plots.append(hist)
 
     # Stack all histograms vertically
     distribution_plot = alt.vconcat(*hist_plots).properties(
-        title='Feature Distributions'
+        title="Feature Distributions"
     )
 
     ###
@@ -234,26 +239,33 @@ def numeric(df: pd.DataFrame, target: str = "target"):
     ###
 
     # Calculate correlation matrix
-    corr_matrix = df[feature_cols].corr().reset_index().melt(id_vars='index')
-    corr_matrix.columns = ['feature_1', 'feature_2', 'correlation']
+    corr_matrix = df[feature_cols].corr().reset_index().melt(id_vars="index")
+    corr_matrix.columns = ["feature_1", "feature_2", "correlation"]
 
     # Create correlation heatmap
-    correlation_plot = alt.Chart(corr_matrix).mark_rect().encode(
-        x=alt.X('feature_1:N', title='Feature'),
-        y=alt.Y('feature_2:N', title='Feature'),
-        color=alt.Color('correlation:Q', scale=alt.Scale(scheme='blueorange', domain=[-1, 1])),
-        tooltip=['feature_1', 'feature_2', 'correlation']
-    ).properties(
-        title='Feature Correlation Matrix',
-        width=300,
-        height=300
+    correlation_plot = (
+        alt.Chart(corr_matrix)
+        .mark_rect()
+        .encode(
+            x=alt.X("feature_1:N", title="Feature"),
+            y=alt.Y("feature_2:N", title="Feature"),
+            color=alt.Color(
+                "correlation:Q", scale=alt.Scale(scheme="blueorange", domain=[-1, 1])
+            ),
+            tooltip=["feature_1", "feature_2", "correlation"],
+        )
+        .properties(title="Feature Correlation Matrix", width=300, height=300)
     )
 
     # Add correlation values as text
-    correlation_text = alt.Chart(corr_matrix).mark_text().encode(
-        x='feature_1:N',
-        y='feature_2:N',
-        text=alt.Text('correlation:Q', format='.2f')
+    correlation_text = (
+        alt.Chart(corr_matrix)
+        .mark_text()
+        .encode(
+            x="feature_1:N",
+            y="feature_2:N",
+            text=alt.Text("correlation:Q", format=".2f"),
+        )
     )
 
     correlation_plot = correlation_plot + correlation_text
@@ -287,29 +299,30 @@ def numeric(df: pd.DataFrame, target: str = "target"):
     """
 
     return {
-        'missing_vals': missing_plot,
-        'box_plot': box_plot,
-        'distribution': distribution_plot,
-        'correlation': correlation_plot
+        "missing_vals": missing_plot,
+        "box_plot": box_plot,
+        "distribution": distribution_plot,
+        "correlation": correlation_plot,
     }
-    
+
+
 def categorical_plot(
-        df: pd.DataFrame, 
-        target_column: str,
-        categorical_target: bool,
-        max_categories:int = 10,
-        categorical_features: list = None
-        ) -> list:
+    df: pd.DataFrame,
+    target_column: str,
+    categorical_target: bool,
+    max_categories: int = 10,
+    categorical_features: list = None,
+) -> list:
     """
     Perform EDA on categorical columns in a dataset.
 
-    
-    This function creates Altair plots for the specified columns, assuming 
-    them to contain categorical data. It creates sorted horizontal bar charts 
+
+    This function creates Altair plots for the specified columns, assuming
+    them to contain categorical data. It creates sorted horizontal bar charts
     to show the frequency and the proportion of each categories. Also create
     box plots for features vs target if the target is numerical, or stacked
     bar charts if the target is categorical.
-   
+
     Parameters
     ----------
     df : pandas.DataFrame
@@ -332,10 +345,10 @@ def categorical_plot(
     Raises
     ------
     TypeError
-        If df is not a dataframe, target_column is not a string, or 
+        If df is not a dataframe, target_column is not a string, or
         categorical_features is not a list
     ValueError
-        If df is empty, target_column is not in the DataFrame, or 
+        If df is empty, target_column is not in the DataFrame, or
         categorical_features is empty or contains columns not in the DataFrame
 
     Examples
@@ -374,70 +387,86 @@ def categorical_plot(
     for feature in categorical_features:
         if feature not in df.columns:
             raise ValueError(f"Column '{feature}' not found in dataframe")
-    
+
     plots = []
     for feature in categorical_features:
         # filter based on class count limit
-        top_features = df[feature].value_counts().nlargest(max_categories).index.tolist()
-        df = df[df[feature].isin(top_features)].copy()
-        
-        # sorted horizontal bar chart
-        bar_chart = alt.Chart(df).mark_bar().encode(
-            y=alt.Y(f"{feature}:N", sort='-x', title=feature),
-            x=alt.X("count():Q"),
-        ).properties(
-            title=f"Frequency count of {feature}"
+        top_features = (
+            df[feature].value_counts().nlargest(max_categories).index.tolist()
         )
-        
-        plots.append(bar_chart)
-        
-        if categorical_target:
-            vs_target = alt.Chart(df).mark_bar().encode(
-                y=alt.Y(f"{feature}:N", sort='-x', title=feature),
+        df = df[df[feature].isin(top_features)].copy()
+
+        # sorted horizontal bar chart
+        bar_chart = (
+            alt.Chart(df)
+            .mark_bar()
+            .encode(
+                y=alt.Y(f"{feature}:N", sort="-x", title=feature),
                 x=alt.X("count():Q"),
-                color=alt.Color(f"{target_column}:N")
-            ).properties(
-                title=f"{feature} vs {target_column}",
+            )
+            .properties(title=f"Frequency count of {feature}")
+        )
+
+        plots.append(bar_chart)
+
+        if categorical_target:
+            vs_target = (
+                alt.Chart(df)
+                .mark_bar()
+                .encode(
+                    y=alt.Y(f"{feature}:N", sort="-x", title=feature),
+                    x=alt.X("count():Q"),
+                    color=alt.Color(f"{target_column}:N"),
+                )
+                .properties(
+                    title=f"{feature} vs {target_column}",
+                )
             )
         else:
-            vs_target = alt.Chart(df).mark_boxplot().encode(
-                y=alt.Y(f"{feature}:N", sort='-x', title=feature),
-                x=alt.X(f"{target_column}:Q", title=target_column),
-                color=alt.Color(f"{feature}:N")
-            ).properties(
-                title=f"{feature} vs {target_column}",
+            vs_target = (
+                alt.Chart(df)
+                .mark_boxplot()
+                .encode(
+                    y=alt.Y(f"{feature}:N", sort="-x", title=feature),
+                    x=alt.X(f"{target_column}:Q", title=target_column),
+                    color=alt.Color(f"{feature}:N"),
+                )
+                .properties(
+                    title=f"{feature} vs {target_column}",
+                )
             )
-        
+
         plots.append(vs_target)
     return plots
 
 
 def all_distributions(
-            pd_dataframe: pd.DataFrame, 
-            target_column: str,
-            categorical_target: bool,
-            max_categories: int = 10,
-            categorical_features: list = None,
-            ambiguous_column_types: dict = None) -> None:
+    pd_dataframe: pd.DataFrame,
+    target_column: str,
+    categorical_target: bool,
+    max_categories: int = 10,
+    categorical_features: list = None,
+    ambiguous_column_types: dict = None,
+) -> None:
     """
-    Generate distribution visualizations (e.g., histograms and bar charts) for numeric 
+    Generate distribution visualizations (e.g., histograms and bar charts) for numeric
     and categorical columns in a DataFrame.
 
     This is the main function for column-level EDA distribution visualizations.
-    The function automatically infers whether columns are numeric or categorical. 
-    Allows manual overrides for ambiguous columns, ambiguous columns are cases where 
+    The function automatically infers whether columns are numeric or categorical.
+    Allows manual overrides for ambiguous columns, ambiguous columns are cases where
     a numeric datatype column should be treated as categorical or vice versa.
 
     Parameters
     ----------
     pd_dataframe : pandas.DataFrame
-        Input DataFrame containing the data to be analyzed. Expects a tidy dataframe (one 
-        value or string per cell) but can handle some common messy data issue such as incorrect datatypes 
+        Input DataFrame containing the data to be analyzed. Expects a tidy dataframe (one
+        value or string per cell) but can handle some common messy data issue such as incorrect datatypes
         via ambiguous_column_types parameter.
 
     target_column: str
         The name of the target column. Funneled to all subfunctions.
-        
+
     categorical_target : bool
         A boolean value indicating if the target column is categorical or not.
 
@@ -456,37 +485,43 @@ def all_distributions(
 
         Example:
             ambiguous_column_types = {"numeric" : ['year'], "categorical": ['zip_code]}
-                                    
+
     Returns
     -------
     dict
-        This function produces distribution plots as a side effect and returns a 
-        dictionary of plots types: {"numeric" : cat_plots, "categorical": numeric_plots}. 
-        Currently the categorical_plots contains plots in the form of an appended plot 
+        This function produces distribution plots as a side effect and returns a
+        dictionary of plots types: {"numeric" : cat_plots, "categorical": numeric_plots}.
+        Currently the categorical_plots contains plots in the form of an appended plot
         object / list, and numeric_plots contains plots organized in a dictionary according to plot type.
-        
+
     """
-    subset_df = _ambiguous_columns_split(pd_dataframe, target_column, ambiguous_column_types)
+    subset_df = _ambiguous_columns_split(
+        pd_dataframe, target_column, ambiguous_column_types
+    )
 
     numeric_plots = numeric(subset_df["numeric"], target_column)
 
-    categorical_plots = categorical_plot(subset_df["categorical"], target_column, 
-                    categorical_target = categorical_target,
-                    max_categories = max_categories,
-                    categorical_features = categorical_features)
-    
-    return {"numeric" : numeric_plots, "categorical": categorical_plots} 
+    categorical_plots = categorical_plot(
+        subset_df["categorical"],
+        target_column,
+        categorical_target=categorical_target,
+        max_categories=max_categories,
+        categorical_features=categorical_features,
+    )
 
-def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
-                            target_column: str,
-                            ambiguous_column_types: dict = None) -> dict:
+    return {"numeric": numeric_plots, "categorical": categorical_plots}
+
+
+def _ambiguous_columns_split(
+    pd_dataframe: pd.DataFrame, target_column: str, ambiguous_column_types: dict = None
+) -> dict:
     """
-    Separates numeric and categorical columns for a pandas Dataframe, 
-    and applies overrides for ambiguous cases via input. Hidden function used purely for 
-    all_distributions function. 
+    Separates numeric and categorical columns for a pandas Dataframe,
+    and applies overrides for ambiguous cases via input. Hidden function used purely for
+    all_distributions function.
 
     This function automatically classifies DataFrame columns as numeric or categorical
-    based on their data types. Supports manual overrides when automatic 
+    based on their data types. Supports manual overrides when automatic
     classification is incorrect (e.g., a numeric zip code that should be treated as categorical).
 
     Parameters
@@ -500,14 +535,14 @@ def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
 
     ambiguous_column_types : dict, optional
         Dictionary specifying column type overrides for ambiguous cases.
-        Expected keys are "numeric" and "categorical", each containing a list of 
-        column names to force into that category. Invalid or non-existent column 
+        Expected keys are "numeric" and "categorical", each containing a list of
+        column names to force into that category. Invalid or non-existent column
         names are silently ignored.
 
-        Numeric definded as: int, float, and complex, 
+        Numeric definded as: int, float, and complex,
             including int/float 32/64, np.number and boolean columns too (Pandas behaviour).
         Categorical definded as: Non-numeric columns, including object, string,
-            datetime, and categorical dtypes. 
+            datetime, and categorical dtypes.
 
         Example:
             ambiguous_column_types = {"numeric": ["year"], "categorical": ["zip_code"]}
@@ -517,7 +552,7 @@ def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
     dict
         A dictionary with keys "numeric" and "categorical", each containing a filtered
         DataFrame with only the columns of that type.
-    
+
     Raises
     ------
     ValueError
@@ -527,19 +562,25 @@ def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
     """
     if pd_dataframe.empty:
         raise ValueError("Input DataFrame cannot be empty")
-        
+
     # Default to empty lists if no overrides provided
     if ambiguous_column_types is None:
         ambiguous_column_types = {"numeric": [], "categorical": []}
 
-    # Split column referances and ignores invalid / non-existent columns 
-    ambiguously_numeric = set(ambiguous_column_types["numeric"]).intersection(pd_dataframe.columns)
-    ambiguously_categorical = set(ambiguous_column_types["categorical"]).intersection(pd_dataframe.columns)
+    # Split column referances and ignores invalid / non-existent columns
+    ambiguously_numeric = set(ambiguous_column_types["numeric"]).intersection(
+        pd_dataframe.columns
+    )
+    ambiguously_categorical = set(ambiguous_column_types["categorical"]).intersection(
+        pd_dataframe.columns
+    )
 
     # Check for conflicts
     overlap = ambiguously_numeric & ambiguously_categorical
     if overlap:
-        raise ValueError(f"Column(s) {overlap} cannot be both 'numeric' and 'categorical'")
+        raise ValueError(
+            f"Column(s) {overlap} cannot be both 'numeric' and 'categorical'"
+        )
 
     # Get default dtype columns
     numeric_cols = set(pd_dataframe.select_dtypes(include="number").columns)
@@ -547,15 +588,16 @@ def _ambiguous_columns_split(pd_dataframe: pd.DataFrame,
 
     # Add relevent ambiguous set then ambiguous/false set
     numeric_overriden = (numeric_cols | ambiguously_numeric) - ambiguously_categorical
-    categorical_overriden = (categorical_cols | ambiguously_categorical) - ambiguously_numeric
+    categorical_overriden = (
+        categorical_cols | ambiguously_categorical
+    ) - ambiguously_numeric
 
     # Always include target column in both
     numeric_overriden.add(target_column)
     categorical_overriden.add(target_column)
-    
+
     # Create filtered dataframes
     numeric_df = pd_dataframe[list(numeric_overriden)]
     categorical_df = pd_dataframe[list(categorical_overriden)]
 
     return {"numeric": numeric_df, "categorical": categorical_df}
-

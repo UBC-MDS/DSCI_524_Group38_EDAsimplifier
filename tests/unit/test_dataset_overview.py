@@ -38,10 +38,12 @@ def test_empty_dataframe_returns_empty_structures():
 
 def test_dataframe_with_no_numeric_columns():
     """No numeric columns should produce empty summary_statistics."""
-    df = pd.DataFrame({
-        "col_a": ["x", "y", "z"],
-        "col_b": ["a", "b", "c"],
-    })
+    df = pd.DataFrame(
+        {
+            "col_a": ["x", "y", "z"],
+            "col_b": ["a", "b", "c"],
+        }
+    )
     result = dataset_overview(df)
 
     assert result["summary_statistics"] == {}
@@ -50,15 +52,16 @@ def test_dataframe_with_no_numeric_columns():
 
 def test_numeric_columns_include_summary_statistics():
     """Numeric columns should be summarized correctly."""
-    df = pd.DataFrame({
-        "col_a": [1, 2, None],
-        "col_b": [4.0, 5.0, 6.0],
-    })
+    df = pd.DataFrame(
+        {
+            "col_a": [1, 2, None],
+            "col_b": [4.0, 5.0, 6.0],
+        }
+    )
     result = dataset_overview(df)
 
     assert "col_a" in result["summary_statistics"]
     assert "col_b" in result["summary_statistics"]
 
-    #describe() to count non-missing values
+    # describe() to count non-missing values
     assert result["summary_statistics"]["col_a"]["count"] == 2
-
