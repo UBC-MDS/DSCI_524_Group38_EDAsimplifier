@@ -24,9 +24,6 @@ jobs:
         run: |
           pip install -e ".[docs]"
 
-      - name: Manual copy of README.md to be on site
-        run: cp README.md docs/
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
