@@ -5,7 +5,7 @@ from eda_simplifier.simplify import dataset_overview
 
 
 def test_raises_type_error_for_non_dataframe():
-    """Non-DataFrame input should raise TypeError."""
+    """Non DataFrame input should raise TypeError."""
     with pytest.raises(TypeError):
         dataset_overview("not a dataframe")
 
