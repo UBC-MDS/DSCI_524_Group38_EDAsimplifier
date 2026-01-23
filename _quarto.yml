@@ -7,8 +7,14 @@ website:
   navbar:
     left:
       - text: "Reference"
-        href: reference/index.qmd
+        href: reference/index.html
+      - text: "Change log"
+        href: CHANGELOG.html
+      - text: "Code of Conduct"
+        href: "CODE_OF_CONDUCT".html
+      
 
+     
 format:
   html:
     theme: cosmo
