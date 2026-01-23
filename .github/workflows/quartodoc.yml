@@ -1,0 +1,41 @@
+name: Render Docs
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main 
+      
+  workflow_dispatch:
+
+jobs:
+  render-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          pip install -e ".[docs]"
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Build quartodoc
+        run: |
+          quartodoc build --verbose
+
+      - name: Render Quarto site
+        run: |
+          quarto render
+
+      - name: Publish to gh-pages branch
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
