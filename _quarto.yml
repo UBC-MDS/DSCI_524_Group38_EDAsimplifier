@@ -11,9 +11,11 @@ website:
       - text: "Change log"
         href: CHANGELOG.html
       - text: "Code of Conduct"
-        href: "CODE_OF_CONDUCT".html
-      
-
+        href: CODE_OF_CONDUCT.html
+      - text: "Contributing"
+        href: CONTRIBUTING.html
+      - text: "Development"
+        href: DEVELOPMENT.html
      
 format:
   html:
