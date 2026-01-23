@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/CODE_OF_CONDUCT.html</loc>
-    <lastmod>2026-01-23T21:30:26.692Z</lastmod>
+    <lastmod>2026-01-23T21:31:06.723Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/reference/simplify.all_distributions.html</loc>
-    <lastmod>2026-01-23T21:30:52.025Z</lastmod>
+    <lastmod>2026-01-23T21:31:34.024Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/reference/simplify.dataset_overview.html</loc>
-    <lastmod>2026-01-23T21:30:51.996Z</lastmod>
+    <lastmod>2026-01-23T21:31:33.996Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/reference/index.html</loc>
-    <lastmod>2026-01-23T21:30:51.958Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/DEVELOPMENT.html</loc>
-    <lastmod>2026-01-23T21:30:26.692Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/CHANGELOG.html</loc>
-    <lastmod>2026-01-23T21:30:26.691Z</lastmod>
+    <lastmod>2026-01-23T21:31:33.960Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/CONTRIBUTING.html</loc>
-    <lastmod>2026-01-23T21:30:26.692Z</lastmod>
+    <lastmod>2026-01-23T21:31:06.724Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/CHANGELOG.html</loc>
+    <lastmod>2026-01-23T21:31:06.723Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/DEVELOPMENT.html</loc>
+    <lastmod>2026-01-23T21:31:06.724Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/index.html</loc>
+    <lastmod>2026-01-23T21:31:06.724Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/reference/simplify._ambiguous_columns_split.html</loc>
-    <lastmod>2026-01-23T21:30:52.034Z</lastmod>
+    <lastmod>2026-01-23T21:31:34.032Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/reference/simplify.numeric.html</loc>
-    <lastmod>2026-01-23T21:30:52.005Z</lastmod>
+    <lastmod>2026-01-23T21:31:34.005Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI_524_Group38_EDAsimplifier/reference/simplify.categorical_plot.html</loc>
-    <lastmod>2026-01-23T21:30:52.016Z</lastmod>
+    <lastmod>2026-01-23T21:31:34.015Z</lastmod>
   </url>
 </urlset>
