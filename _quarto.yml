@@ -6,18 +6,18 @@ website:
   title: "EDA Simplifier"
   navbar:
     left:
-      #- text: "Home"
-      #  href: index.qmd
+      - text: "Home"
+        href: index.qmd
       - text: "Reference"
         href: reference/index.html
       - text: "Code of Conduct"
         href: CODE_OF_CONDUCT.html
       - text: "Contributing"
         href: CONTRIBUTING.html
-      - text: "Development"
-        href: DEVELOPMENT.html
-      - text: "Change log"
-        href: CHANGELOG.html
+      #- text: "Development"
+      #  href: DEVELOPMENT.html
+      #- text: "Change log"
+      #  href: CHANGELOG.html
      
 format:
   html:
