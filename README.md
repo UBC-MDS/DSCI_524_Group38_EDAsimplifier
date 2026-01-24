@@ -3,7 +3,7 @@
 |  |  |
 |------------------------------------|------------------------------------|
 | Package | [![Latest PyPI Version](https://img.shields.io/pypi/v/eda_simplifier.svg)](https://pypi.org/project/eda_simplifier/) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/eda_simplifier.svg)](https://pypi.org/project/eda_simplifier/) |
-| Meta | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) |
+| Meta | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) [![build](https://github.com/UBC-MDS/eda_simplifier/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/eda_simplifier/actions/workflows/build.yml) [![deploy](https://github.com/UBC-MDS/eda_simplifier/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/eda_simplifier/actions/workflows/deploy.yml) |
 
 *TODO: the above badges that indicate python version and package version
 will only work if your package is on PyPI. If you don't plan to publish
@@ -26,7 +26,7 @@ EDA plotting and full-automated report libraries.
 
 ## Functions
 
--   `dataset_overview`:
+- `dataset_overview`:
     Generates a consolidated exploratory summary of a dataset by
     combining key information typically obtained from multiple pandas
     methods such as `.info()`, `.describe()`, and `.shape`. The function
@@ -34,7 +34,7 @@ EDA plotting and full-automated report libraries.
     counts, and summary statistics in a single simplified structure to
     streamline the initial exploratory data analysis process.
 
--   `numeric`:
+- `numeric`:
     Perform exploratory data analysis
     (EDA) on numerical features in a dataset. Generates visualizations
     for specified numerical columns to help with initial exploratory
@@ -42,24 +42,24 @@ EDA plotting and full-automated report libraries.
     correlation plots to identify relationships between features,
     missing values, and other relevant numerical summaries.
 
--   `categorical_plot`:
+- `categorical_plot`:
     Creates Altair plots for the specified categorical columns. Creates
     bar charts and pie charts for each features. Also create box plots
     or stacked bar charts for each feature against the target depending
     on if the target is categorical or numerical.
 
--   `all_distributions`:
+- `all_distributions`:
     The main interface for column-level EDA distribution visualizations
     for numeric and categorical columns. Automatically identifies each
     columns data types and routes them to the appropriate plotting
     functions (`numeric` and `categorical_plot`). Also includes a
     manual overrides for ambiguous columns via explicit user input where
-    the default columns data types may be incorrectly represented 
+    the default columns data types may be incorrectly represented
     (using the hidden `_ambiguous_columns_split` function).
 
--   `_ambiguous_columns_split`:
-    Separates numeric and categorical columns for a pandas Dataframe, 
-    and applies overrides for ambiguous cases via input. Hidden function used purely for 
+- `_ambiguous_columns_split`:
+    Separates numeric and categorical columns for a pandas Dataframe,
+    and applies overrides for ambiguous cases via input. Hidden function used purely for
     all_distributions function.
 
 ## Get started
@@ -104,13 +104,13 @@ To use eda_simplifier in your code:
 
 ## Contributors
 
--   Diana Cornescu
--   Johnson Chuang
--   Lavanya Gupta
--   Tiantong Yin
+- Diana Cornescu
+- Johnson Chuang
+- Lavanya Gupta
+- Tiantong Yin
 
 ## Copyright
 
--   Copyright © Diana Cornescu, Johnson Chuang, Lavanya Gupta & Tiantong
+- Copyright © Diana Cornescu, Johnson Chuang, Lavanya Gupta & Tiantong
     Yin.
--   Free software distributed under the [MIT License](./LICENSE).
+- Free software distributed under the [MIT License](./LICENSE).
