@@ -72,6 +72,8 @@ You can install this package from TestPyPI into your preferred Python environmen
 pip install -i https://test.pypi.org/simple/ eda_simplifier
 ```
 
+View the package on [TestPyPI](https://test.pypi.org/project/eda_simplifier/).
+
 ## Developer Guide
 
 Clone the repository from GitHub and navigate into the project directory:
@@ -148,6 +150,8 @@ Our documentation and package deployment are automated with GitHub Actions:
 | `deploy.yml` | Push to main | Publish to TestPyPI |
 | `quartodoc.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
 
+View the package on [TestPyPI](https://test.pypi.org/project/eda_simplifier/).
+
 ## Usage
 
 To use eda_simplifier in your code:
@@ -164,6 +168,9 @@ To use eda_simplifier in your code:
 
 >>> summary = dataset_overview(df)
 ```
+
+View the full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
+
 
 ## Contributors
 
