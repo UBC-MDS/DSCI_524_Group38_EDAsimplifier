@@ -66,13 +66,11 @@ EDA plotting and full-automated report libraries.
 
 ## User Guide
 
-You can install this package from TestPyPI into your preferred Python environment:
+You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
 
 ```bash
 pip install -i https://test.pypi.org/simple/ eda_simplifier
 ```
-
-View the package on [TestPyPI](https://test.pypi.org/project/eda_simplifier/).
 
 ## Developer Guide
 
@@ -147,10 +145,8 @@ Our documentation and package deployment are automated with GitHub Actions:
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
 | `build.yml` | PR and push to main | Lint and test |
-| `deploy.yml` | Push to main | Publish to TestPyPI |
+| `deploy.yml` | Push to main | Publish to [TestPyPI](https://test.pypi.org/project/eda_simplifier/) |
 | `quartodoc.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
-
-View the package on [TestPyPI](https://test.pypi.org/project/eda_simplifier/).
 
 ## Usage
 
