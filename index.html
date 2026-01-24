@@ -181,19 +181,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome-to-eda_simplifier" class="level1">
 <h1>Welcome to EDA_simplifier</h1>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td>Package</td>
-<td><a href="https://pypi.org/project/eda_simplifier/"><img src="https://img.shields.io/pypi/v/eda_simplifier.svg" class="img-fluid" alt="Latest PyPI Version"></a> <a href="https://pypi.org/project/eda_simplifier/"><img src="https://img.shields.io/pypi/pyversions/eda_simplifier.svg" class="img-fluid" alt="Supported Python Versions"></a></td>
-</tr>
-<tr class="even">
-<td>Meta</td>
-<td><a href="./CODE_OF_CONDUCT.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" class="img-fluid" alt="Code of Conduct"></a> <a href="https://github.com/UBC-MDS/eda_simplifier/actions/workflows/build.yml"><img src="https://github.com/UBC-MDS/eda_simplifier/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="build"></a> <a href="https://github.com/UBC-MDS/eda_simplifier/actions/workflows/deploy.yml"><img src="https://github.com/UBC-MDS/eda_simplifier/actions/workflows/deploy.yml/badge.svg" class="img-fluid" alt="deploy"></a></td>
-</tr>
-</tbody>
-</table>
-<p><em>TODO: the above badges that indicate python version and package version will only work if your package is on PyPI. If you don’t plan to publish to PyPI, you can remove them.</em></p>
 <section id="package-summary" class="level2">
 <h2 class="anchored" data-anchor-id="package-summary">Package Summary</h2>
 <p>EDA_simplifier is a project that streamlines exploratory data analysis (EDA) for any pandas DataFrame. This package provides functions that consolidate many repetitive steps in EDA, serving as a first pass to quickly gain a holistic view of a dataset. Within the larger Python ecosystem, it requires Pandas and primarily builds upon Altair. While Altair is powerful, it can also be verbose and syntactically restrictive. As a result, many functions in this project act as wrappers around Altair, providing sensible defaults and abstractions to simplify the EDA process. Although automated EDA reporting libraries exist, most focus on large-scale HTML reports or one-liner summaries. Therefore the EDA simplifier package provides a intermediate between raw Altair-based EDA plotting and full-automated report libraries.</p>
@@ -232,6 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> <span class="st">".[dev,tests,docs]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once the package is installed, you will see a message like:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Successfully</span> installed eda_simplifier-0.1.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
 <p>For contribution guidelines and recommended workflow, see <a href="./CONTRIBUTING.html">CONTRIBUTING.md</a>.</p>
 <p>To verify the package passes all unit tests:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
