@@ -221,7 +221,7 @@
     "href": "index.html#user-guide",
     "title": "Welcome to EDA_simplifier",
     "section": "User Guide",
-    "text": "User Guide\nYou can install this package from TestPyPI into your preferred Python environment:\npip install -i https://test.pypi.org/simple/ eda_simplifier\nView the package on TestPyPI."
+    "text": "User Guide\nYou can install this package from TestPyPI into your preferred Python environment:\npip install -i https://test.pypi.org/simple/ eda_simplifier"
   },
   {
     "objectID": "index.html#developer-guide",
@@ -235,7 +235,7 @@
     "href": "index.html#cicd-workflows",
     "title": "Welcome to EDA_simplifier",
     "section": "CI/CD Workflows",
-    "text": "CI/CD Workflows\nOur documentation and package deployment are automated with GitHub Actions:\n\n\n\n\n\n\n\n\nWorkflow\nTrigger\nPurpose\n\n\n\n\nbuild.yml\nPR and push to main\nLint and test\n\n\ndeploy.yml\nPush to main\nPublish to TestPyPI\n\n\nquartodoc.yml\nPush to main\nBuild, render, and publish docs to GitHub Pages\n\n\n\nView the package on TestPyPI."
+    "text": "CI/CD Workflows\nOur documentation and package deployment are automated with GitHub Actions:\n\n\n\nWorkflow\nTrigger\nPurpose\n\n\n\n\nbuild.yml\nPR and push to main\nLint and test\n\n\ndeploy.yml\nPush to main\nPublish to TestPyPI\n\n\nquartodoc.yml\nPush to main\nBuild, render, and publish docs to GitHub Pages"
   },
   {
     "objectID": "index.html#usage",
