@@ -15,6 +15,7 @@ dependencies:
   - pytest-xdist>=3.8
   - ruff>=0.14
   - black>=26.1
+  - quarto>=1.5
 
   # Pip-only packages
   - pip>=24.0

@@ -62,30 +62,93 @@ EDA plotting and full-automated report libraries.
     and applies overrides for ambiguous cases via input. Hidden function used purely for
     all_distributions function.
 
-## Get started
+# Getting Started
 
-You can install this package into your preferred Python environment:
+## User Guide
 
-``` bash
-# create a new empty conda environment with Python 3.11 (and pip by proxy):
-conda create -n eda_simplifier python=3.11 
-# activate the new environment
-conda activate eda_simplifier 
+You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
+
+```bash
+pip install -i https://test.pypi.org/simple/ eda_simplifier
 ```
 
-To verify the package passes all the unit tests:
+## Developer Guide
 
-``` bash
-# To install and use package (in edit mode with dev dependencies):
-pip install -e ".[dev]"  
-# Run unit tests:
+Clone the repository from GitHub and navigate into the project directory:
+
+```bash
+git clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git
+cd eda_simplifier
+```
+
+Set up your development environment using one of the following methods:
+
+**Method 1: Using conda with environment.yml (recommended)**
+
+Create a conda environment and install the package:
+
+```bash
+conda env create -f environment.yml
+conda activate eda_simplifier
+pip install -e .
+```
+
+**Method 2: Using pip only**
+
+Install directly into the current Python environment:
+
+```bash
+pip install -e ".[dev,tests,docs]"
+```
+
+Once the package is installed, you will see a message like:
+
+```bash
+Successfully installed eda_simplifier-0.1.0
+```
+
+For contribution guidelines and recommended workflow, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+To verify the package passes all unit tests:
+
+```bash
 pytest -v
+```
 
-# Deactivate the conda environment when done:
+To ensure all code pass linting and formatting checks:
+
+```bash
+# Linting
+ruff check .
+
+# Format check
+black --check .
+```
+
+To build and render the documentation:
+
+```bash
+quartodoc build
+quarto render
+```
+
+To deactivate the conda environment (if you used Method 1):
+
+```bash
 conda deactivate
 ```
 
-TODO: Add a brief example of how to use the package to this section
+## CI/CD Workflows
+
+Our documentation and package deployment are automated with GitHub Actions:
+
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `build.yml` | PR and push to main | Lint and test |
+| `deploy.yml` | Push to main | Publish to [TestPyPI](https://test.pypi.org/project/eda_simplifier/) |
+| `quartodoc.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
+
+## Usage
 
 To use eda_simplifier in your code:
 
@@ -101,6 +164,9 @@ To use eda_simplifier in your code:
 
 >>> summary = dataset_overview(df)
 ```
+
+View the full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
+
 
 ## Contributors
 
