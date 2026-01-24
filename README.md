@@ -1,14 +1,5 @@
 # Welcome to EDA_simplifier
 
-|  |  |
-|------------------------------------|------------------------------------|
-| Package | [![Latest PyPI Version](https://img.shields.io/pypi/v/eda_simplifier.svg)](https://pypi.org/project/eda_simplifier/) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/eda_simplifier.svg)](https://pypi.org/project/eda_simplifier/) |
-| Meta | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) [![build](https://github.com/UBC-MDS/eda_simplifier/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/eda_simplifier/actions/workflows/build.yml) [![deploy](https://github.com/UBC-MDS/eda_simplifier/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/eda_simplifier/actions/workflows/deploy.yml) |
-
-*TODO: the above badges that indicate python version and package version
-will only work if your package is on PyPI. If you don't plan to publish
-to PyPI, you can remove them.*
-
 ## Package Summary
 
 EDA_simplifier is a project that streamlines exploratory data analysis
@@ -106,6 +97,8 @@ Once the package is installed, you will see a message like:
 ```bash
 Successfully installed eda_simplifier-0.1.0
 ```
+
+---
 
 For contribution guidelines and recommended workflow, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
