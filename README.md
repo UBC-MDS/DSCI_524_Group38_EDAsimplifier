@@ -77,7 +77,7 @@ pip install -i https://test.pypi.org/simple/ eda_simplifier
 Clone the repository from GitHub and navigate into the project directory:
 
 ```bash
-git clone https://github.com/UBC-MDS/eda_simplifier.git
+git clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git
 cd eda_simplifier
 ```
 
