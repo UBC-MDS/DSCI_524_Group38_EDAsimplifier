@@ -221,7 +221,7 @@
     "href": "index.html#user-guide",
     "title": "Welcome to EDA_simplifier",
     "section": "User Guide",
-    "text": "User Guide\nYou can install this package from TestPyPI into your preferred Python environment:\npip install -i https://test.pypi.org/simple/ eda_simplifier"
+    "text": "User Guide\nYou can install this package from TestPyPI into your preferred Python environment:\npip install -i https://test.pypi.org/simple/ eda_simplifier\nView the package on TestPyPI."
   },
   {
     "objectID": "index.html#developer-guide",
@@ -235,14 +235,14 @@
     "href": "index.html#cicd-workflows",
     "title": "Welcome to EDA_simplifier",
     "section": "CI/CD Workflows",
-    "text": "CI/CD Workflows\nOur documentation and package deployment are automated with GitHub Actions:\n\n\n\n\n\n\n\n\nWorkflow\nTrigger\nPurpose\n\n\n\n\nbuild.yml\nPR and push to main\nLint and test\n\n\ndeploy.yml\nPush to main\nPublish to TestPyPI\n\n\nquartodoc.yml\nPush to main\nBuild, render, and publish docs to GitHub Pages"
+    "text": "CI/CD Workflows\nOur documentation and package deployment are automated with GitHub Actions:\n\n\n\n\n\n\n\n\nWorkflow\nTrigger\nPurpose\n\n\n\n\nbuild.yml\nPR and push to main\nLint and test\n\n\ndeploy.yml\nPush to main\nPublish to TestPyPI\n\n\nquartodoc.yml\nPush to main\nBuild, render, and publish docs to GitHub Pages\n\n\n\nView the package on TestPyPI."
   },
   {
     "objectID": "index.html#usage",
     "href": "index.html#usage",
     "title": "Welcome to EDA_simplifier",
     "section": "Usage",
-    "text": "Usage\nTo use eda_simplifier in your code:\n&gt;&gt;&gt; import pandas as pd\n&gt;&gt;&gt; from eda_simplifier.simplify import dataset_overview\n\n&gt;&gt;&gt; df = pd.DataFrame({\n    \"artist\": [\"A\", \"B\", \"C\"],\n    \"popularity\": [80, 75, None],\n    \"danceability\": [0.8, 0.6, 0.9]\n})\n\n&gt;&gt;&gt; summary = dataset_overview(df)"
+    "text": "Usage\nTo use eda_simplifier in your code:\n&gt;&gt;&gt; import pandas as pd\n&gt;&gt;&gt; from eda_simplifier.simplify import dataset_overview\n\n&gt;&gt;&gt; df = pd.DataFrame({\n    \"artist\": [\"A\", \"B\", \"C\"],\n    \"popularity\": [80, 75, None],\n    \"danceability\": [0.8, 0.6, 0.9]\n})\n\n&gt;&gt;&gt; summary = dataset_overview(df)\nView the full API reference."
   },
   {
     "objectID": "index.html#contributors",
