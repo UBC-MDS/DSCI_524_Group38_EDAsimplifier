@@ -160,13 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#package-summary" id="toc-package-summary" class="nav-link" data-scroll-target="#package-summary">Package Summary</a></li>
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
-  </ul></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a>
-  <ul class="collapse">
-  <li><a href="#user-guide" id="toc-user-guide" class="nav-link" data-scroll-target="#user-guide">User Guide</a></li>
-  <li><a href="#developer-guide" id="toc-developer-guide" class="nav-link" data-scroll-target="#developer-guide">Developer Guide</a></li>
-  <li><a href="#cicd-workflows" id="toc-cicd-workflows" class="nav-link" data-scroll-target="#cicd-workflows">CI/CD Workflows</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
+  <li><a href="#get-started" id="toc-get-started" class="nav-link" data-scroll-target="#get-started">Get started</a></li>
   <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors">Contributors</a></li>
   <li><a href="#copyright" id="toc-copyright" class="nav-link" data-scroll-target="#copyright">Copyright</a></li>
   </ul></li>
@@ -189,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Meta</td>
-<td><a href="./CODE_OF_CONDUCT.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" class="img-fluid" alt="Code of Conduct"></a></td>
+<td><a href="./CODE_OF_CONDUCT.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" class="img-fluid" alt="Code of Conduct"></a> <a href="https://github.com/UBC-MDS/eda_simplifier/actions/workflows/build.yml"><img src="https://github.com/UBC-MDS/eda_simplifier/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="build"></a> <a href="https://github.com/UBC-MDS/eda_simplifier/actions/workflows/deploy.yml"><img src="https://github.com/UBC-MDS/eda_simplifier/actions/workflows/deploy.yml/badge.svg" class="img-fluid" alt="deploy"></a></td>
 </tr>
 </tbody>
 </table>
@@ -208,89 +202,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>_ambiguous_columns_split</code>: Separates numeric and categorical columns for a pandas Dataframe, and applies overrides for ambiguous cases via input. Hidden function used purely for all_distributions function.</p></li>
 </ul>
 </section>
-</section>
-<section id="getting-started" class="level1">
-<h1>Getting Started</h1>
-<section id="user-guide" class="level2">
-<h2 class="anchored" data-anchor-id="user-guide">User Guide</h2>
-<p>You can install this package from <a href="https://test.pypi.org/project/eda_simplifier/">TestPyPI</a> into your preferred Python environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://test.pypi.org/simple/ eda_simplifier</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="developer-guide" class="level2">
-<h2 class="anchored" data-anchor-id="developer-guide">Developer Guide</h2>
-<p>Clone the repository from GitHub and navigate into the project directory:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> eda_simplifier</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Set up your development environment using one of the following methods:</p>
-<p><strong>Method 1: Using conda with environment.yml (recommended)</strong></p>
-<p>Create a conda environment and install the package:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate eda_simplifier</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Method 2: Using pip only</strong></p>
-<p>Install directly into the current Python environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> <span class="st">".[dev,tests,docs]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Once the package is installed, you will see a message like:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Successfully</span> installed eda_simplifier-0.1.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For contribution guidelines and recommended workflow, see <a href="./CONTRIBUTING.html">CONTRIBUTING.md</a>.</p>
-<p>To verify the package passes all unit tests:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To ensure all code pass linting and formatting checks:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linting</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ruff</span> check .</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Format check</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">black</span> <span class="at">--check</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To build and render the documentation:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quartodoc</span> build</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To deactivate the conda environment (if you used Method 1):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="cicd-workflows" class="level2">
-<h2 class="anchored" data-anchor-id="cicd-workflows">CI/CD Workflows</h2>
-<p>Our documentation and package deployment are automated with GitHub Actions:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Workflow</th>
-<th>Trigger</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>build.yml</code></td>
-<td>PR and push to main</td>
-<td>Lint and test</td>
-</tr>
-<tr class="even">
-<td><code>deploy.yml</code></td>
-<td>Push to main</td>
-<td>Publish to <a href="https://test.pypi.org/project/eda_simplifier/">TestPyPI</a></td>
-</tr>
-<tr class="odd">
-<td><code>quartodoc.yml</code></td>
-<td>Push to main</td>
-<td>Build, render, and publish docs to GitHub Pages</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<section id="get-started" class="level2">
+<h2 class="anchored" data-anchor-id="get-started">Get started</h2>
+<p>You can install this package into your preferred Python environment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new empty conda environment with Python 3.11 (and pip by proxy):</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> eda_simplifier python=3.11 </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># activate the new environment</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate eda_simplifier </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To verify the package passes all the unit tests:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To install and use package (in edit mode with dev dependencies):</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> <span class="st">".[dev]"</span>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run unit tests:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-v</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Deactivate the conda environment when done:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>TODO: Add a brief example of how to use the package to this section</p>
 <p>To use eda_simplifier in your code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> eda_simplifier.simplify <span class="im">import</span> dataset_overview</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"artist"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>],</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"popularity"</span>: [<span class="dv">80</span>, <span class="dv">75</span>, <span class="va">None</span>],</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"danceability"</span>: [<span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> summary <span class="op">=</span> dataset_overview(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>View the full <a href="https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/">API reference</a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> eda_simplifier.simplify <span class="im">import</span> dataset_overview</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"artist"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>],</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"popularity"</span>: [<span class="dv">80</span>, <span class="dv">75</span>, <span class="va">None</span>],</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"danceability"</span>: [<span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> summary <span class="op">=</span> dataset_overview(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="contributors" class="level2">
 <h2 class="anchored" data-anchor-id="contributors">Contributors</h2>
