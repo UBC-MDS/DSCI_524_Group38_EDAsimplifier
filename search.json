@@ -221,14 +221,14 @@
     "href": "index.html#user-guide",
     "title": "Welcome to EDA_simplifier",
     "section": "User Guide",
-    "text": "User Guide\nYou can install this package from TestPyPI into your preferred Python environment:\npip install -i https://test.pypi.org/simple/ eda_simplifier"
+    "text": "User Guide\nYou can install this package from TestPyPI into your preferred Python environment:\npip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ eda_simplifier"
   },
   {
     "objectID": "index.html#developer-guide",
     "href": "index.html#developer-guide",
     "title": "Welcome to EDA_simplifier",
     "section": "Developer Guide",
-    "text": "Developer Guide\nClone the repository from GitHub and navigate into the project directory:\ngit clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git\ncd eda_simplifier\nSet up your development environment using one of the following methods:\nMethod 1: Using conda with environment.yml (recommended)\nCreate a conda environment and install the package:\nconda env create -f environment.yml\nconda activate eda_simplifier\npip install -e .\nMethod 2: Using pip only\nInstall directly into the current Python environment:\npip install -e \".[dev,tests,docs]\"\nOnce the package is installed, you will see a message like:\nSuccessfully installed eda_simplifier-0.1.0\n\nFor contribution guidelines and recommended workflow, see CONTRIBUTING.md.\nTo verify the package passes all unit tests:\npytest -v\nTo ensure all code pass linting and formatting checks:\n# Linting\nruff check .\n\n# Format check\nblack --check .\nTo build and render the documentation:\nquartodoc build\nquarto render\nTo deactivate the conda environment (if you used Method 1):\nconda deactivate"
+    "text": "Developer Guide\nClone the repository from GitHub and navigate into the project directory:\ngit clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git\ncd DSCI_524_Group38_EDAsimplifier/\nSet up your development environment using one of the following methods:\nMethod 1: Using conda with environment.yml (recommended)\nCreate a conda environment and install the package:\nconda env create -f environment.yml\nconda activate eda_simplifier\npip install -e .\nMethod 2: Using pip only\nInstall directly into the current Python environment:\npip install -e \".[dev,tests,docs]\"\nOnce the package is installed, you will see a message like:\nSuccessfully installed eda_simplifier-[version_no]\n\nFor contribution guidelines and recommended workflow, see CONTRIBUTING.md.\nTo verify the package passes all unit tests:\npytest -v\nTo ensure all code pass linting and formatting checks:\n# Linting\nruff check .\n\n# Format check\nblack --check .\nTo build and render the documentation:\nquartodoc build\nquarto render\nTo deactivate the conda environment (if you used Method 1):\nconda deactivate"
   },
   {
     "objectID": "index.html#cicd-workflows",
@@ -242,7 +242,7 @@
     "href": "index.html#usage",
     "title": "Welcome to EDA_simplifier",
     "section": "Usage",
-    "text": "Usage\nTo use eda_simplifier in your code:\n&gt;&gt;&gt; import pandas as pd\n&gt;&gt;&gt; from eda_simplifier.simplify import dataset_overview\n\n&gt;&gt;&gt; df = pd.DataFrame({\n    \"artist\": [\"A\", \"B\", \"C\"],\n    \"popularity\": [80, 75, None],\n    \"danceability\": [0.8, 0.6, 0.9]\n})\n\n&gt;&gt;&gt; summary = dataset_overview(df)\nView the full API reference."
+    "text": "Usage\nTo use eda_simplifier in your code:\nimport pandas as pd\nfrom eda_simplifier.simplify import dataset_overview\n\ndf = pd.DataFrame({\n    \"artist\": [\"A\", \"B\", \"C\"],\n    \"popularity\": [80, 75, None],\n    \"danceability\": [0.8, 0.6, 0.9]\n    })\n\nsummary = dataset_overview(df)\nView the full API reference."
   },
   {
     "objectID": "index.html#contributors",
