@@ -66,7 +66,7 @@ EDA plotting and full-automated report libraries.
 You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
 
 ```bash
-pip install -i https://test.pypi.org/simple/ eda_simplifier
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ eda_simplifier
 ```
 
 ## Developer Guide
@@ -75,7 +75,7 @@ Clone the repository from GitHub and navigate into the project directory:
 
 ```bash
 git clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git
-cd eda_simplifier
+cd DSCI_524_Group38_EDAsimplifier/
 ```
 
 Set up your development environment using one of the following methods:
@@ -101,7 +101,7 @@ pip install -e ".[dev,tests,docs]"
 Once the package is installed, you will see a message like:
 
 ```bash
-Successfully installed eda_simplifier-0.1.0
+Successfully installed eda_simplifier-[version_no]
 ```
 
 ---
@@ -152,16 +152,16 @@ Our documentation and package deployment are automated with GitHub Actions:
 To use eda_simplifier in your code:
 
 ``` python
->>> import pandas as pd
->>> from eda_simplifier.simplify import dataset_overview
+import pandas as pd
+from eda_simplifier.simplify import dataset_overview
 
->>> df = pd.DataFrame({
+df = pd.DataFrame({
     "artist": ["A", "B", "C"],
     "popularity": [80, 75, None],
     "danceability": [0.8, 0.6, 0.9]
-})
+    })
 
->>> summary = dataset_overview(df)
+summary = dataset_overview(df)
 ```
 
 View the full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
