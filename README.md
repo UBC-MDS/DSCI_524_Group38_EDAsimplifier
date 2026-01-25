@@ -66,7 +66,7 @@ EDA plotting and full-automated report libraries.
 You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
 
 ```bash
-pip install -i https://test.pypi.org/simple/ eda_simplifier
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ eda_simplifier
 ```
 
 ## Developer Guide
@@ -152,16 +152,16 @@ Our documentation and package deployment are automated with GitHub Actions:
 To use eda_simplifier in your code:
 
 ``` python
->>> import pandas as pd
->>> from eda_simplifier.simplify import dataset_overview
+import pandas as pd
+from eda_simplifier.simplify import dataset_overview
 
->>> df = pd.DataFrame({
+df = pd.DataFrame({
     "artist": ["A", "B", "C"],
     "popularity": [80, 75, None],
     "danceability": [0.8, 0.6, 0.9]
-})
+    })
 
->>> summary = dataset_overview(df)
+summary = dataset_overview(df)
 ```
 
 View the full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
