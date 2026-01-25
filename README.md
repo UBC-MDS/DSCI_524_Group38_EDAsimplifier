@@ -75,7 +75,7 @@ Clone the repository from GitHub and navigate into the project directory:
 
 ```bash
 git clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git
-cd eda_simplifier
+cd DSCI_524_Group38_EDAsimplifier/
 ```
 
 Set up your development environment using one of the following methods:
