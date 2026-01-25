@@ -494,6 +494,24 @@ def all_distributions(
         Currently the categorical_plots contains plots in the form of an appended plot
         object / list, and numeric_plots contains plots organized in a dictionary according to plot type.
 
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     'age': [25, 30, 35, 40, 45],
+    ...     'income': [50000, 60000, 75000, 80000, 90000],
+    ...     'city': ['NYC', 'LA', 'Chicago', 'NYC', 'LA'],
+    ...     'approved': ['Yes', 'No', 'Yes', 'Yes', 'No']
+    ... })
+    >>> plots = all_distributions(
+    ...     pd_dataframe=df,
+    ...     target_column='approved',
+    ...     categorical_target=True
+    ... )
+    >>> plots.keys()
+    dict_keys(['numeric', 'categorical'])
+    >>> numeric_plots = plots['numeric']
+    >>> categorical_plots = plots['categorical']
     """
     subset_df = _ambiguous_columns_split(
         pd_dataframe, target_column, ambiguous_column_types
@@ -559,6 +577,26 @@ def _ambiguous_columns_split(
         If the input DataFrame is empty.
     ValueError
         If a column is specified in both "numeric" and "categorical" lists in ambiguous_column_types.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     'age': [25, 30, 35, 40],
+    ...     'income': [50000, 60000, 75000, 80000],
+    ...     'city': ['NYC', 'LA', 'Chicago', 'Boston'],
+    ...     'education': ['BS', 'MS', 'PhD', 'BS'],
+    ...     'approved': [True, False, True, True]
+    ... })
+    >>> result = _ambiguous_columns_split(
+    ...     pd_dataframe=df,
+    ...     target_column='approved'
+    ... )
+    >>> result['numeric'].columns
+    Index(['age', 'income', 'approved'], dtype='object')
+    ...
+    >>> result['categorical'].columns
+    Index(['city', 'education', 'approved'], dtype='object')
     """
     if pd_dataframe.empty:
         raise ValueError("Input DataFrame cannot be empty")
