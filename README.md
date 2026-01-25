@@ -101,7 +101,7 @@ pip install -e ".[dev,tests,docs]"
 Once the package is installed, you will see a message like:
 
 ```bash
-Successfully installed eda_simplifier-0.1.0
+Successfully installed eda_simplifier-[version_no]
 ```
 
 ---
