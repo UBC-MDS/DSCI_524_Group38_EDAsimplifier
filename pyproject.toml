@@ -23,7 +23,10 @@ dynamic = ["version"]
 
 description = "Simplifying the EDA processes"
 authors = [
-    { name = "Group 38", email = "ytiantong98@gmail.com" },
+    { name = "Diana Cornescu", email = "dianacor@student.ubc.ca" },
+    { name = "Johnson Chuang", email = "jchuang@student.ubc.ca" },
+    { name = "Lavanya Gupta", email = "glavanya@student.ubc.ca" },
+    { name = "Tiantong Yin", email = "ytiantong98@gmail.com" }
 ]
 license = "MIT"
 requires-python = ">= 3.10" # Adjust based on the minimum version of Python that you support
