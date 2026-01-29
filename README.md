@@ -4,7 +4,7 @@
 
 [![Deploy](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/actions/workflows/deploy.yml)
 
-[![Deploy](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/actions/workflows/quartodoc.yml/badge.svg)](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/actions/workflows/quartodoc.yml)
+[![Deploy](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/actions/workflows/docs-publish.yml/badge.svg)](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/actions/workflows/docs-publish.yml)
 
 ## Package Summary
 
@@ -145,7 +145,7 @@ Our documentation and package deployment are automated with GitHub Actions:
 |----------|---------|---------|
 | `build.yml` | PR and push to main | Lint and test |
 | `deploy.yml` | Push to main | Publish to [TestPyPI](https://test.pypi.org/project/eda_simplifier/) |
-| `quartodoc.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
+| `docs-publish.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
 
 ## Usage
 
