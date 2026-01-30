@@ -2,8 +2,8 @@ from eda_simplifier.simplify import categorical_plot
 import pandas as pd
 import pytest
 
-
-def test_categorical_plot():
+@pytest.fixture
+def df():
     data = {
         "genre": [
             "Pop",
@@ -32,8 +32,9 @@ def test_categorical_plot():
         ],
         "track_id": [f"id_{i}" for i in range(10)],
     }
-    df = pd.DataFrame(data)
+    return pd.DataFrame(data)
 
+def test_num_target(df):
     plots = categorical_plot(
         df, "popularity", categorical_target=False, categorical_features=["genre"]
     )
@@ -60,6 +61,7 @@ def test_categorical_plot():
     assert box_plot["encoding"]["x"]["field"] == "popularity"
     assert box_plot["encoding"]["y"]["field"] == "genre"
 
+def test_cat_target(df):
     plots2 = categorical_plot(
         df, "is_explicit", categorical_target=True, categorical_features=["genre"]
     )
@@ -84,11 +86,13 @@ def test_categorical_plot():
         unique_ids = len(set(v["track_id"] for v in values))
         assert unique_ids <= limit
 
+def test_all_columns(df):
     # test for using all columns
     plot_all = categorical_plot(df, "popularity", False, categorical_features=[])
     assert isinstance(plot_all, list)
     assert len(plot_all) == 6
 
+def test_invalid(df):
     with pytest.raises(TypeError):
         categorical_plot(None, "popularity", False, categorical_features=["genre"])
 
