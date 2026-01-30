@@ -6,6 +6,8 @@
 
 [![Deploy](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/actions/workflows/quartodoc.yml/badge.svg)](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/actions/workflows/quartodoc.yml)
 
+[![codecov](https://codecov.io/github/UBC-MDS/DSCI_524_Group38_EDAsimplifier/graph/badge.svg?token=1ZTk0JhKhM)](https://codecov.io/github/UBC-MDS/DSCI_524_Group38_EDAsimplifier)
+
 ## Package Summary
 
 EDA_simplifier is a project that streamlines exploratory data analysis
