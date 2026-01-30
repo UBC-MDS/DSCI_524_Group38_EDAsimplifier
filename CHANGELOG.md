@@ -7,8 +7,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Upcoming features and fixes
+### Added
+- GitHub Actions workflow for documentation preview
+- Codecov badge in README
 
-## [0.1.0] - (1979-01-01)
+### Changed
+- Version scheme configuration in Hatch (pyproject.toml)
+- Renamed `build.yml` to `ci.yml`
+- Renamed `deploy.yml` to `cd.yml`
+- Renamed `quartodoc.yml` to `docs-publish.yml`
+- Updated README for docs-publish workflow and CI/CD badges
+- CI workflow now runs coverage test
+- Documentation output directory changed from `docs` to `_site`
+- Updated dependencies in `environment.yml`
+- Added all authors and emails in `pyproject.toml`
 
-- First release
+## [1.0.1] - 2026-01-25
+
+### Added
+- Examples for the last two functions in `simplify.py`
+- `environment.yml` with pinned dependencies
+- Links to API reference and TestPyPI in README
+- Build and deploy badges in README
+- Extra index for dependencies when using pip to install
+- GitHub Actions CI/CD workflow
+- GitHub Actions quartodoc workflow
+- Matrix to automated tests
+- Four additional unit tests in `test_numeric`
+- Ruff and Black to development dependencies
+
+### Changed
+- Dynamic versioning in pyproject.toml
+- Updated CI/CD workflow and quartodoc configuration
+- README: detailed instructions, URL, badge cleanup
+
+### Fixed
+- README instruction for installing
+
+### Removed
+- Templated `.github/workflows/test.yml`
+- Unused dependencies
+
+## [1.0.0] - 2026-01-17
+
+### Added
+- Implimentation for `dataset_overview`, `numeric`, `categorical_plot`, and `all_distributions`
+- Unit test files and integration tests for the above functions
+- Dependencies: Altair, pytest, numpy
+- Pyproject and README updates for running tests
+- Documentation and README updates
+
+## [0.0.1] - 2026-01-10
+
+### Added
+- Initial project structure
+- `simplify.py` with all function and module docstrings
+- README with function details, contributors, and copyright
+- CONTRIBUTING.md with contributing guidelines
+- Code of Conduct
+- Copyright and license information
