@@ -33,6 +33,12 @@ jobs:
           python -m ruff check .
           python -m black --check .
 
-      - name: Test
+      # Run pytest with coverage
+      - name: Run tests with coverage
         run: |
-          python -m pytest -q
+          pytest --cov --cov-report=xml --cov-branch
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
