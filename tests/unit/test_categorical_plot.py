@@ -4,6 +4,7 @@ import pytest
 
 @pytest.fixture
 def df():
+    # creating test dataframe
     data = {
         "genre": [
             "Pop",
@@ -35,6 +36,7 @@ def df():
     return pd.DataFrame(data)
 
 def test_num_target(df):
+    # tests for plotting against a numerical target
     plots = categorical_plot(
         df, "popularity", categorical_target=False, categorical_features=["genre"]
     )
@@ -42,14 +44,14 @@ def test_num_target(df):
     assert isinstance(plots, list)
     assert len(plots) == 2, "Should return a bar chart and a box plot"
 
-    # bar chart
+    # checking returned bar chart elements
     bar_chart = plots[0].to_dict()
     assert bar_chart["mark"]["type"] == "bar"
     assert bar_chart["encoding"]["y"]["field"] == "genre"
     assert "count" in str(bar_chart["encoding"]["x"])
     assert "sort" in bar_chart["encoding"]["y"], "y should be sorted"
 
-    # box plot
+    # checking returned box plot elements for numerical target
     box_plot = plots[1].to_dict()
     # LLM revision: Altair boxplot marks can be strings or dicts depending on version
     mark_type = (
@@ -62,17 +64,19 @@ def test_num_target(df):
     assert box_plot["encoding"]["y"]["field"] == "genre"
 
 def test_cat_target(df):
+    # tests for plotting against a categorical target
     plots2 = categorical_plot(
         df, "is_explicit", categorical_target=True, categorical_features=["genre"]
     )
 
-    # stacked bar chart
+    # checking returned stacked bar chart elements for categorical target
     stacked = plots2[1].to_dict()
     assert stacked["mark"]["type"] == "bar"
     assert stacked["encoding"]["color"]["field"] == "is_explicit"
     assert stacked["encoding"]["y"]["field"] == "genre"
 
-    # LLM revision: test max categories
+def test_max_categories(df):
+    # LLM revision: tests for max_categories for high cardinality features
     limit = 3
     plots_limit = categorical_plot(
         df, "popularity", False, max_categories=limit, categorical_features=["track_id"]
@@ -87,19 +91,22 @@ def test_cat_target(df):
         assert unique_ids <= limit
 
 def test_all_columns(df):
-    # test for using all columns
+    # tests for leaving categorical_features empty and using all columns
     plot_all = categorical_plot(df, "popularity", False, categorical_features=[])
     assert isinstance(plot_all, list)
     assert len(plot_all) == 6
 
 def test_invalid(df):
+    # test for error handling for passing None in place of a df
     with pytest.raises(TypeError):
         categorical_plot(None, "popularity", False, categorical_features=["genre"])
 
+    # test for error handling for passing an empty df
     with pytest.raises(ValueError):
         categorical_plot(
             pd.DataFrame({}), "popularity", False, categorical_features=["genre"]
         )
-
+        
+    # test for error handling for passing column names that are not in the df
     with pytest.raises(ValueError):
         categorical_plot(df, "someTarget", False, categorical_features=["someFeature"])
