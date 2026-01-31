@@ -8,19 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- GitHub Actions workflow for documentation preview
-- Codecov badge in README
+- GitHub Actions workflow for documentation preview (#74)
+- Codecov badge in README (#74)
 
 ### Changed
-- Version scheme configuration in Hatch (pyproject.toml)
-- Renamed `build.yml` to `ci.yml`
-- Renamed `deploy.yml` to `cd.yml`
-- Renamed `quartodoc.yml` to `docs-publish.yml`
-- Updated README for docs-publish workflow and CI/CD badges
-- CI workflow now runs coverage test
-- Documentation output directory changed from `docs` to `_site`
-- Updated dependencies in `environment.yml`
-- Added all authors and emails in `pyproject.toml`
+- Version scheme configuration in Hatch (#74)
+- Renamed `build.yml` to `ci.yml` (#74)
+- Renamed `deploy.yml` to `cd.yml` (#74)
+- Renamed `quartodoc.yml` to `docs-publish.yml` (#74)
+- Updated README for docs-publish workflow and CI/CD badges (#76)
+- CI workflow now runs coverage test (#74)
+- Documentation output directory changed from `docs` to `_site` (#74)
+- Updated dependencies in `environment.yml` (#78)
+- Added all authors and emails in `pyproject.toml` (#73)
 
 ## [1.0.1] - 2026-01-25
 
