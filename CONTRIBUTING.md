@@ -142,7 +142,7 @@ We set up four GitHub Actions workflows that automated most of our quality assur
 3.  **Docs publishing (`docs-publish.yml`)**: Builds our Quarto site and deploys it to GitHub Pages on every push to `main`, keeping our documentation always up to date.
 4.  **Docs preview (`docs-preview.yml`)**: Deploys a preview to Netlify so reviewers can see rendered documentation changes before merging.
 
-We added badges for some of these workflows on our README to get a quick glance that the actions are working. Beyond workflows, we used [Codecov](https://docs.codecov.com/docs/quick-start) for coverage tracking.
+We added badges for some of these workflows on our README to get a quick glance that the actions are working. Beyond workflows, we used [Codecov](https://app.codecov.io/github/UBC-MDS/DSCI_524_Group38_EDAsimplifier) for coverage tracking.
 
 ### Organizational Practices
 
