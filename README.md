@@ -49,19 +49,9 @@ wrapper that takes in a Pandas DataFrame and has the following functions:
     or stacked bar charts for each feature against the target depending
     on if the target is categorical or numerical.
 
-## Python Ecosystem
-Within the larger Python ecosystem, it requires Pandas and primarily builds upon Altair. While
-Altair is powerful, it can also be verbose and syntactically restrictive. As a result, many functions in this project act as wrappers
-around Altair, providing sensible defaults and abstractions to simplify
-the EDA process. Although automated EDA reporting libraries exist, most
-focus on large-scale HTML reports or one-liner summaries. Therefore the
-EDA simplifier package provides a intermediate between raw Altair-based
-EDA plotting and full-automated report libraries.
+# Installation
 
-
-# Getting Started
-
-## User Guide
+## User Installation
 
 You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
 
@@ -69,9 +59,11 @@ You can install this package from [TestPyPI](https://test.pypi.org/project/eda_s
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ eda_simplifier
 ```
 
-## Developer Guide
+## Developer Installation
 
-Clone the repository from GitHub and navigate into the project directory:
+For contribution guidelines and recommended workflow, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+First, clone the repository from GitHub and navigate into the project directory:
 
 ```bash
 git clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git
@@ -80,33 +72,54 @@ cd DSCI_524_Group38_EDAsimplifier/
 
 Set up your development environment using one of the following methods:
 
-**Method 1: Using conda with environment.yml (recommended)**
-
+<details>
+<summary><b>Method 1: Using conda with environment.yml (recommended)</b></summary>
 Create a conda environment and install the package:
 
 ```bash
-conda env create -f environment.yml
+conda env create -f environment.yml #after cd into cloned repo
 conda activate eda_simplifier
-pip install -e .
+pip install -e ".[dev,tests,docs]"
+#depends on the scope - can do just ".[dev]" for a more minimalistic version.
 ```
+</details>
 
-**Method 2: Using pip only**
-
+<details>
+<summary><b>Method 2: Using pip only</b></summary>
 Install directly into the current Python environment:
 
 ```bash
 pip install -e ".[dev,tests,docs]"
+#depends on the scope - can do just ".[dev]" for a more minimalistic version.
 ```
+</details>
 
 Once the package is installed, you will see a message like:
 
 ```bash
-Successfully installed eda_simplifier-[version_no]
+Successfully installed eda_simplifier-xx.xx.xx
 ```
 
----
+# Getting Started & Demo Example:
 
-For contribution guidelines and recommended workflow, see [CONTRIBUTING.md](CONTRIBUTING.md).
+## Usage
+
+To use eda_simplifier in your code:
+
+``` python
+import pandas as pd
+from eda_simplifier.simplify import dataset_overview
+
+df = pd.DataFrame({
+    "artist": ["A", "B", "C"],
+    "popularity": [80, 75, None],
+    "danceability": [0.8, 0.6, 0.9]
+    })
+
+summary = dataset_overview(df)
+```
+
+View the full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
 
 To verify the package passes all unit tests:
 
@@ -147,24 +160,14 @@ Our documentation and package deployment are automated with GitHub Actions:
 | `deploy.yml` | Push to main | Publish to [TestPyPI](https://test.pypi.org/project/eda_simplifier/) |
 | `docs-publish.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
 
-## Usage
-
-To use eda_simplifier in your code:
-
-``` python
-import pandas as pd
-from eda_simplifier.simplify import dataset_overview
-
-df = pd.DataFrame({
-    "artist": ["A", "B", "C"],
-    "popularity": [80, 75, None],
-    "danceability": [0.8, 0.6, 0.9]
-    })
-
-summary = dataset_overview(df)
-```
-
-View the full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
+## Python Ecosystem
+Within the larger Python ecosystem, it requires Pandas and primarily builds upon Altair. While
+Altair is powerful, it can also be verbose and syntactically restrictive. As a result, many functions in this project act as wrappers
+around Altair, providing sensible defaults and abstractions to simplify
+the EDA process. Although automated EDA reporting libraries exist, most
+focus on large-scale HTML reports or one-liner summaries. Therefore the
+EDA simplifier package provides a intermediate between raw Altair-based
+EDA plotting and full-automated report libraries.
 
 
 ## Contributors
