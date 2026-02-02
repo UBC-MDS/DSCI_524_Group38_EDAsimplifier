@@ -100,9 +100,58 @@ Once the package is installed, you will see a message like:
 Successfully installed eda_simplifier-xx.xx.xx
 ```
 
+After a completed install, the following can be checked:
+
+<details>
+<summary><b>Unit Test</b></summary>
+```bash
+pytest -v
+```
+</details>
+
+
+<details>
+<summary><b>Linting and Formatting Checks</b></summary>
+    
+```bash
+# Linting
+ruff check .
+
+# Format check
+black --check .
+```
+</details>
+
+<details>
+<summary><b>Building and Rendering Documentation</b></summary>
+
+```bash
+quartodoc build
+quarto render
+```
+</details>
+
+To deactivate the conda environment (if you used Method 1):
+
+```bash
+conda deactivate
+```
+
+### Deployment (CI/CD Workflows)
+
+Our documentation and package deployment are automated with GitHub Actions:
+
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `build.yml` | PR and push to main | Lint and test |
+| `deploy.yml` | Push to main | Publish to [TestPyPI](https://test.pypi.org/project/eda_simplifier/) |
+| `docs-publish.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
+
+
 # Getting Started & Demo Example:
 
 ## Usage
+The full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) can be referenced for more information and examples for each function.
 
 To use eda_simplifier in your code:
 
@@ -119,47 +168,6 @@ df = pd.DataFrame({
 summary = dataset_overview(df)
 ```
 
-View the full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
-
-To verify the package passes all unit tests:
-
-```bash
-pytest -v
-```
-
-To ensure all code pass linting and formatting checks:
-
-```bash
-# Linting
-ruff check .
-
-# Format check
-black --check .
-```
-
-To build and render the documentation:
-
-```bash
-quartodoc build
-quarto render
-```
-
-To deactivate the conda environment (if you used Method 1):
-
-```bash
-conda deactivate
-```
-
-## CI/CD Workflows
-
-Our documentation and package deployment are automated with GitHub Actions:
-
-| Workflow | Trigger | Purpose |
-|----------|---------|---------|
-| `build.yml` | PR and push to main | Lint and test |
-| `deploy.yml` | Push to main | Publish to [TestPyPI](https://test.pypi.org/project/eda_simplifier/) |
-| `docs-publish.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
-
 ## Python Ecosystem
 Within the larger Python ecosystem, it requires Pandas and primarily builds upon Altair. While
 Altair is powerful, it can also be verbose and syntactically restrictive. As a result, many functions in this project act as wrappers
@@ -168,7 +176,6 @@ the EDA process. Although automated EDA reporting libraries exist, most
 focus on large-scale HTML reports or one-liner summaries. Therefore the
 EDA simplifier package provides a intermediate between raw Altair-based
 EDA plotting and full-automated report libraries.
-
 
 ## Contributors
 
