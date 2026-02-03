@@ -10,6 +10,16 @@ The `eda_simplifier` package streamlines exploratory data analysis (EDA) by cons
 # Installation
 
 Please first refer to the [installation found in README](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/README.html/#user-installation) to first install the package.
+The full documentation for each function can be found at [Referances](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
+
+## Summary
+
+| Function | Purpose | Best Used For |
+|---------------------|-------------------|-------------------------------|
+| `dataset_overview()` | Quick statistical summary | First step: understand dataset structure |
+| `numeric()` | Numeric feature visualization | Analyzing distributions, correlations, outliers |
+| `categorical_plot()` | Categorical feature visualization | Understanding category frequencies and relationships |
+| `all_distributions()` | Complete distribution analysis | Comprehensive EDA with smart type handling |
 
 # Sample Data
 
@@ -96,4 +106,89 @@ result['correlation_plot'].display()
 
 # Identify potential outliers
 result['outliers'].display()
+```
+
+------------------------------------------------------------------------
+
+## Function 3: `categorical_plot()`
+
+This function creates sorted frequency bar charts for categorical features and automatically generates relationship plots in relation to a target variable. Ex: box plots for numeric targets, stacked bar charts for categorical targets. It handles both categorical and numeric targets automatically, adjusting the visualization type accordingly.
+
+Example with Numeric Target:
+
+```{python}
+# Explore categorical features against a numeric target
+plots = categorical_plot(
+    df=music_data,
+    target_column='popularity',
+    categorical_target=False,  # popularity is numeric
+    max_categories=10,
+    categorical_features=['genre', 'artist']
+)
+
+# Display plots
+for i, plot in enumerate(plots):
+    print(f"\nPlot {i+1}:")
+    plot.display()
+```
+
+Example with Categorical Target:
+
+```{python}
+# Create a categorical target for demonstration
+music_data['hit_status'] = music_data['popularity'].apply(
+    lambda x: 'Hit' if x >= 90 else 'Not Hit'
+)
+
+categorical_plots = categorical_plot(
+    df=music_data,
+    target_column='hit_status',
+    categorical_target=True,
+    categorical_features=['genre', 'artist']
+)
+
+# Display stacked bar charts
+for plot in categorical_plots:
+    plot.display()
+```
+
+------------------------------------------------------------------------
+
+## Function 4: `all_distributions()`
+
+This is the maina and comprehensive wrapper function that automatically analyzes ALL features in a dataset (both numeric and categorical) by routing them to the appropriate visualization functions. It also handles ambiguous cases where numeric columns should be treated as categorical (like year, ZIP codes) through the `ambiguous_column_types` parameter. While EDA can be done by individually separating numeric and categorical columns - calling different the `categorical_plot()` and `numeric()` functions respectively:  `all_distributions()` does it all automatically. The ambiguous column handling is especially powerful as it can handel messy data where column types don't always match their semantic meaning.
+
+### Example with Ambiguous Column Types
+
+```{python}
+# Notice 'year' is stored as numeric but should be treated as categorical
+# Use ambiguous_column_types to override automatic type detection
+
+all_plots = all_distributions(
+    pd_dataframe=music_data,
+    target_column='popularity',
+    categorical_target=False,
+    max_categories=10,
+    categorical_features=None,  # Use all categorical columns
+    ambiguous_column_types={
+        "numeric": [],  # No categorical columns to treat as numeric
+        "categorical": ['year']  # Treat 'year' as categorical despite the numeric dtype
+    }
+)
+
+# Access numeric visualizations
+print("Numeric plots available:")
+print(all_plots['numeric'].keys())
+
+# Display numeric feature distributions
+all_plots['numeric']['histograms'].display()
+all_plots['numeric']['correlation_plot'].display()
+
+# Access categorical visualizations (includes 'year' now!)
+print(f"\nNumber of categorical plots: {len(all_plots['categorical'])}")
+
+# Display categorical plots (frequency + vs target for each feature)
+for i, plot in enumerate(all_plots['categorical']):
+    print(f"\nCategorical plot {i+1}:")
+    plot.display()
 ```
