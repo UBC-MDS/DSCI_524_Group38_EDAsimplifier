@@ -1,0 +1,12 @@
+---
+title: "Getting Started with eda_simplifier"
+format: html
+---
+
+## Introduction
+
+The `eda_simplifier` package streamlines exploratory data analysis (EDA) by consolidating common pandas and visualization tasks into simple, reusable functions. This tutorial demonstrates all four main functions with practical examples.
+
+## Installation
+
+Please first refer to the [installation found in README](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/README.html/#user-installation) to first install the package.
