@@ -91,29 +91,17 @@ git clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git
 cd DSCI_524_Group38_EDAsimplifier/
 ```
 
-Set up your development environment using one of the following methods:
-
-<details>
-<summary><b>Method 1: Using conda with environment.yml (recommended)</b></summary>
-Create a conda environment and install the package:
+Then create a empty environment and install directly as shown below:
 
 ```bash
-conda env create -f environment.yml #after cd into cloned repo
-conda activate eda_simplifier
-pip install -e ".[dev,tests,docs]"
-#depends on the scope - can do just ".[dev]" for a more minimalistic version.
-```
-</details>
+# Suggested to make a fresh environment
+conda create -n eda_simplifier python=3.13 #will install auto-pip 
+conda activate eda_simplifier 
 
-<details>
-<summary><b>Method 2: Using pip only</b></summary>
-Install directly into the current Python environment:
-
-```bash
+# Can do just ".[dev]" for a more minimalistic version (depends on the scope)
 pip install -e ".[dev,tests,docs]"
-#depends on the scope - can do just ".[dev]" for a more minimalistic version.
+
 ```
-</details>
 
 Once the package is installed, you will see a message like:
 
