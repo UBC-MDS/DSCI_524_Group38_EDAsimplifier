@@ -13,7 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Ammend all remaining contributing authors and their emails in `pyproject.toml` ([#73](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/pull/73))
-
+- Updated links in `pyproject.toml` to point to Github-pages website ([#85](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/pull/85/changes))
+- Fixed Tutorial links in README.md  ([#85](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/pull/85/changes))
+  
 ### Changed
 - Version scheme configuration in Hatch (#74)
 - Renamed `build.yml` to `ci.yml` (#74)
@@ -24,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation output directory changed from `docs` to `_site` (#74)
 - Updated dependencies in `environment.yml` (#78)
 - Added all authors and emails in `pyproject.toml` (#73)
+- Updated User & Dev install on GH-pages website, now no longer requires any unmentioned steps ([#85](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/pull/85/changes))
 
 ## [1.0.1] - 2026-01-25
 
