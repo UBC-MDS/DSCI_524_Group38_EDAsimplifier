@@ -2,6 +2,7 @@ from eda_simplifier.simplify import categorical_plot
 import pandas as pd
 import pytest
 
+
 @pytest.fixture
 def df():
     # creating test dataframe
@@ -35,6 +36,7 @@ def df():
     }
     return pd.DataFrame(data)
 
+
 def test_num_target(df):
     # tests for plotting against a numerical target
     plots = categorical_plot(
@@ -63,6 +65,7 @@ def test_num_target(df):
     assert box_plot["encoding"]["x"]["field"] == "popularity"
     assert box_plot["encoding"]["y"]["field"] == "genre"
 
+
 def test_cat_target(df):
     # tests for plotting against a categorical target
     plots2 = categorical_plot(
@@ -74,6 +77,7 @@ def test_cat_target(df):
     assert stacked["mark"]["type"] == "bar"
     assert stacked["encoding"]["color"]["field"] == "is_explicit"
     assert stacked["encoding"]["y"]["field"] == "genre"
+
 
 def test_max_categories(df):
     # LLM revision: tests for max_categories for high cardinality features
@@ -90,11 +94,13 @@ def test_max_categories(df):
         unique_ids = len(set(v["track_id"] for v in values))
         assert unique_ids <= limit
 
+
 def test_all_columns(df):
     # tests for leaving categorical_features empty and using all columns
     plot_all = categorical_plot(df, "popularity", False, categorical_features=[])
     assert isinstance(plot_all, list)
     assert len(plot_all) == 6
+
 
 def test_invalid(df):
     # test for error handling for passing None in place of a df
@@ -106,7 +112,7 @@ def test_invalid(df):
         categorical_plot(
             pd.DataFrame({}), "popularity", False, categorical_features=["genre"]
         )
-        
+
     # test for error handling for passing column names that are not in the df
     with pytest.raises(ValueError):
         categorical_plot(df, "someTarget", False, categorical_features=["someFeature"])
