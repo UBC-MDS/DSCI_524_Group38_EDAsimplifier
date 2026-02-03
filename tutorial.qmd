@@ -10,3 +10,34 @@ The `eda_simplifier` package streamlines exploratory data analysis (EDA) by cons
 ## Installation
 
 Please first refer to the [installation found in README](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/README.html/#user-installation) to first install the package.
+
+## Sample Data
+
+```{python}
+import pandas as pd
+import numpy as np
+from eda_simplifier.simplify import (
+    dataset_overview, 
+    numeric, 
+    categorical_plot, 
+    all_distributions
+)
+
+# Create sample music dataset with various feature types
+np.random.seed(524)
+music_data = pd.DataFrame({
+    'artist': ['Taylor Swift', 'Ed Sheeran', 'Billie Eilish', 'The Weeknd', 
+               'Ariana Grande', 'Drake', 'Taylor Swift', 'Ed Sheeran', 
+               'Billie Eilish', 'The Weeknd', 'Ariana Grande', 'Drake'],
+    'genre': ['Pop', 'Pop', 'Alternative', 'R&B', 'Pop', 'Hip-Hop', 
+              'Pop', 'Pop', 'Alternative', 'R&B', 'Pop', 'Hip-Hop'],
+    'year': [2023, 2023, 2022, 2023, 2022, 2023, 2022, 2022, 2023, 2022, 2023, 2022],
+    'popularity': [95, 88, 92, 90, 87, 94, 93, 85, 89, 91, 86, 92],
+    'danceability': [0.8, 0.7, 0.6, 0.75, 0.82, 0.88, 0.79, 0.68, 0.65, 0.78, 0.80, 0.85],
+    'energy': [0.7, 0.6, 0.4, 0.8, 0.75, 0.85, 0.72, 0.58, 0.45, 0.82, 0.73, 0.87],
+    'valence': [0.6, 0.8, 0.3, 0.5, 0.7, 0.6, 0.65, 0.75, 0.35, 0.55, 0.68, 0.62],
+    'streams_millions': [150.5, 120.3, 98.7, 135.2, 110.8, None, 145.6, 115.2, 95.4, 130.1, 108.9, 140.3]
+})
+
+print(music_data.head())    
+```
