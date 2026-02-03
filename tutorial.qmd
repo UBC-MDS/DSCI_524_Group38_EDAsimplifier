@@ -7,7 +7,7 @@ The `eda_simplifier` package streamlines exploratory data analysis (EDA) by cons
 
 # Installation
 
-Please first refer to the [installation found in README](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/README.html/#installation) to first install the package.
+Please first refer to the [installation found in README](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/#installation) to first install the package.
 
 The full documentation for each function can be found at [Referances](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
 
