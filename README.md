@@ -50,7 +50,7 @@ wrapper that takes in a Pandas DataFrame and has the following functions:
     on if the target is categorical or numerical.
 
 ## Usage
-A full tutorial and example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial.html/).
+A full tutorial and example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/#installation).
 
 Complete [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) can be referenced for further details of each function.
 
