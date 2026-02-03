@@ -204,12 +204,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>eda_simplifier</code> package streamlines exploratory data analysis (EDA) by consolidating common pandas and visualization tasks into simple, reusable functions. This tutorial demonstrates all four main functions with practical examples.</p>
 <section id="installation" class="level1">
 <h1>Installation</h1>
-<p>Please first refer to the <a href="https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/README.html/#installation">installation found in README</a> to first install the package.</p>
+<p>Please first refer to the <a href="https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/#installation">installation found in README</a> to first install the package.</p>
 <p>The full documentation for each function can be found at <a href="https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/">Referances</a>.</p>
 </section>
 <section id="sample-data" class="level1">
 <h1>Sample Data</h1>
-<div id="f07b3177" class="cell" data-execution_count="1">
+<div id="0f4fcc6a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> eda_simplifier.simplify <span class="im">import</span> (</span>
@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="dataset_overview" class="level2">
 <h2 class="anchored" data-anchor-id="dataset_overview"><code>dataset_overview()</code></h2>
 <p>This function provides a comprehensive, single-function overview of your dataset by combining information you’d normally get from multiple pandas methods (<code>.info()</code>, <code>.describe()</code>, <code>.shape</code>, <code>.isna().sum()</code>). Instead of running 4-5 different commands to understand a dataset’s basic structure, missing values, and statistics - you’ll get everything organized in one structured dictionary.</p>
-<div id="c480354a" class="cell" data-execution_count="2">
+<div id="5cd82b5e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get complete dataset overview in one call</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>overview <span class="op">=</span> dataset_overview(music_data)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -315,7 +315,7 @@ Name: popularity, dtype: float64</code></pre>
 <section id="numeric" class="level2">
 <h2 class="anchored" data-anchor-id="numeric"><code>numeric()</code></h2>
 <p>This generates comprehensive visualizations for numerical features including histograms, correlation plots, missing value analysis, and outlier detection. It will lead to quickly understand the distributions, and alert data quality issues for the numeric columns of a DataFrame.</p>
-<div id="400051b2" class="cell" data-execution_count="3">
+<div id="ddc35c8b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analyze all numeric features at once</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>numeric_features <span class="op">=</span> music_data[[<span class="st">'popularity'</span>, <span class="st">'danceability'</span>, <span class="st">'energy'</span>, <span class="st">'valence'</span>, <span class="st">'streams_millions'</span>]]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -337,23 +337,23 @@ dict_keys(['missing_vals', 'box_plot', 'distribution', 'correlation'])</code></p
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-3451f8f9a1a043a89a42856a01d88be0.vega-embed {
+  #altair-viz-7ce87ecaaab14747a11bc94491c3a18c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-3451f8f9a1a043a89a42856a01d88be0.vega-embed details,
-  #altair-viz-3451f8f9a1a043a89a42856a01d88be0.vega-embed details summary {
+  #altair-viz-7ce87ecaaab14747a11bc94491c3a18c.vega-embed details,
+  #altair-viz-7ce87ecaaab14747a11bc94491c3a18c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-3451f8f9a1a043a89a42856a01d88be0"></div>
+<div id="altair-viz-7ce87ecaaab14747a11bc94491c3a18c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-3451f8f9a1a043a89a42856a01d88be0") {
-      outputDiv = document.getElementById("altair-viz-3451f8f9a1a043a89a42856a01d88be0");
+    if (outputDiv.id !== "altair-viz-7ce87ecaaab14747a11bc94491c3a18c") {
+      outputDiv = document.getElementById("altair-viz-7ce87ecaaab14747a11bc94491c3a18c");
     }
 
     const paths = {
@@ -407,23 +407,23 @@ dict_keys(['missing_vals', 'box_plot', 'distribution', 'correlation'])</code></p
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-ec97c203da894851bc638f89087e4015.vega-embed {
+  #altair-viz-e72027483a0a4ba589cfaeb6ae0bcfc7.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ec97c203da894851bc638f89087e4015.vega-embed details,
-  #altair-viz-ec97c203da894851bc638f89087e4015.vega-embed details summary {
+  #altair-viz-e72027483a0a4ba589cfaeb6ae0bcfc7.vega-embed details,
+  #altair-viz-e72027483a0a4ba589cfaeb6ae0bcfc7.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ec97c203da894851bc638f89087e4015"></div>
+<div id="altair-viz-e72027483a0a4ba589cfaeb6ae0bcfc7"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ec97c203da894851bc638f89087e4015") {
-      outputDiv = document.getElementById("altair-viz-ec97c203da894851bc638f89087e4015");
+    if (outputDiv.id !== "altair-viz-e72027483a0a4ba589cfaeb6ae0bcfc7") {
+      outputDiv = document.getElementById("altair-viz-e72027483a0a4ba589cfaeb6ae0bcfc7");
     }
 
     const paths = {
@@ -481,7 +481,7 @@ dict_keys(['missing_vals', 'box_plot', 'distribution', 'correlation'])</code></p
 <h2 class="anchored" data-anchor-id="categorical_plot"><code>categorical_plot()</code></h2>
 <p>This function creates sorted frequency bar charts for categorical features and automatically generates relationship plots in relation to a target variable. Ex: box plots for numeric targets, stacked bar charts for categorical targets. It handles both categorical and numeric targets automatically, adjusting the visualization type accordingly.</p>
 <p>Example with Numeric Target:</p>
-<div id="1748a3ce" class="cell" data-execution_count="4">
+<div id="d23419b0" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore categorical features against a numeric target</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plots <span class="op">=</span> categorical_plot(</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    df<span class="op">=</span>music_data,</span>
@@ -502,23 +502,23 @@ Plot 1:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-336cd632f88b4dcdad55ff48e6490036.vega-embed {
+  #altair-viz-7f33bb6c0494408ead4191c98cc31f01.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-336cd632f88b4dcdad55ff48e6490036.vega-embed details,
-  #altair-viz-336cd632f88b4dcdad55ff48e6490036.vega-embed details summary {
+  #altair-viz-7f33bb6c0494408ead4191c98cc31f01.vega-embed details,
+  #altair-viz-7f33bb6c0494408ead4191c98cc31f01.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-336cd632f88b4dcdad55ff48e6490036"></div>
+<div id="altair-viz-7f33bb6c0494408ead4191c98cc31f01"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-336cd632f88b4dcdad55ff48e6490036") {
-      outputDiv = document.getElementById("altair-viz-336cd632f88b4dcdad55ff48e6490036");
+    if (outputDiv.id !== "altair-viz-7f33bb6c0494408ead4191c98cc31f01") {
+      outputDiv = document.getElementById("altair-viz-7f33bb6c0494408ead4191c98cc31f01");
     }
 
     const paths = {
@@ -576,23 +576,23 @@ Plot 2:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-3d2e3e2c1dea4552adc3ef44bbaac8dd.vega-embed {
+  #altair-viz-b3525f586e1d419e99a1768b0b04743c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-3d2e3e2c1dea4552adc3ef44bbaac8dd.vega-embed details,
-  #altair-viz-3d2e3e2c1dea4552adc3ef44bbaac8dd.vega-embed details summary {
+  #altair-viz-b3525f586e1d419e99a1768b0b04743c.vega-embed details,
+  #altair-viz-b3525f586e1d419e99a1768b0b04743c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-3d2e3e2c1dea4552adc3ef44bbaac8dd"></div>
+<div id="altair-viz-b3525f586e1d419e99a1768b0b04743c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-3d2e3e2c1dea4552adc3ef44bbaac8dd") {
-      outputDiv = document.getElementById("altair-viz-3d2e3e2c1dea4552adc3ef44bbaac8dd");
+    if (outputDiv.id !== "altair-viz-b3525f586e1d419e99a1768b0b04743c") {
+      outputDiv = document.getElementById("altair-viz-b3525f586e1d419e99a1768b0b04743c");
     }
 
     const paths = {
@@ -650,23 +650,23 @@ Plot 3:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-902c002ebee14e76af0868ca6397eba3.vega-embed {
+  #altair-viz-91460c8553534e5189987536dcf3e34b.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-902c002ebee14e76af0868ca6397eba3.vega-embed details,
-  #altair-viz-902c002ebee14e76af0868ca6397eba3.vega-embed details summary {
+  #altair-viz-91460c8553534e5189987536dcf3e34b.vega-embed details,
+  #altair-viz-91460c8553534e5189987536dcf3e34b.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-902c002ebee14e76af0868ca6397eba3"></div>
+<div id="altair-viz-91460c8553534e5189987536dcf3e34b"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-902c002ebee14e76af0868ca6397eba3") {
-      outputDiv = document.getElementById("altair-viz-902c002ebee14e76af0868ca6397eba3");
+    if (outputDiv.id !== "altair-viz-91460c8553534e5189987536dcf3e34b") {
+      outputDiv = document.getElementById("altair-viz-91460c8553534e5189987536dcf3e34b");
     }
 
     const paths = {
@@ -724,23 +724,23 @@ Plot 4:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-d939ba15468a493fb45bec83bf9f9ef1.vega-embed {
+  #altair-viz-9cb35d8b69d940f0a823578c547c7b0b.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-d939ba15468a493fb45bec83bf9f9ef1.vega-embed details,
-  #altair-viz-d939ba15468a493fb45bec83bf9f9ef1.vega-embed details summary {
+  #altair-viz-9cb35d8b69d940f0a823578c547c7b0b.vega-embed details,
+  #altair-viz-9cb35d8b69d940f0a823578c547c7b0b.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-d939ba15468a493fb45bec83bf9f9ef1"></div>
+<div id="altair-viz-9cb35d8b69d940f0a823578c547c7b0b"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d939ba15468a493fb45bec83bf9f9ef1") {
-      outputDiv = document.getElementById("altair-viz-d939ba15468a493fb45bec83bf9f9ef1");
+    if (outputDiv.id !== "altair-viz-9cb35d8b69d940f0a823578c547c7b0b") {
+      outputDiv = document.getElementById("altair-viz-9cb35d8b69d940f0a823578c547c7b0b");
     }
 
     const paths = {
@@ -793,7 +793,7 @@ Plot 4:</code></pre>
 </div>
 </div>
 <p>Example with Categorical Target:</p>
-<div id="33059901" class="cell" data-execution_count="5">
+<div id="635bbb96" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a categorical target for demonstration</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>music_data[<span class="st">'hit_status'</span>] <span class="op">=</span> music_data[<span class="st">'popularity'</span>].<span class="bu">apply</span>(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: <span class="st">'Hit'</span> <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">90</span> <span class="cf">else</span> <span class="st">'Not Hit'</span></span>
@@ -812,23 +812,23 @@ Plot 4:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-9d5f48bd48464a43b5e645b50878a7b5.vega-embed {
+  #altair-viz-03bedbe2378f456199e2df0b8cd66e15.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-9d5f48bd48464a43b5e645b50878a7b5.vega-embed details,
-  #altair-viz-9d5f48bd48464a43b5e645b50878a7b5.vega-embed details summary {
+  #altair-viz-03bedbe2378f456199e2df0b8cd66e15.vega-embed details,
+  #altair-viz-03bedbe2378f456199e2df0b8cd66e15.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-9d5f48bd48464a43b5e645b50878a7b5"></div>
+<div id="altair-viz-03bedbe2378f456199e2df0b8cd66e15"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-9d5f48bd48464a43b5e645b50878a7b5") {
-      outputDiv = document.getElementById("altair-viz-9d5f48bd48464a43b5e645b50878a7b5");
+    if (outputDiv.id !== "altair-viz-03bedbe2378f456199e2df0b8cd66e15") {
+      outputDiv = document.getElementById("altair-viz-03bedbe2378f456199e2df0b8cd66e15");
     }
 
     const paths = {
@@ -882,23 +882,23 @@ Plot 4:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-7559afbe152040ceafd3d3d294b86e03.vega-embed {
+  #altair-viz-70c676d27c2d40cf8e75a647b4bf485e.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-7559afbe152040ceafd3d3d294b86e03.vega-embed details,
-  #altair-viz-7559afbe152040ceafd3d3d294b86e03.vega-embed details summary {
+  #altair-viz-70c676d27c2d40cf8e75a647b4bf485e.vega-embed details,
+  #altair-viz-70c676d27c2d40cf8e75a647b4bf485e.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-7559afbe152040ceafd3d3d294b86e03"></div>
+<div id="altair-viz-70c676d27c2d40cf8e75a647b4bf485e"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-7559afbe152040ceafd3d3d294b86e03") {
-      outputDiv = document.getElementById("altair-viz-7559afbe152040ceafd3d3d294b86e03");
+    if (outputDiv.id !== "altair-viz-70c676d27c2d40cf8e75a647b4bf485e") {
+      outputDiv = document.getElementById("altair-viz-70c676d27c2d40cf8e75a647b4bf485e");
     }
 
     const paths = {
@@ -952,23 +952,23 @@ Plot 4:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-d540779356374837a491316e8cf1c958.vega-embed {
+  #altair-viz-ff6face0431c43038eac21fb9eefbd5c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-d540779356374837a491316e8cf1c958.vega-embed details,
-  #altair-viz-d540779356374837a491316e8cf1c958.vega-embed details summary {
+  #altair-viz-ff6face0431c43038eac21fb9eefbd5c.vega-embed details,
+  #altair-viz-ff6face0431c43038eac21fb9eefbd5c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-d540779356374837a491316e8cf1c958"></div>
+<div id="altair-viz-ff6face0431c43038eac21fb9eefbd5c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d540779356374837a491316e8cf1c958") {
-      outputDiv = document.getElementById("altair-viz-d540779356374837a491316e8cf1c958");
+    if (outputDiv.id !== "altair-viz-ff6face0431c43038eac21fb9eefbd5c") {
+      outputDiv = document.getElementById("altair-viz-ff6face0431c43038eac21fb9eefbd5c");
     }
 
     const paths = {
@@ -1022,23 +1022,23 @@ Plot 4:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-06775b2e744c4d18afe01877c9126daf.vega-embed {
+  #altair-viz-c03c388d933b4b04bd11017a1d8d8af9.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-06775b2e744c4d18afe01877c9126daf.vega-embed details,
-  #altair-viz-06775b2e744c4d18afe01877c9126daf.vega-embed details summary {
+  #altair-viz-c03c388d933b4b04bd11017a1d8d8af9.vega-embed details,
+  #altair-viz-c03c388d933b4b04bd11017a1d8d8af9.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-06775b2e744c4d18afe01877c9126daf"></div>
+<div id="altair-viz-c03c388d933b4b04bd11017a1d8d8af9"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-06775b2e744c4d18afe01877c9126daf") {
-      outputDiv = document.getElementById("altair-viz-06775b2e744c4d18afe01877c9126daf");
+    if (outputDiv.id !== "altair-viz-c03c388d933b4b04bd11017a1d8d8af9") {
+      outputDiv = document.getElementById("altair-viz-c03c388d933b4b04bd11017a1d8d8af9");
     }
 
     const paths = {
@@ -1097,7 +1097,7 @@ Plot 4:</code></pre>
 <p>This is the maina and comprehensive wrapper function that automatically analyzes ALL features in a dataset (both numeric and categorical) by routing them to the appropriate visualization functions. It also handles ambiguous cases where numeric columns should be treated as categorical (like year, ZIP codes) through the <code>ambiguous_column_types</code> parameter. While EDA can be done by individually separating numeric and categorical columns - calling different the <code>categorical_plot()</code> and <code>numeric()</code> functions respectively: <code>all_distributions()</code> does it all automatically. The ambiguous column handling is especially powerful as it can handel messy data where column types don’t always match their semantic meaning.</p>
 <section id="example-with-ambiguous-column-types" class="level3">
 <h3 class="anchored" data-anchor-id="example-with-ambiguous-column-types">Example with Ambiguous Column Types</h3>
-<div id="0cd162e8" class="cell" data-execution_count="6">
+<div id="43facb93" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice 'year' is stored as numeric but should be treated as categorical</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use ambiguous_column_types to override automatic type detection</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1135,23 +1135,23 @@ dict_keys(['missing_vals', 'box_plot', 'distribution', 'correlation'])</code></p
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-419743503c95464cadaff14faa639e3a.vega-embed {
+  #altair-viz-3fff55bd27f94047bbcba89268b3ff60.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-419743503c95464cadaff14faa639e3a.vega-embed details,
-  #altair-viz-419743503c95464cadaff14faa639e3a.vega-embed details summary {
+  #altair-viz-3fff55bd27f94047bbcba89268b3ff60.vega-embed details,
+  #altair-viz-3fff55bd27f94047bbcba89268b3ff60.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-419743503c95464cadaff14faa639e3a"></div>
+<div id="altair-viz-3fff55bd27f94047bbcba89268b3ff60"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-419743503c95464cadaff14faa639e3a") {
-      outputDiv = document.getElementById("altair-viz-419743503c95464cadaff14faa639e3a");
+    if (outputDiv.id !== "altair-viz-3fff55bd27f94047bbcba89268b3ff60") {
+      outputDiv = document.getElementById("altair-viz-3fff55bd27f94047bbcba89268b3ff60");
     }
 
     const paths = {
@@ -1199,29 +1199,29 @@ dict_keys(['missing_vals', 'box_plot', 'distribution', 'correlation'])</code></p
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"mark": {"type": "bar"}, "encoding": {"x": {"bin": true, "field": "streams_millions", "title": "streams_millions", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Count", "type": "quantitative"}}, "height": 150, "title": "Distribution of streams_millions", "width": 400}, {"mark": {"type": "bar"}, "encoding": {"x": {"bin": true, "field": "energy", "title": "energy", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Count", "type": "quantitative"}}, "height": 150, "title": "Distribution of energy", "width": 400}, {"mark": {"type": "bar"}, "encoding": {"x": {"bin": true, "field": "danceability", "title": "danceability", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Count", "type": "quantitative"}}, "height": 150, "title": "Distribution of danceability", "width": 400}, {"mark": {"type": "bar"}, "encoding": {"x": {"bin": true, "field": "valence", "title": "valence", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Count", "type": "quantitative"}}, "height": 150, "title": "Distribution of valence", "width": 400}], "data": {"name": "data-2159d831fe3c8f073eaf66a0ca3a343a"}, "title": "Feature Distributions", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-2159d831fe3c8f073eaf66a0ca3a343a": [{"popularity": 95, "streams_millions": 150.5, "energy": 0.7, "danceability": 0.8, "valence": 0.6}, {"popularity": 88, "streams_millions": 120.3, "energy": 0.6, "danceability": 0.7, "valence": 0.8}, {"popularity": 92, "streams_millions": 98.7, "energy": 0.4, "danceability": 0.6, "valence": 0.3}, {"popularity": 90, "streams_millions": 135.2, "energy": 0.8, "danceability": 0.75, "valence": 0.5}, {"popularity": 87, "streams_millions": 110.8, "energy": 0.75, "danceability": 0.82, "valence": 0.7}, {"popularity": 94, "streams_millions": null, "energy": 0.85, "danceability": 0.88, "valence": 0.6}, {"popularity": 93, "streams_millions": 145.6, "energy": 0.72, "danceability": 0.79, "valence": 0.65}, {"popularity": 85, "streams_millions": 115.2, "energy": 0.58, "danceability": 0.68, "valence": 0.75}, {"popularity": 89, "streams_millions": 95.4, "energy": 0.45, "danceability": 0.65, "valence": 0.35}, {"popularity": 91, "streams_millions": 130.1, "energy": 0.82, "danceability": 0.78, "valence": 0.55}, {"popularity": 86, "streams_millions": 108.9, "energy": 0.73, "danceability": 0.8, "valence": 0.68}, {"popularity": 92, "streams_millions": 140.3, "energy": 0.87, "danceability": 0.85, "valence": 0.62}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"mark": {"type": "bar"}, "encoding": {"x": {"bin": true, "field": "danceability", "title": "danceability", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Count", "type": "quantitative"}}, "height": 150, "title": "Distribution of danceability", "width": 400}, {"mark": {"type": "bar"}, "encoding": {"x": {"bin": true, "field": "valence", "title": "valence", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Count", "type": "quantitative"}}, "height": 150, "title": "Distribution of valence", "width": 400}, {"mark": {"type": "bar"}, "encoding": {"x": {"bin": true, "field": "energy", "title": "energy", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Count", "type": "quantitative"}}, "height": 150, "title": "Distribution of energy", "width": 400}, {"mark": {"type": "bar"}, "encoding": {"x": {"bin": true, "field": "streams_millions", "title": "streams_millions", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Count", "type": "quantitative"}}, "height": 150, "title": "Distribution of streams_millions", "width": 400}], "data": {"name": "data-2159d831fe3c8f073eaf66a0ca3a343a"}, "title": "Feature Distributions", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-2159d831fe3c8f073eaf66a0ca3a343a": [{"danceability": 0.8, "valence": 0.6, "energy": 0.7, "streams_millions": 150.5, "popularity": 95}, {"danceability": 0.7, "valence": 0.8, "energy": 0.6, "streams_millions": 120.3, "popularity": 88}, {"danceability": 0.6, "valence": 0.3, "energy": 0.4, "streams_millions": 98.7, "popularity": 92}, {"danceability": 0.75, "valence": 0.5, "energy": 0.8, "streams_millions": 135.2, "popularity": 90}, {"danceability": 0.82, "valence": 0.7, "energy": 0.75, "streams_millions": 110.8, "popularity": 87}, {"danceability": 0.88, "valence": 0.6, "energy": 0.85, "streams_millions": null, "popularity": 94}, {"danceability": 0.79, "valence": 0.65, "energy": 0.72, "streams_millions": 145.6, "popularity": 93}, {"danceability": 0.68, "valence": 0.75, "energy": 0.58, "streams_millions": 115.2, "popularity": 85}, {"danceability": 0.65, "valence": 0.35, "energy": 0.45, "streams_millions": 95.4, "popularity": 89}, {"danceability": 0.78, "valence": 0.55, "energy": 0.82, "streams_millions": 130.1, "popularity": 91}, {"danceability": 0.8, "valence": 0.68, "energy": 0.73, "streams_millions": 108.9, "popularity": 86}, {"danceability": 0.85, "valence": 0.62, "energy": 0.87, "streams_millions": 140.3, "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-717e6203ee5f4c8184e713b1ed581767.vega-embed {
+  #altair-viz-939c5acd5b5e4f1f8a475d2fbce6375d.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-717e6203ee5f4c8184e713b1ed581767.vega-embed details,
-  #altair-viz-717e6203ee5f4c8184e713b1ed581767.vega-embed details summary {
+  #altair-viz-939c5acd5b5e4f1f8a475d2fbce6375d.vega-embed details,
+  #altair-viz-939c5acd5b5e4f1f8a475d2fbce6375d.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-717e6203ee5f4c8184e713b1ed581767"></div>
+<div id="altair-viz-939c5acd5b5e4f1f8a475d2fbce6375d"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-717e6203ee5f4c8184e713b1ed581767") {
-      outputDiv = document.getElementById("altair-viz-717e6203ee5f4c8184e713b1ed581767");
+    if (outputDiv.id !== "altair-viz-939c5acd5b5e4f1f8a475d2fbce6375d") {
+      outputDiv = document.getElementById("altair-viz-939c5acd5b5e4f1f8a475d2fbce6375d");
     }
 
     const paths = {
@@ -1269,7 +1269,7 @@ dict_keys(['missing_vals', 'box_plot', 'distribution', 'correlation'])</code></p
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-7dc86b1083e55c323194fdea0649c514"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "column", "type": "nominal"}, "x": {"field": "column", "title": "Column", "type": "nominal"}, "y": {"field": "value", "title": "Value", "type": "quantitative"}}, "title": "Box Plots by Column", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-7dc86b1083e55c323194fdea0649c514": [{"column": "streams_millions", "value": 150.5}, {"column": "streams_millions", "value": 120.3}, {"column": "streams_millions", "value": 98.7}, {"column": "streams_millions", "value": 135.2}, {"column": "streams_millions", "value": 110.8}, {"column": "streams_millions", "value": null}, {"column": "streams_millions", "value": 145.6}, {"column": "streams_millions", "value": 115.2}, {"column": "streams_millions", "value": 95.4}, {"column": "streams_millions", "value": 130.1}, {"column": "streams_millions", "value": 108.9}, {"column": "streams_millions", "value": 140.3}, {"column": "energy", "value": 0.7}, {"column": "energy", "value": 0.6}, {"column": "energy", "value": 0.4}, {"column": "energy", "value": 0.8}, {"column": "energy", "value": 0.75}, {"column": "energy", "value": 0.85}, {"column": "energy", "value": 0.72}, {"column": "energy", "value": 0.58}, {"column": "energy", "value": 0.45}, {"column": "energy", "value": 0.82}, {"column": "energy", "value": 0.73}, {"column": "energy", "value": 0.87}, {"column": "danceability", "value": 0.8}, {"column": "danceability", "value": 0.7}, {"column": "danceability", "value": 0.6}, {"column": "danceability", "value": 0.75}, {"column": "danceability", "value": 0.82}, {"column": "danceability", "value": 0.88}, {"column": "danceability", "value": 0.79}, {"column": "danceability", "value": 0.68}, {"column": "danceability", "value": 0.65}, {"column": "danceability", "value": 0.78}, {"column": "danceability", "value": 0.8}, {"column": "danceability", "value": 0.85}, {"column": "valence", "value": 0.6}, {"column": "valence", "value": 0.8}, {"column": "valence", "value": 0.3}, {"column": "valence", "value": 0.5}, {"column": "valence", "value": 0.7}, {"column": "valence", "value": 0.6}, {"column": "valence", "value": 0.65}, {"column": "valence", "value": 0.75}, {"column": "valence", "value": 0.35}, {"column": "valence", "value": 0.55}, {"column": "valence", "value": 0.68}, {"column": "valence", "value": 0.62}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-b582c48b5701b0846ccfa827243711d9"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "column", "type": "nominal"}, "x": {"field": "column", "title": "Column", "type": "nominal"}, "y": {"field": "value", "title": "Value", "type": "quantitative"}}, "title": "Box Plots by Column", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-b582c48b5701b0846ccfa827243711d9": [{"column": "danceability", "value": 0.8}, {"column": "danceability", "value": 0.7}, {"column": "danceability", "value": 0.6}, {"column": "danceability", "value": 0.75}, {"column": "danceability", "value": 0.82}, {"column": "danceability", "value": 0.88}, {"column": "danceability", "value": 0.79}, {"column": "danceability", "value": 0.68}, {"column": "danceability", "value": 0.65}, {"column": "danceability", "value": 0.78}, {"column": "danceability", "value": 0.8}, {"column": "danceability", "value": 0.85}, {"column": "valence", "value": 0.6}, {"column": "valence", "value": 0.8}, {"column": "valence", "value": 0.3}, {"column": "valence", "value": 0.5}, {"column": "valence", "value": 0.7}, {"column": "valence", "value": 0.6}, {"column": "valence", "value": 0.65}, {"column": "valence", "value": 0.75}, {"column": "valence", "value": 0.35}, {"column": "valence", "value": 0.55}, {"column": "valence", "value": 0.68}, {"column": "valence", "value": 0.62}, {"column": "energy", "value": 0.7}, {"column": "energy", "value": 0.6}, {"column": "energy", "value": 0.4}, {"column": "energy", "value": 0.8}, {"column": "energy", "value": 0.75}, {"column": "energy", "value": 0.85}, {"column": "energy", "value": 0.72}, {"column": "energy", "value": 0.58}, {"column": "energy", "value": 0.45}, {"column": "energy", "value": 0.82}, {"column": "energy", "value": 0.73}, {"column": "energy", "value": 0.87}, {"column": "streams_millions", "value": 150.5}, {"column": "streams_millions", "value": 120.3}, {"column": "streams_millions", "value": 98.7}, {"column": "streams_millions", "value": 135.2}, {"column": "streams_millions", "value": 110.8}, {"column": "streams_millions", "value": null}, {"column": "streams_millions", "value": 145.6}, {"column": "streams_millions", "value": 115.2}, {"column": "streams_millions", "value": 95.4}, {"column": "streams_millions", "value": 130.1}, {"column": "streams_millions", "value": 108.9}, {"column": "streams_millions", "value": 140.3}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1281,23 +1281,23 @@ Categorical plot 1:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-ba629cd1fb624b8f84c1403ef5215d5d.vega-embed {
+  #altair-viz-71a02234868d4e1ab41459ec8cccd019.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ba629cd1fb624b8f84c1403ef5215d5d.vega-embed details,
-  #altair-viz-ba629cd1fb624b8f84c1403ef5215d5d.vega-embed details summary {
+  #altair-viz-71a02234868d4e1ab41459ec8cccd019.vega-embed details,
+  #altair-viz-71a02234868d4e1ab41459ec8cccd019.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ba629cd1fb624b8f84c1403ef5215d5d"></div>
+<div id="altair-viz-71a02234868d4e1ab41459ec8cccd019"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ba629cd1fb624b8f84c1403ef5215d5d") {
-      outputDiv = document.getElementById("altair-viz-ba629cd1fb624b8f84c1403ef5215d5d");
+    if (outputDiv.id !== "altair-viz-71a02234868d4e1ab41459ec8cccd019") {
+      outputDiv = document.getElementById("altair-viz-71a02234868d4e1ab41459ec8cccd019");
     }
 
     const paths = {
@@ -1345,7 +1345,7 @@ Categorical plot 1:</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "bar"}, "encoding": {"x": {"aggregate": "count", "type": "quantitative"}, "y": {"field": "artist", "sort": "-x", "title": "artist", "type": "nominal"}}, "title": "Frequency count of artist", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"popularity": 95, "artist": "Taylor Swift", "genre": "Pop", "year": 2023, "hit_status": "Hit"}, {"popularity": 88, "artist": "Ed Sheeran", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Billie Eilish", "genre": "Alternative", "year": 2022, "hit_status": "Hit"}, {"popularity": 90, "artist": "The Weeknd", "genre": "R&B", "year": 2023, "hit_status": "Hit"}, {"popularity": 87, "artist": "Ariana Grande", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 94, "artist": "Drake", "genre": "Hip-Hop", "year": 2023, "hit_status": "Hit"}, {"popularity": 93, "artist": "Taylor Swift", "genre": "Pop", "year": 2022, "hit_status": "Hit"}, {"popularity": 85, "artist": "Ed Sheeran", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 89, "artist": "Billie Eilish", "genre": "Alternative", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 91, "artist": "The Weeknd", "genre": "R&B", "year": 2022, "hit_status": "Hit"}, {"popularity": 86, "artist": "Ariana Grande", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Drake", "genre": "Hip-Hop", "year": 2022, "hit_status": "Hit"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "bar"}, "encoding": {"x": {"aggregate": "count", "type": "quantitative"}, "y": {"field": "artist", "sort": "-x", "title": "artist", "type": "nominal"}}, "title": "Frequency count of artist", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"artist": "Taylor Swift", "year": 2023, "hit_status": "Hit", "genre": "Pop", "popularity": 95}, {"artist": "Ed Sheeran", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 88}, {"artist": "Billie Eilish", "year": 2022, "hit_status": "Hit", "genre": "Alternative", "popularity": 92}, {"artist": "The Weeknd", "year": 2023, "hit_status": "Hit", "genre": "R&B", "popularity": 90}, {"artist": "Ariana Grande", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 87}, {"artist": "Drake", "year": 2023, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 94}, {"artist": "Taylor Swift", "year": 2022, "hit_status": "Hit", "genre": "Pop", "popularity": 93}, {"artist": "Ed Sheeran", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 85}, {"artist": "Billie Eilish", "year": 2023, "hit_status": "Not Hit", "genre": "Alternative", "popularity": 89}, {"artist": "The Weeknd", "year": 2022, "hit_status": "Hit", "genre": "R&B", "popularity": 91}, {"artist": "Ariana Grande", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 86}, {"artist": "Drake", "year": 2022, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1355,23 +1355,23 @@ Categorical plot 2:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-b0c64dc318f8433ba53471fdfd5631a0.vega-embed {
+  #altair-viz-405e014517484169a6b87e252e799170.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-b0c64dc318f8433ba53471fdfd5631a0.vega-embed details,
-  #altair-viz-b0c64dc318f8433ba53471fdfd5631a0.vega-embed details summary {
+  #altair-viz-405e014517484169a6b87e252e799170.vega-embed details,
+  #altair-viz-405e014517484169a6b87e252e799170.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-b0c64dc318f8433ba53471fdfd5631a0"></div>
+<div id="altair-viz-405e014517484169a6b87e252e799170"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b0c64dc318f8433ba53471fdfd5631a0") {
-      outputDiv = document.getElementById("altair-viz-b0c64dc318f8433ba53471fdfd5631a0");
+    if (outputDiv.id !== "altair-viz-405e014517484169a6b87e252e799170") {
+      outputDiv = document.getElementById("altair-viz-405e014517484169a6b87e252e799170");
     }
 
     const paths = {
@@ -1419,7 +1419,7 @@ Categorical plot 2:</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "artist", "type": "nominal"}, "x": {"field": "popularity", "title": "popularity", "type": "quantitative"}, "y": {"field": "artist", "sort": "-x", "title": "artist", "type": "nominal"}}, "title": "artist vs popularity", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"popularity": 95, "artist": "Taylor Swift", "genre": "Pop", "year": 2023, "hit_status": "Hit"}, {"popularity": 88, "artist": "Ed Sheeran", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Billie Eilish", "genre": "Alternative", "year": 2022, "hit_status": "Hit"}, {"popularity": 90, "artist": "The Weeknd", "genre": "R&B", "year": 2023, "hit_status": "Hit"}, {"popularity": 87, "artist": "Ariana Grande", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 94, "artist": "Drake", "genre": "Hip-Hop", "year": 2023, "hit_status": "Hit"}, {"popularity": 93, "artist": "Taylor Swift", "genre": "Pop", "year": 2022, "hit_status": "Hit"}, {"popularity": 85, "artist": "Ed Sheeran", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 89, "artist": "Billie Eilish", "genre": "Alternative", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 91, "artist": "The Weeknd", "genre": "R&B", "year": 2022, "hit_status": "Hit"}, {"popularity": 86, "artist": "Ariana Grande", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Drake", "genre": "Hip-Hop", "year": 2022, "hit_status": "Hit"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "artist", "type": "nominal"}, "x": {"field": "popularity", "title": "popularity", "type": "quantitative"}, "y": {"field": "artist", "sort": "-x", "title": "artist", "type": "nominal"}}, "title": "artist vs popularity", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"artist": "Taylor Swift", "year": 2023, "hit_status": "Hit", "genre": "Pop", "popularity": 95}, {"artist": "Ed Sheeran", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 88}, {"artist": "Billie Eilish", "year": 2022, "hit_status": "Hit", "genre": "Alternative", "popularity": 92}, {"artist": "The Weeknd", "year": 2023, "hit_status": "Hit", "genre": "R&B", "popularity": 90}, {"artist": "Ariana Grande", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 87}, {"artist": "Drake", "year": 2023, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 94}, {"artist": "Taylor Swift", "year": 2022, "hit_status": "Hit", "genre": "Pop", "popularity": 93}, {"artist": "Ed Sheeran", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 85}, {"artist": "Billie Eilish", "year": 2023, "hit_status": "Not Hit", "genre": "Alternative", "popularity": 89}, {"artist": "The Weeknd", "year": 2022, "hit_status": "Hit", "genre": "R&B", "popularity": 91}, {"artist": "Ariana Grande", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 86}, {"artist": "Drake", "year": 2022, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1429,23 +1429,23 @@ Categorical plot 3:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-ca4011d910a247c8b1fb8f15d4e37469.vega-embed {
+  #altair-viz-0adb460080da41adbe66738f48c1efd2.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ca4011d910a247c8b1fb8f15d4e37469.vega-embed details,
-  #altair-viz-ca4011d910a247c8b1fb8f15d4e37469.vega-embed details summary {
+  #altair-viz-0adb460080da41adbe66738f48c1efd2.vega-embed details,
+  #altair-viz-0adb460080da41adbe66738f48c1efd2.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ca4011d910a247c8b1fb8f15d4e37469"></div>
+<div id="altair-viz-0adb460080da41adbe66738f48c1efd2"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ca4011d910a247c8b1fb8f15d4e37469") {
-      outputDiv = document.getElementById("altair-viz-ca4011d910a247c8b1fb8f15d4e37469");
+    if (outputDiv.id !== "altair-viz-0adb460080da41adbe66738f48c1efd2") {
+      outputDiv = document.getElementById("altair-viz-0adb460080da41adbe66738f48c1efd2");
     }
 
     const paths = {
@@ -1493,7 +1493,7 @@ Categorical plot 3:</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "bar"}, "encoding": {"x": {"aggregate": "count", "type": "quantitative"}, "y": {"field": "genre", "sort": "-x", "title": "genre", "type": "nominal"}}, "title": "Frequency count of genre", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"popularity": 95, "artist": "Taylor Swift", "genre": "Pop", "year": 2023, "hit_status": "Hit"}, {"popularity": 88, "artist": "Ed Sheeran", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Billie Eilish", "genre": "Alternative", "year": 2022, "hit_status": "Hit"}, {"popularity": 90, "artist": "The Weeknd", "genre": "R&B", "year": 2023, "hit_status": "Hit"}, {"popularity": 87, "artist": "Ariana Grande", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 94, "artist": "Drake", "genre": "Hip-Hop", "year": 2023, "hit_status": "Hit"}, {"popularity": 93, "artist": "Taylor Swift", "genre": "Pop", "year": 2022, "hit_status": "Hit"}, {"popularity": 85, "artist": "Ed Sheeran", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 89, "artist": "Billie Eilish", "genre": "Alternative", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 91, "artist": "The Weeknd", "genre": "R&B", "year": 2022, "hit_status": "Hit"}, {"popularity": 86, "artist": "Ariana Grande", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Drake", "genre": "Hip-Hop", "year": 2022, "hit_status": "Hit"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "bar"}, "encoding": {"x": {"aggregate": "count", "type": "quantitative"}, "y": {"field": "year", "sort": "-x", "title": "year", "type": "nominal"}}, "title": "Frequency count of year", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"artist": "Taylor Swift", "year": 2023, "hit_status": "Hit", "genre": "Pop", "popularity": 95}, {"artist": "Ed Sheeran", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 88}, {"artist": "Billie Eilish", "year": 2022, "hit_status": "Hit", "genre": "Alternative", "popularity": 92}, {"artist": "The Weeknd", "year": 2023, "hit_status": "Hit", "genre": "R&B", "popularity": 90}, {"artist": "Ariana Grande", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 87}, {"artist": "Drake", "year": 2023, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 94}, {"artist": "Taylor Swift", "year": 2022, "hit_status": "Hit", "genre": "Pop", "popularity": 93}, {"artist": "Ed Sheeran", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 85}, {"artist": "Billie Eilish", "year": 2023, "hit_status": "Not Hit", "genre": "Alternative", "popularity": 89}, {"artist": "The Weeknd", "year": 2022, "hit_status": "Hit", "genre": "R&B", "popularity": 91}, {"artist": "Ariana Grande", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 86}, {"artist": "Drake", "year": 2022, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1503,23 +1503,23 @@ Categorical plot 4:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-62a55a20903544078482c4b6d37d8a0d.vega-embed {
+  #altair-viz-63c167b781934df38e7256228572cf8d.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-62a55a20903544078482c4b6d37d8a0d.vega-embed details,
-  #altair-viz-62a55a20903544078482c4b6d37d8a0d.vega-embed details summary {
+  #altair-viz-63c167b781934df38e7256228572cf8d.vega-embed details,
+  #altair-viz-63c167b781934df38e7256228572cf8d.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-62a55a20903544078482c4b6d37d8a0d"></div>
+<div id="altair-viz-63c167b781934df38e7256228572cf8d"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-62a55a20903544078482c4b6d37d8a0d") {
-      outputDiv = document.getElementById("altair-viz-62a55a20903544078482c4b6d37d8a0d");
+    if (outputDiv.id !== "altair-viz-63c167b781934df38e7256228572cf8d") {
+      outputDiv = document.getElementById("altair-viz-63c167b781934df38e7256228572cf8d");
     }
 
     const paths = {
@@ -1567,7 +1567,7 @@ Categorical plot 4:</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "genre", "type": "nominal"}, "x": {"field": "popularity", "title": "popularity", "type": "quantitative"}, "y": {"field": "genre", "sort": "-x", "title": "genre", "type": "nominal"}}, "title": "genre vs popularity", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"popularity": 95, "artist": "Taylor Swift", "genre": "Pop", "year": 2023, "hit_status": "Hit"}, {"popularity": 88, "artist": "Ed Sheeran", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Billie Eilish", "genre": "Alternative", "year": 2022, "hit_status": "Hit"}, {"popularity": 90, "artist": "The Weeknd", "genre": "R&B", "year": 2023, "hit_status": "Hit"}, {"popularity": 87, "artist": "Ariana Grande", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 94, "artist": "Drake", "genre": "Hip-Hop", "year": 2023, "hit_status": "Hit"}, {"popularity": 93, "artist": "Taylor Swift", "genre": "Pop", "year": 2022, "hit_status": "Hit"}, {"popularity": 85, "artist": "Ed Sheeran", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 89, "artist": "Billie Eilish", "genre": "Alternative", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 91, "artist": "The Weeknd", "genre": "R&B", "year": 2022, "hit_status": "Hit"}, {"popularity": 86, "artist": "Ariana Grande", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Drake", "genre": "Hip-Hop", "year": 2022, "hit_status": "Hit"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "year", "type": "nominal"}, "x": {"field": "popularity", "title": "popularity", "type": "quantitative"}, "y": {"field": "year", "sort": "-x", "title": "year", "type": "nominal"}}, "title": "year vs popularity", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"artist": "Taylor Swift", "year": 2023, "hit_status": "Hit", "genre": "Pop", "popularity": 95}, {"artist": "Ed Sheeran", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 88}, {"artist": "Billie Eilish", "year": 2022, "hit_status": "Hit", "genre": "Alternative", "popularity": 92}, {"artist": "The Weeknd", "year": 2023, "hit_status": "Hit", "genre": "R&B", "popularity": 90}, {"artist": "Ariana Grande", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 87}, {"artist": "Drake", "year": 2023, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 94}, {"artist": "Taylor Swift", "year": 2022, "hit_status": "Hit", "genre": "Pop", "popularity": 93}, {"artist": "Ed Sheeran", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 85}, {"artist": "Billie Eilish", "year": 2023, "hit_status": "Not Hit", "genre": "Alternative", "popularity": 89}, {"artist": "The Weeknd", "year": 2022, "hit_status": "Hit", "genre": "R&B", "popularity": 91}, {"artist": "Ariana Grande", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 86}, {"artist": "Drake", "year": 2022, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1577,23 +1577,23 @@ Categorical plot 5:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-55844e575886440b9dbc25979afd60b0.vega-embed {
+  #altair-viz-0f37dc730259463c951e0b4311d04b6b.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-55844e575886440b9dbc25979afd60b0.vega-embed details,
-  #altair-viz-55844e575886440b9dbc25979afd60b0.vega-embed details summary {
+  #altair-viz-0f37dc730259463c951e0b4311d04b6b.vega-embed details,
+  #altair-viz-0f37dc730259463c951e0b4311d04b6b.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-55844e575886440b9dbc25979afd60b0"></div>
+<div id="altair-viz-0f37dc730259463c951e0b4311d04b6b"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-55844e575886440b9dbc25979afd60b0") {
-      outputDiv = document.getElementById("altair-viz-55844e575886440b9dbc25979afd60b0");
+    if (outputDiv.id !== "altair-viz-0f37dc730259463c951e0b4311d04b6b") {
+      outputDiv = document.getElementById("altair-viz-0f37dc730259463c951e0b4311d04b6b");
     }
 
     const paths = {
@@ -1641,7 +1641,7 @@ Categorical plot 5:</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "bar"}, "encoding": {"x": {"aggregate": "count", "type": "quantitative"}, "y": {"field": "year", "sort": "-x", "title": "year", "type": "nominal"}}, "title": "Frequency count of year", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"popularity": 95, "artist": "Taylor Swift", "genre": "Pop", "year": 2023, "hit_status": "Hit"}, {"popularity": 88, "artist": "Ed Sheeran", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Billie Eilish", "genre": "Alternative", "year": 2022, "hit_status": "Hit"}, {"popularity": 90, "artist": "The Weeknd", "genre": "R&B", "year": 2023, "hit_status": "Hit"}, {"popularity": 87, "artist": "Ariana Grande", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 94, "artist": "Drake", "genre": "Hip-Hop", "year": 2023, "hit_status": "Hit"}, {"popularity": 93, "artist": "Taylor Swift", "genre": "Pop", "year": 2022, "hit_status": "Hit"}, {"popularity": 85, "artist": "Ed Sheeran", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 89, "artist": "Billie Eilish", "genre": "Alternative", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 91, "artist": "The Weeknd", "genre": "R&B", "year": 2022, "hit_status": "Hit"}, {"popularity": 86, "artist": "Ariana Grande", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Drake", "genre": "Hip-Hop", "year": 2022, "hit_status": "Hit"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "bar"}, "encoding": {"x": {"aggregate": "count", "type": "quantitative"}, "y": {"field": "hit_status", "sort": "-x", "title": "hit_status", "type": "nominal"}}, "title": "Frequency count of hit_status", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"artist": "Taylor Swift", "year": 2023, "hit_status": "Hit", "genre": "Pop", "popularity": 95}, {"artist": "Ed Sheeran", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 88}, {"artist": "Billie Eilish", "year": 2022, "hit_status": "Hit", "genre": "Alternative", "popularity": 92}, {"artist": "The Weeknd", "year": 2023, "hit_status": "Hit", "genre": "R&B", "popularity": 90}, {"artist": "Ariana Grande", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 87}, {"artist": "Drake", "year": 2023, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 94}, {"artist": "Taylor Swift", "year": 2022, "hit_status": "Hit", "genre": "Pop", "popularity": 93}, {"artist": "Ed Sheeran", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 85}, {"artist": "Billie Eilish", "year": 2023, "hit_status": "Not Hit", "genre": "Alternative", "popularity": 89}, {"artist": "The Weeknd", "year": 2022, "hit_status": "Hit", "genre": "R&B", "popularity": 91}, {"artist": "Ariana Grande", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 86}, {"artist": "Drake", "year": 2022, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1651,23 +1651,23 @@ Categorical plot 6:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-d70546b9800640c9a83ce27e82ac265a.vega-embed {
+  #altair-viz-6adad83a3c844b13859211d98f504949.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-d70546b9800640c9a83ce27e82ac265a.vega-embed details,
-  #altair-viz-d70546b9800640c9a83ce27e82ac265a.vega-embed details summary {
+  #altair-viz-6adad83a3c844b13859211d98f504949.vega-embed details,
+  #altair-viz-6adad83a3c844b13859211d98f504949.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-d70546b9800640c9a83ce27e82ac265a"></div>
+<div id="altair-viz-6adad83a3c844b13859211d98f504949"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d70546b9800640c9a83ce27e82ac265a") {
-      outputDiv = document.getElementById("altair-viz-d70546b9800640c9a83ce27e82ac265a");
+    if (outputDiv.id !== "altair-viz-6adad83a3c844b13859211d98f504949") {
+      outputDiv = document.getElementById("altair-viz-6adad83a3c844b13859211d98f504949");
     }
 
     const paths = {
@@ -1715,7 +1715,7 @@ Categorical plot 6:</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "year", "type": "nominal"}, "x": {"field": "popularity", "title": "popularity", "type": "quantitative"}, "y": {"field": "year", "sort": "-x", "title": "year", "type": "nominal"}}, "title": "year vs popularity", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"popularity": 95, "artist": "Taylor Swift", "genre": "Pop", "year": 2023, "hit_status": "Hit"}, {"popularity": 88, "artist": "Ed Sheeran", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Billie Eilish", "genre": "Alternative", "year": 2022, "hit_status": "Hit"}, {"popularity": 90, "artist": "The Weeknd", "genre": "R&B", "year": 2023, "hit_status": "Hit"}, {"popularity": 87, "artist": "Ariana Grande", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 94, "artist": "Drake", "genre": "Hip-Hop", "year": 2023, "hit_status": "Hit"}, {"popularity": 93, "artist": "Taylor Swift", "genre": "Pop", "year": 2022, "hit_status": "Hit"}, {"popularity": 85, "artist": "Ed Sheeran", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 89, "artist": "Billie Eilish", "genre": "Alternative", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 91, "artist": "The Weeknd", "genre": "R&B", "year": 2022, "hit_status": "Hit"}, {"popularity": 86, "artist": "Ariana Grande", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Drake", "genre": "Hip-Hop", "year": 2022, "hit_status": "Hit"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "hit_status", "type": "nominal"}, "x": {"field": "popularity", "title": "popularity", "type": "quantitative"}, "y": {"field": "hit_status", "sort": "-x", "title": "hit_status", "type": "nominal"}}, "title": "hit_status vs popularity", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"artist": "Taylor Swift", "year": 2023, "hit_status": "Hit", "genre": "Pop", "popularity": 95}, {"artist": "Ed Sheeran", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 88}, {"artist": "Billie Eilish", "year": 2022, "hit_status": "Hit", "genre": "Alternative", "popularity": 92}, {"artist": "The Weeknd", "year": 2023, "hit_status": "Hit", "genre": "R&B", "popularity": 90}, {"artist": "Ariana Grande", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 87}, {"artist": "Drake", "year": 2023, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 94}, {"artist": "Taylor Swift", "year": 2022, "hit_status": "Hit", "genre": "Pop", "popularity": 93}, {"artist": "Ed Sheeran", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 85}, {"artist": "Billie Eilish", "year": 2023, "hit_status": "Not Hit", "genre": "Alternative", "popularity": 89}, {"artist": "The Weeknd", "year": 2022, "hit_status": "Hit", "genre": "R&B", "popularity": 91}, {"artist": "Ariana Grande", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 86}, {"artist": "Drake", "year": 2022, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1725,23 +1725,23 @@ Categorical plot 7:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-b4dc8c99b0dd4214a95da2d7cbc49122.vega-embed {
+  #altair-viz-10e035c223ca4aa6bd96e00b9f8faf55.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-b4dc8c99b0dd4214a95da2d7cbc49122.vega-embed details,
-  #altair-viz-b4dc8c99b0dd4214a95da2d7cbc49122.vega-embed details summary {
+  #altair-viz-10e035c223ca4aa6bd96e00b9f8faf55.vega-embed details,
+  #altair-viz-10e035c223ca4aa6bd96e00b9f8faf55.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-b4dc8c99b0dd4214a95da2d7cbc49122"></div>
+<div id="altair-viz-10e035c223ca4aa6bd96e00b9f8faf55"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b4dc8c99b0dd4214a95da2d7cbc49122") {
-      outputDiv = document.getElementById("altair-viz-b4dc8c99b0dd4214a95da2d7cbc49122");
+    if (outputDiv.id !== "altair-viz-10e035c223ca4aa6bd96e00b9f8faf55") {
+      outputDiv = document.getElementById("altair-viz-10e035c223ca4aa6bd96e00b9f8faf55");
     }
 
     const paths = {
@@ -1789,7 +1789,7 @@ Categorical plot 7:</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "bar"}, "encoding": {"x": {"aggregate": "count", "type": "quantitative"}, "y": {"field": "hit_status", "sort": "-x", "title": "hit_status", "type": "nominal"}}, "title": "Frequency count of hit_status", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"popularity": 95, "artist": "Taylor Swift", "genre": "Pop", "year": 2023, "hit_status": "Hit"}, {"popularity": 88, "artist": "Ed Sheeran", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Billie Eilish", "genre": "Alternative", "year": 2022, "hit_status": "Hit"}, {"popularity": 90, "artist": "The Weeknd", "genre": "R&B", "year": 2023, "hit_status": "Hit"}, {"popularity": 87, "artist": "Ariana Grande", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 94, "artist": "Drake", "genre": "Hip-Hop", "year": 2023, "hit_status": "Hit"}, {"popularity": 93, "artist": "Taylor Swift", "genre": "Pop", "year": 2022, "hit_status": "Hit"}, {"popularity": 85, "artist": "Ed Sheeran", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 89, "artist": "Billie Eilish", "genre": "Alternative", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 91, "artist": "The Weeknd", "genre": "R&B", "year": 2022, "hit_status": "Hit"}, {"popularity": 86, "artist": "Ariana Grande", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Drake", "genre": "Hip-Hop", "year": 2022, "hit_status": "Hit"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "bar"}, "encoding": {"x": {"aggregate": "count", "type": "quantitative"}, "y": {"field": "genre", "sort": "-x", "title": "genre", "type": "nominal"}}, "title": "Frequency count of genre", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"artist": "Taylor Swift", "year": 2023, "hit_status": "Hit", "genre": "Pop", "popularity": 95}, {"artist": "Ed Sheeran", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 88}, {"artist": "Billie Eilish", "year": 2022, "hit_status": "Hit", "genre": "Alternative", "popularity": 92}, {"artist": "The Weeknd", "year": 2023, "hit_status": "Hit", "genre": "R&B", "popularity": 90}, {"artist": "Ariana Grande", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 87}, {"artist": "Drake", "year": 2023, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 94}, {"artist": "Taylor Swift", "year": 2022, "hit_status": "Hit", "genre": "Pop", "popularity": 93}, {"artist": "Ed Sheeran", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 85}, {"artist": "Billie Eilish", "year": 2023, "hit_status": "Not Hit", "genre": "Alternative", "popularity": 89}, {"artist": "The Weeknd", "year": 2022, "hit_status": "Hit", "genre": "R&B", "popularity": 91}, {"artist": "Ariana Grande", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 86}, {"artist": "Drake", "year": 2022, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1799,23 +1799,23 @@ Categorical plot 8:</code></pre>
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-63b0154cc4c847f2b7e43459fba17387.vega-embed {
+  #altair-viz-2175b8c0a88540489c0c3cf9b0088d88.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-63b0154cc4c847f2b7e43459fba17387.vega-embed details,
-  #altair-viz-63b0154cc4c847f2b7e43459fba17387.vega-embed details summary {
+  #altair-viz-2175b8c0a88540489c0c3cf9b0088d88.vega-embed details,
+  #altair-viz-2175b8c0a88540489c0c3cf9b0088d88.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-63b0154cc4c847f2b7e43459fba17387"></div>
+<div id="altair-viz-2175b8c0a88540489c0c3cf9b0088d88"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-63b0154cc4c847f2b7e43459fba17387") {
-      outputDiv = document.getElementById("altair-viz-63b0154cc4c847f2b7e43459fba17387");
+    if (outputDiv.id !== "altair-viz-2175b8c0a88540489c0c3cf9b0088d88") {
+      outputDiv = document.getElementById("altair-viz-2175b8c0a88540489c0c3cf9b0088d88");
     }
 
     const paths = {
@@ -1863,7 +1863,7 @@ Categorical plot 8:</code></pre>
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "hit_status", "type": "nominal"}, "x": {"field": "popularity", "title": "popularity", "type": "quantitative"}, "y": {"field": "hit_status", "sort": "-x", "title": "hit_status", "type": "nominal"}}, "title": "hit_status vs popularity", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"popularity": 95, "artist": "Taylor Swift", "genre": "Pop", "year": 2023, "hit_status": "Hit"}, {"popularity": 88, "artist": "Ed Sheeran", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Billie Eilish", "genre": "Alternative", "year": 2022, "hit_status": "Hit"}, {"popularity": 90, "artist": "The Weeknd", "genre": "R&B", "year": 2023, "hit_status": "Hit"}, {"popularity": 87, "artist": "Ariana Grande", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 94, "artist": "Drake", "genre": "Hip-Hop", "year": 2023, "hit_status": "Hit"}, {"popularity": 93, "artist": "Taylor Swift", "genre": "Pop", "year": 2022, "hit_status": "Hit"}, {"popularity": 85, "artist": "Ed Sheeran", "genre": "Pop", "year": 2022, "hit_status": "Not Hit"}, {"popularity": 89, "artist": "Billie Eilish", "genre": "Alternative", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 91, "artist": "The Weeknd", "genre": "R&B", "year": 2022, "hit_status": "Hit"}, {"popularity": 86, "artist": "Ariana Grande", "genre": "Pop", "year": 2023, "hit_status": "Not Hit"}, {"popularity": 92, "artist": "Drake", "genre": "Hip-Hop", "year": 2022, "hit_status": "Hit"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-40e5416894c9142238ec5813e75b9730"}, "mark": {"type": "boxplot"}, "encoding": {"color": {"field": "genre", "type": "nominal"}, "x": {"field": "popularity", "title": "popularity", "type": "quantitative"}, "y": {"field": "genre", "sort": "-x", "title": "genre", "type": "nominal"}}, "title": "genre vs popularity", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-40e5416894c9142238ec5813e75b9730": [{"artist": "Taylor Swift", "year": 2023, "hit_status": "Hit", "genre": "Pop", "popularity": 95}, {"artist": "Ed Sheeran", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 88}, {"artist": "Billie Eilish", "year": 2022, "hit_status": "Hit", "genre": "Alternative", "popularity": 92}, {"artist": "The Weeknd", "year": 2023, "hit_status": "Hit", "genre": "R&B", "popularity": 90}, {"artist": "Ariana Grande", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 87}, {"artist": "Drake", "year": 2023, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 94}, {"artist": "Taylor Swift", "year": 2022, "hit_status": "Hit", "genre": "Pop", "popularity": 93}, {"artist": "Ed Sheeran", "year": 2022, "hit_status": "Not Hit", "genre": "Pop", "popularity": 85}, {"artist": "Billie Eilish", "year": 2023, "hit_status": "Not Hit", "genre": "Alternative", "popularity": 89}, {"artist": "The Weeknd", "year": 2022, "hit_status": "Hit", "genre": "R&B", "popularity": 91}, {"artist": "Ariana Grande", "year": 2023, "hit_status": "Not Hit", "genre": "Pop", "popularity": 86}, {"artist": "Drake", "year": 2022, "hit_status": "Hit", "genre": "Hip-Hop", "popularity": 92}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 </div>
