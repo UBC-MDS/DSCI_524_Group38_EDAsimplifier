@@ -12,15 +12,6 @@ The `eda_simplifier` package streamlines exploratory data analysis (EDA) by cons
 Please first refer to the [installation found in README](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/README.html/#user-installation) to first install the package.
 The full documentation for each function can be found at [Referances](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
 
-## Summary
-
-| Function | Purpose | Best Used For |
-|---------------------|-------------------|-------------------------------|
-| `dataset_overview()` | Quick statistical summary | First step: understand dataset structure |
-| `numeric()` | Numeric feature visualization | Analyzing distributions, correlations, outliers |
-| `categorical_plot()` | Categorical feature visualization | Understanding category frequencies and relationships |
-| `all_distributions()` | Complete distribution analysis | Comprehensive EDA with smart type handling |
-
 # Sample Data
 
 ```{python}
@@ -54,7 +45,7 @@ print(music_data.head())
 
 # Functions Demo: 
 
-## Function 1: `dataset_overview()`
+## `dataset_overview()`
 
 This function provides a comprehensive, single-function overview of your dataset by combining information you'd normally get from multiple pandas methods (`.info()`, `.describe()`, `.shape`, `.isna().sum()`). Instead of running 4-5 different commands to understand a dataset's basic structure, missing values, and statistics - you'll get everything organized in one structured dictionary.
 
@@ -84,7 +75,7 @@ print(overview['summary_statistics']['popularity'])
 ```
 ------------------------------------------------------------------------
 
-## Function 2: `numeric()`
+## `numeric()`
 
 This generates comprehensive visualizations for numerical features including histograms, correlation plots, missing value analysis, and outlier detection. It will lead to quickly understand the distributions, and alert data quality issues for the numeric columns of a DataFrame.
 
@@ -107,7 +98,7 @@ result['distribution'].display()
 
 ------------------------------------------------------------------------
 
-## Function 3: `categorical_plot()`
+## `categorical_plot()`
 
 This function creates sorted frequency bar charts for categorical features and automatically generates relationship plots in relation to a target variable. Ex: box plots for numeric targets, stacked bar charts for categorical targets. It handles both categorical and numeric targets automatically, adjusting the visualization type accordingly.
 
@@ -151,7 +142,7 @@ for plot in categorical_plots:
 
 ------------------------------------------------------------------------
 
-## Function 4: `all_distributions()`
+## `all_distributions()`
 
 This is the maina and comprehensive wrapper function that automatically analyzes ALL features in a dataset (both numeric and categorical) by routing them to the appropriate visualization functions. It also handles ambiguous cases where numeric columns should be treated as categorical (like year, ZIP codes) through the `ambiguous_column_types` parameter. While EDA can be done by individually separating numeric and categorical columns - calling different the `categorical_plot()` and `numeric()` functions respectively:  `all_distributions()` does it all automatically. The ambiguous column handling is especially powerful as it can handel messy data where column types don't always match their semantic meaning.
 
@@ -189,3 +180,13 @@ for i, plot in enumerate(all_plots['categorical']):
     print(f"\nCategorical plot {i+1}:")
     plot.display()
 ```
+
+## Summary
+
+| Function | Purpose | Best Used For |
+|---------------------|-------------------|-------------------------------|
+| `dataset_overview()` | Quick statistical summary | First step: understand dataset structure |
+| `numeric()` | Numeric feature visualization | Analyzing distributions, correlations, outliers |
+| `categorical_plot()` | Categorical feature visualization | Understanding category frequencies and relationships |
+| `all_distributions()` | Complete distribution analysis | Comprehensive EDA with custom type handling |
+
