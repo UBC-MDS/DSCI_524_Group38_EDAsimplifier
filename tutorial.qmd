@@ -3,15 +3,15 @@ title: "Getting Started with eda_simplifier"
 format: html
 ---
 
-## Introduction
+# Introduction
 
 The `eda_simplifier` package streamlines exploratory data analysis (EDA) by consolidating common pandas and visualization tasks into simple, reusable functions. This tutorial demonstrates all four main functions with practical examples.
 
-## Installation
+# Installation
 
 Please first refer to the [installation found in README](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/README.html/#user-installation) to first install the package.
 
-## Sample Data
+# Sample Data
 
 ```{python}
 import pandas as pd
@@ -40,4 +40,33 @@ music_data = pd.DataFrame({
 })
 
 print(music_data.head())    
+```
+
+# Function 1: `dataset_overview()`
+
+This function provides a comprehensive, single-function overview of your dataset by combining information you'd normally get from multiple pandas methods (`.info()`, `.describe()`, `.shape`, `.isna().sum()`). Instead of running 4-5 different commands to understand a dataset's basic structure, missing values, and statistics - you'll get everything organized in one structured dictionary.
+
+
+```{python}
+# Get complete dataset overview in one call
+overview = dataset_overview(music_data)
+
+# Display shape and structure
+print(f"Dataset shape: {overview['shape']}")
+print(f"\nColumns: {overview['columns']}")
+
+# Check data types
+print("\nData types:")
+for col, dtype in overview['dtypes'].items():
+    print(f"  {col}: {dtype}")
+
+# Identify missing values
+print("\nMissing values:")
+for col, count in overview['missing_values'].items():
+    if count > 0:
+        print(f"  {col}: {count} missing")
+
+# View summary statistics for numeric columns
+print("\nSummary statistics for 'popularity':")
+print(overview['summary_statistics']['popularity'])
 ```
