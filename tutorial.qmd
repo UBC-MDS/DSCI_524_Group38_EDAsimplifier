@@ -181,7 +181,7 @@ for i, plot in enumerate(all_plots['categorical']):
     plot.display()
 ```
 
-## Summary
+# Summary
 
 | Function | Purpose | Best Used For |
 |---------------------|-------------------|-------------------------------|
