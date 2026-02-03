@@ -121,3 +121,39 @@ Before you submit a pull request, check that it meets these guidelines:
 4. For early milestones, function docstrings serve as formal specifications and
    may exist without an implementation.
 
+## Retrospective: Tools, Infrastructure, and Practices
+
+### Development Tools
+
+Building EDA_simplifier gave us hands-on experience with a modern Python packaging workflow. We used [Hatch](https://www.pyopensci.org/python-package-guide/tutorials/get-to-know-hatch.html) as our build system and environment manager. This eliminated the need to set up conda environments, conda lock files, and docker containers. Hatch let us define isolated environments for testing, documentation, and building, all configured in a single `pyproject.toml` file.
+
+For testing, we used [pytest](https://docs.pytest.org/en/stable/getting-started.html). Writing unit tests for each function in separate files (e.g., `test_dataset_overview.py`, `test_numeric.py`) taught us to think about edge cases (such as empty DataFrames, invalid input types) before writing production code. Each member regularly tests their code before pushing their contribution to the `main` branch.
+
+Code quality was enforced through [Ruff](https://docs.astral.sh/ruff/) for linting and [Black](https://pypi.org/project/black/) for formatting. Having these run automatically in CI resulted in a consistent coding style throughout all milestones.
+
+For documentation, we used [Quarto](https://quarto.org/docs/guide/) to auto-generate an [API reference site](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) from our function docstrings. This taught us that good docstrings need to include parameters, return types, and examples. Through the peer review process, we also recognized the importance of having good examples, because that is what most users and developers try when exploring a new package.
+
+### GitHub Infrastructure
+
+We set up four GitHub Actions workflows that automated most of our quality assurance:
+
+1.  **CI (`ci.yml`)**: Runs on every push and pull request. Tests across a matrix of 3 operating systems (Ubuntu, macOS, Windows) and 4 Python versions (3.10–3.13), giving us 12 test combinations. This caught platform-specific issues we would never have found testing only on our own machines.
+2.  **CD (`cd.yml`)**: Automatically builds and publishes the package to TestPyPI after the full CI suite is passed.
+3.  **Docs publishing (`docs-publish.yml`)**: Builds our Quarto site and deploys it to GitHub Pages on every push to `main`, keeping our documentation always up to date.
+4.  **Docs preview (`docs-preview.yml`)**: Deploys a preview to Netlify so reviewers can see rendered documentation changes before merging.
+
+We added badges for some of these workflows on our README to get a quick glance that the actions are working. Beyond workflows, we used [Codecov](https://app.codecov.io/github/UBC-MDS/DSCI_524_Group38_EDAsimplifier) for coverage tracking.
+
+### Organizational Practices
+
+Each core function was owned by a single team member to ensure equal contribution and clear accountability. This worked well for a four-person team building four main functions. Weekly meetings allowed us to stay on top of milestone deadlines, troubleshoot issues together, and discuss any bottlenecks. We also used a [Kanban](https://github.com/orgs/UBC-MDS/projects/331) project board to keep track of all outstanding issues. Slack was used for informal conversations.
+
+### Scaling Up: What We Would Add
+
+If we were to scale this project (or start a new, larger one), we would adopt the following additional tools and practices:
+
+-   **Containerized development environments**: Our `environment.yml` works for conda users, but a `Dockerfile` or Dev Container configuration would provide fully reproducible environments regardless of the host system, which becomes important when onboarding new contributors who may use different operating systems or package managers.
+
+-   **Publishing to PyPI**: Our current deployment targets TestPyPI, which is appropriate for a course project. A real production package would publish to the main Python Package Index, with stricter testing rules (e.g., requiring all matrix tests to pass and manual approval before publishing).
+
+-   **CODEOWNERS file**: As the team grows, a `CODEOWNERS` file in `.github/` would automatically request reviews from the right people based on which files a PR touches, ensuring the right person always reviews relevant changes.

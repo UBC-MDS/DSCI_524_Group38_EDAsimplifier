@@ -5,11 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased - for Milestone 4]
 
 ### Added
 - GitHub Actions workflow for documentation preview (#74)
 - Codecov badge in README (#74)
+### Fixed
+
+- Ammend all remaining contributing authors and their emails in `pyproject.toml` ([#73](https://github.com/UBC-MDS/DSCI_524_Group38_EDAsimplifier/pull/73))
 
 ### Changed
 - Version scheme configuration in Hatch (#74)
