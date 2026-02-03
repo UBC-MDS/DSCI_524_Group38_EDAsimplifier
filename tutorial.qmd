@@ -90,22 +90,19 @@ This generates comprehensive visualizations for numerical features including his
 
 ```{python}
 # Analyze all numeric features at once
-numeric_features = ['popularity', 'danceability', 'energy', 'valence', 'streams_millions']
+numeric_features = music_data[['popularity', 'danceability', 'energy', 'valence', 'streams_millions']]
 
-result = numeric(music_data, numeric_features)
+result = numeric(numeric_features, target='popularity')
 
 # Access different plot types
 print("Available visualizations:")
 print(result.keys())
 
-# Display histograms to see distributions
-result['histograms'].display()
-
 # Check correlations between features
-result['correlation_plot'].display()
+result['correlation'].display()
 
-# Identify potential outliers
-result['outliers'].display()
+# Identify distributions
+result['distribution'].display()
 ```
 
 ------------------------------------------------------------------------
@@ -181,8 +178,8 @@ print("Numeric plots available:")
 print(all_plots['numeric'].keys())
 
 # Display numeric feature distributions
-all_plots['numeric']['histograms'].display()
-all_plots['numeric']['correlation_plot'].display()
+all_plots['numeric']['distribution'].display()
+all_plots['numeric']['box_plot'].display()
 
 # Access categorical visualizations (includes 'year' now!)
 print(f"\nNumber of categorical plots: {len(all_plots['categorical'])}")
