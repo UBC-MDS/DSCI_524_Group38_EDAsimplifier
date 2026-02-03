@@ -238,29 +238,29 @@
     "text": "All notable changes to this project will be documented in this file.\nThe format is based on Keep a Changelog, and this project adheres to Semantic Versioning.\n\n\n\n\n\nGitHub Actions workflow for documentation preview (#74)\nCodecov badge in README (#74) ### Fixed\nAmmend all remaining contributing authors and their emails in pyproject.toml (#73)\nUpdated links in pyproject.toml to point to Github-pages website (#85)\nFixed Tutorial links in README.md (#85)\n\n\n\n\n\nVersion scheme configuration in Hatch (#74)\nRenamed build.yml to ci.yml (#74)\nRenamed deploy.yml to cd.yml (#74)\nRenamed quartodoc.yml to docs-publish.yml (#74)\nUpdated README for docs-publish workflow and CI/CD badges (#76)\nCI workflow now runs coverage test (#74)\nDocumentation output directory changed from docs to _site (#74)\nUpdated dependencies in environment.yml (#78)\nAdded all authors and emails in pyproject.toml (#73)\nUpdated User & Dev install on GH-pages website, now no longer requires any unmentioned steps (#85)\n\n\n\n\n\n\n\n\nExamples for the last two functions in simplify.py\nenvironment.yml with pinned dependencies\nLinks to API reference and TestPyPI in README\nBuild and deploy badges in README\nExtra index for dependencies when using pip to install\nGitHub Actions CI/CD workflow\nGitHub Actions quartodoc workflow\nMatrix to automated tests\nFour additional unit tests in test_numeric\nRuff and Black to development dependencies\n\n\n\n\n\nDynamic versioning in pyproject.toml\nUpdated CI/CD workflow and quartodoc configuration\nREADME: detailed instructions, URL, badge cleanup\n\n\n\n\n\nREADME instruction for installing\n\n\n\n\n\nTemplated .github/workflows/test.yml\nUnused dependencies\n\n\n\n\n\n\n\n\nImplimentation for dataset_overview, numeric, categorical_plot, and all_distributions\nUnit test files and integration tests for the above functions\nDependencies: Altair, pytest, numpy\nPyproject and README updates for running tests\nDocumentation and README updates\n\n\n\n\n\n\n\n\nInitial project structure\nsimplify.py with all function and module docstrings\nREADME with function details, contributors, and copyright\nCONTRIBUTING.md with contributing guidelines\nCode of Conduct\nCopyright and license information"
   },
   {
-    "objectID": "CHANGELOG.html#unreleased---for-milestone-4",
-    "href": "CHANGELOG.html#unreleased---for-milestone-4",
-    "title": "Changelog",
-    "section": "",
-    "text": "GitHub Actions workflow for documentation preview (#74)\nCodecov badge in README (#74) ### Fixed\nAmmend all remaining contributing authors and their emails in pyproject.toml (#73)\nUpdated links in pyproject.toml to point to Github-pages website (#85)\nFixed Tutorial links in README.md (#85)\n\n\n\n\n\nVersion scheme configuration in Hatch (#74)\nRenamed build.yml to ci.yml (#74)\nRenamed deploy.yml to cd.yml (#74)\nRenamed quartodoc.yml to docs-publish.yml (#74)\nUpdated README for docs-publish workflow and CI/CD badges (#76)\nCI workflow now runs coverage test (#74)\nDocumentation output directory changed from docs to _site (#74)\nUpdated dependencies in environment.yml (#78)\nAdded all authors and emails in pyproject.toml (#73)\nUpdated User & Dev install on GH-pages website, now no longer requires any unmentioned steps (#85)"
-  },
-  {
     "objectID": "CHANGELOG.html#section",
     "href": "CHANGELOG.html#section",
     "title": "Changelog",
     "section": "",
-    "text": "Examples for the last two functions in simplify.py\nenvironment.yml with pinned dependencies\nLinks to API reference and TestPyPI in README\nBuild and deploy badges in README\nExtra index for dependencies when using pip to install\nGitHub Actions CI/CD workflow\nGitHub Actions quartodoc workflow\nMatrix to automated tests\nFour additional unit tests in test_numeric\nRuff and Black to development dependencies\n\n\n\n\n\nDynamic versioning in pyproject.toml\nUpdated CI/CD workflow and quartodoc configuration\nREADME: detailed instructions, URL, badge cleanup\n\n\n\n\n\nREADME instruction for installing\n\n\n\n\n\nTemplated .github/workflows/test.yml\nUnused dependencies"
+    "text": "GitHub Actions workflow for documentation preview (#74)\nCodecov badge in README (#74) ### Fixed\nAmmend all remaining contributing authors and their emails in pyproject.toml (#73)\nUpdated links in pyproject.toml to point to Github-pages website (#85)\nFixed Tutorial links in README.md (#85)\n\n\n\n\n\nVersion scheme configuration in Hatch (#74)\nRenamed build.yml to ci.yml (#74)\nRenamed deploy.yml to cd.yml (#74)\nRenamed quartodoc.yml to docs-publish.yml (#74)\nUpdated README for docs-publish workflow and CI/CD badges (#76)\nCI workflow now runs coverage test (#74)\nDocumentation output directory changed from docs to _site (#74)\nUpdated dependencies in environment.yml (#78)\nAdded all authors and emails in pyproject.toml (#73)\nUpdated User & Dev install on GH-pages website, now no longer requires any unmentioned steps (#85)"
   },
   {
     "objectID": "CHANGELOG.html#section-1",
     "href": "CHANGELOG.html#section-1",
     "title": "Changelog",
     "section": "",
-    "text": "Implimentation for dataset_overview, numeric, categorical_plot, and all_distributions\nUnit test files and integration tests for the above functions\nDependencies: Altair, pytest, numpy\nPyproject and README updates for running tests\nDocumentation and README updates"
+    "text": "Examples for the last two functions in simplify.py\nenvironment.yml with pinned dependencies\nLinks to API reference and TestPyPI in README\nBuild and deploy badges in README\nExtra index for dependencies when using pip to install\nGitHub Actions CI/CD workflow\nGitHub Actions quartodoc workflow\nMatrix to automated tests\nFour additional unit tests in test_numeric\nRuff and Black to development dependencies\n\n\n\n\n\nDynamic versioning in pyproject.toml\nUpdated CI/CD workflow and quartodoc configuration\nREADME: detailed instructions, URL, badge cleanup\n\n\n\n\n\nREADME instruction for installing\n\n\n\n\n\nTemplated .github/workflows/test.yml\nUnused dependencies"
   },
   {
     "objectID": "CHANGELOG.html#section-2",
     "href": "CHANGELOG.html#section-2",
+    "title": "Changelog",
+    "section": "",
+    "text": "Implimentation for dataset_overview, numeric, categorical_plot, and all_distributions\nUnit test files and integration tests for the above functions\nDependencies: Altair, pytest, numpy\nPyproject and README updates for running tests\nDocumentation and README updates"
+  },
+  {
+    "objectID": "CHANGELOG.html#section-3",
+    "href": "CHANGELOG.html#section-3",
     "title": "Changelog",
     "section": "",
     "text": "Initial project structure\nsimplify.py with all function and module docstrings\nREADME with function details, contributors, and copyright\nCONTRIBUTING.md with contributing guidelines\nCode of Conduct\nCopyright and license information"
