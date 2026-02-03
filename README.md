@@ -49,6 +49,11 @@ wrapper that takes in a Pandas DataFrame and has the following functions:
     or stacked bar charts for each feature against the target depending
     on if the target is categorical or numerical.
 
+## Usage
+A full tutorial and example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial/)
+
+Complete [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) can be referenced for further details of each function.
+
 # Installation
 
 ## User Installation
@@ -147,26 +152,6 @@ Our documentation and package deployment are automated with GitHub Actions:
 | `deploy.yml` | Push to main | Publish to [TestPyPI](https://test.pypi.org/project/eda_simplifier/) |
 | `docs-publish.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
 
-
-# Getting Started & Demo Example:
-
-## Usage
-The full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) can be referenced for more information and examples for each function.
-
-To use eda_simplifier in your code:
-
-``` python
-import pandas as pd
-from eda_simplifier.simplify import dataset_overview
-
-df = pd.DataFrame({
-    "artist": ["A", "B", "C"],
-    "popularity": [80, 75, None],
-    "danceability": [0.8, 0.6, 0.9]
-    })
-
-summary = dataset_overview(df)
-```
 
 ## Python Ecosystem
 Within the larger Python ecosystem, it requires Pandas and primarily builds upon Altair. While
