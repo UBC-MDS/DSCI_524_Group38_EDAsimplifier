@@ -54,9 +54,9 @@ A full tutorial and example demo of this package can be found [Tutorial/Demo](ht
 
 Complete [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) can be referenced for further details of each function.
 
-# Installation
+## Installation
 
-## User Installation
+### User Installation
 
 You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
 
@@ -64,7 +64,7 @@ You can install this package from [TestPyPI](https://test.pypi.org/project/eda_s
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ eda_simplifier
 ```
 
-## Developer Installation
+### Developer Installation
 
 For contribution guidelines and recommended workflow, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -142,7 +142,7 @@ To deactivate the conda environment (if you used Method 1):
 conda deactivate
 ```
 
-### Deployment (CI/CD Workflows)
+## Deployment (CI/CD Workflows)
 
 Our documentation and package deployment are automated with GitHub Actions:
 
