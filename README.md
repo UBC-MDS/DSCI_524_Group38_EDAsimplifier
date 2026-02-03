@@ -50,7 +50,7 @@ wrapper that takes in a Pandas DataFrame and has the following functions:
     on if the target is categorical or numerical.
 
 ## Usage
-A full tutorial and example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial/)
+A full tutorial and example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial.html/).
 
 Complete [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) can be referenced for further details of each function.
 
@@ -61,8 +61,24 @@ Complete [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifie
 You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
 
 ```bash
+
+# Optional (but suggested): make a fresh environment
+conda create -n fresh_eda_env python=3.13 #will install auto-pip 
+conda activate fresh_eda_env 
+
+# Install the package via TestPyPI
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ eda_simplifier
 ```
+
+After a successful install the package is ready to use in any python supported environment (3.10 - 3.13).
+
+```bash
+# Will bring all package functions into local namespace for use
+from eda_simplifier.simplify import * 
+```
+
+Example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial.html/).
+
 
 ### Developer Installation
 
@@ -75,29 +91,17 @@ git clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git
 cd DSCI_524_Group38_EDAsimplifier/
 ```
 
-Set up your development environment using one of the following methods:
-
-<details>
-<summary><b>Method 1: Using conda with environment.yml (recommended)</b></summary>
-Create a conda environment and install the package:
+Then create a empty environment and install directly as shown below:
 
 ```bash
-conda env create -f environment.yml #after cd into cloned repo
-conda activate eda_simplifier
-pip install -e ".[dev,tests,docs]"
-#depends on the scope - can do just ".[dev]" for a more minimalistic version.
-```
-</details>
+# Suggested to make a fresh environment
+conda create -n eda_simplifier python=3.13 #will install auto-pip 
+conda activate eda_simplifier 
 
-<details>
-<summary><b>Method 2: Using pip only</b></summary>
-Install directly into the current Python environment:
-
-```bash
+# Can do just ".[dev]" for a more minimalistic version (depends on the scope)
 pip install -e ".[dev,tests,docs]"
-#depends on the scope - can do just ".[dev]" for a more minimalistic version.
+
 ```
-</details>
 
 Once the package is installed, you will see a message like:
 
