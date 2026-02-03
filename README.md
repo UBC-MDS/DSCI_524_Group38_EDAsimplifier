@@ -50,7 +50,7 @@ wrapper that takes in a Pandas DataFrame and has the following functions:
     on if the target is categorical or numerical.
 
 ## Usage
-A full tutorial and example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial/)
+A full tutorial and example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial.html/).
 
 Complete [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) can be referenced for further details of each function.
 
@@ -61,8 +61,24 @@ Complete [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifie
 You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
 
 ```bash
+
+# Optional (but suggested): make a fresh environment
+conda create -n fresh_eda_env python=3.13 #will install auto-pip 
+conda activate fresh_eda_env 
+
+# Install the package via TestPyPI
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ eda_simplifier
 ```
+
+After a successful install the package is ready to use in any python supported environment (3.10 - 3.13).
+
+```bash
+# Will bring all package functions into local namespace for use
+from eda_simplifier.simplify import * 
+```
+
+Example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial.html/).
+
 
 ### Developer Installation
 
