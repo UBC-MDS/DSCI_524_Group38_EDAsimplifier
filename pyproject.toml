@@ -46,10 +46,10 @@ keywords = ["EDA", "visualization", "pandas", "altair"]
 dependencies = ["pandas>=2.0", "altair>=5.0"]
 
 [project.urls]
-Homepage = "https://github.com/UBC-MDS/eda_simplifier"
+Homepage = "https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial.html"
 "Source Code" = "https://github.com/UBC-MDS/eda_simplifier"
 "Bug Tracker" = "https://github.com/UBC-MDS/eda_simplifier/issues"
-Documentation = "https://github.com/UBC-MDS/eda_simplifier/blob/main/README.md"
+Documentation = "https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/"
 Download = "https://pypi.org/project/eda_simplifier/#files"
 
 [project.optional-dependencies]
