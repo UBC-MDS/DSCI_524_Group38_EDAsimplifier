@@ -8,6 +8,8 @@ website:
     left:
       - text: "Tutorial/Demo"
         href: tutorial.qmd
+      - text: "README"
+        href: index.qmd
       - text: "Reference"
         href: reference/index.html
       - text: "Code of Conduct"
