@@ -42,7 +42,9 @@ music_data = pd.DataFrame({
 print(music_data.head())    
 ```
 
-# Function 1: `dataset_overview()`
+# Functions Demo: 
+
+## Function 1: `dataset_overview()`
 
 This function provides a comprehensive, single-function overview of your dataset by combining information you'd normally get from multiple pandas methods (`.info()`, `.describe()`, `.shape`, `.isna().sum()`). Instead of running 4-5 different commands to understand a dataset's basic structure, missing values, and statistics - you'll get everything organized in one structured dictionary.
 
@@ -69,4 +71,29 @@ for col, count in overview['missing_values'].items():
 # View summary statistics for numeric columns
 print("\nSummary statistics for 'popularity':")
 print(overview['summary_statistics']['popularity'])
+```
+------------------------------------------------------------------------
+
+## Function 2: `numeric()`
+
+This generates comprehensive visualizations for numerical features including histograms, correlation plots, missing value analysis, and outlier detection. It will lead to quickly understand the distributions, and alert data quality issues for the numeric columns of a DataFrame.
+
+```{python}
+# Analyze all numeric features at once
+numeric_features = ['popularity', 'danceability', 'energy', 'valence', 'streams_millions']
+
+result = numeric(music_data, numeric_features)
+
+# Access different plot types
+print("Available visualizations:")
+print(result.keys())
+
+# Display histograms to see distributions
+result['histograms'].display()
+
+# Check correlations between features
+result['correlation_plot'].display()
+
+# Identify potential outliers
+result['outliers'].display()
 ```
