@@ -13,17 +13,10 @@
 EDA_simplifier is a project that streamlines exploratory data analysis
 (EDA) for any pandas DataFrame. This package provides functions that
 consolidate many repetitive steps in EDA, serving as a first pass to
-quickly gain a holistic view of a dataset. Within the larger Python
-ecosystem, it requires Pandas and primarily builds upon Altair. While
-Altair is powerful, it can also be verbose and syntactically
-restrictive. As a result, many functions in this project act as wrappers
-around Altair, providing sensible defaults and abstractions to simplify
-the EDA process. Although automated EDA reporting libraries exist, most
-focus on large-scale HTML reports or one-liner summaries. Therefore the
-EDA simplifier package provides a intermediate between raw Altair-based
-EDA plotting and full-automated report libraries.
+quickly gain a holistic view of a dataset. Specifically, it acts as an Altair
+wrapper that takes in a Pandas DataFrame and has the following functions: 
 
-## Functions
+### Functions
 
 - `dataset_overview`:
     Generates a consolidated exploratory summary of a dataset by
@@ -32,6 +25,15 @@ EDA plotting and full-automated report libraries.
     returns the dataset dimensions, column data types, missing value
     counts, and summary statistics in a single simplified structure to
     streamline the initial exploratory data analysis process.
+
+- `all_distributions`:
+    The main interface for column-level EDA distribution visualizations
+    for numeric and categorical columns. Automatically identifies each
+    columns data types and routes them to the appropriate plotting
+    functions (`numeric` and `categorical_plot`). Also includes a
+    manual overrides for ambiguous columns via explicit user input where
+    the default columns data types may be incorrectly represented
+    (using the hidden `_ambiguous_columns_split` function).
 
 - `numeric`:
     Perform exploratory data analysis
@@ -47,23 +49,14 @@ EDA plotting and full-automated report libraries.
     or stacked bar charts for each feature against the target depending
     on if the target is categorical or numerical.
 
-- `all_distributions`:
-    The main interface for column-level EDA distribution visualizations
-    for numeric and categorical columns. Automatically identifies each
-    columns data types and routes them to the appropriate plotting
-    functions (`numeric` and `categorical_plot`). Also includes a
-    manual overrides for ambiguous columns via explicit user input where
-    the default columns data types may be incorrectly represented
-    (using the hidden `_ambiguous_columns_split` function).
+## Usage
+A full tutorial and example demo of this package can be found [Tutorial/Demo](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/tutorial/)
 
-- `_ambiguous_columns_split`:
-    Separates numeric and categorical columns for a pandas Dataframe,
-    and applies overrides for ambiguous cases via input. Hidden function used purely for
-    all_distributions function.
+Complete [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/) can be referenced for further details of each function.
 
-# Getting Started
+## Installation
 
-## User Guide
+### User Installation
 
 You can install this package from [TestPyPI](https://test.pypi.org/project/eda_simplifier/) into your preferred Python environment:
 
@@ -71,9 +64,11 @@ You can install this package from [TestPyPI](https://test.pypi.org/project/eda_s
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ eda_simplifier
 ```
 
-## Developer Guide
+### Developer Installation
 
-Clone the repository from GitHub and navigate into the project directory:
+For contribution guidelines and recommended workflow, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+First, clone the repository from GitHub and navigate into the project directory:
 
 ```bash
 git clone git@github.com:UBC-MDS/DSCI_524_Group38_EDAsimplifier.git
@@ -82,42 +77,47 @@ cd DSCI_524_Group38_EDAsimplifier/
 
 Set up your development environment using one of the following methods:
 
-**Method 1: Using conda with environment.yml (recommended)**
-
+<details>
+<summary><b>Method 1: Using conda with environment.yml (recommended)</b></summary>
 Create a conda environment and install the package:
 
 ```bash
-conda env create -f environment.yml
+conda env create -f environment.yml #after cd into cloned repo
 conda activate eda_simplifier
-pip install -e .
+pip install -e ".[dev,tests,docs]"
+#depends on the scope - can do just ".[dev]" for a more minimalistic version.
 ```
+</details>
 
-**Method 2: Using pip only**
-
+<details>
+<summary><b>Method 2: Using pip only</b></summary>
 Install directly into the current Python environment:
 
 ```bash
 pip install -e ".[dev,tests,docs]"
+#depends on the scope - can do just ".[dev]" for a more minimalistic version.
 ```
+</details>
 
 Once the package is installed, you will see a message like:
 
 ```bash
-Successfully installed eda_simplifier-[version_no]
+Successfully installed eda_simplifier-xx.xx.xx
 ```
 
----
+After a completed install, the following can be checked:
 
-For contribution guidelines and recommended workflow, see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-To verify the package passes all unit tests:
-
+<details>
+<summary><b>Unit Test</b></summary>
 ```bash
 pytest -v
 ```
+</details>
 
-To ensure all code pass linting and formatting checks:
 
+<details>
+<summary><b>Linting and Formatting Checks</b></summary>
+    
 ```bash
 # Linting
 ruff check .
@@ -125,13 +125,16 @@ ruff check .
 # Format check
 black --check .
 ```
+</details>
 
-To build and render the documentation:
+<details>
+<summary><b>Building and Rendering Documentation</b></summary>
 
 ```bash
 quartodoc build
 quarto render
 ```
+</details>
 
 To deactivate the conda environment (if you used Method 1):
 
@@ -139,7 +142,7 @@ To deactivate the conda environment (if you used Method 1):
 conda deactivate
 ```
 
-## CI/CD Workflows
+## Deployment (CI/CD Workflows)
 
 Our documentation and package deployment are automated with GitHub Actions:
 
@@ -149,25 +152,15 @@ Our documentation and package deployment are automated with GitHub Actions:
 | `deploy.yml` | Push to main | Publish to [TestPyPI](https://test.pypi.org/project/eda_simplifier/) |
 | `docs-publish.yml` | Push to main | Build, render, and publish docs to GitHub Pages |
 
-## Usage
 
-To use eda_simplifier in your code:
-
-``` python
-import pandas as pd
-from eda_simplifier.simplify import dataset_overview
-
-df = pd.DataFrame({
-    "artist": ["A", "B", "C"],
-    "popularity": [80, 75, None],
-    "danceability": [0.8, 0.6, 0.9]
-    })
-
-summary = dataset_overview(df)
-```
-
-View the full [API reference](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
-
+## Python Ecosystem
+Within the larger Python ecosystem, it requires Pandas and primarily builds upon Altair. While
+Altair is powerful, it can also be verbose and syntactically restrictive. As a result, many functions in this project act as wrappers
+around Altair, providing sensible defaults and abstractions to simplify
+the EDA process. Although automated EDA reporting libraries exist, most
+focus on large-scale HTML reports or one-liner summaries. Therefore the
+EDA simplifier package provides a intermediate between raw Altair-based
+EDA plotting and full-automated report libraries.
 
 ## Contributors
 

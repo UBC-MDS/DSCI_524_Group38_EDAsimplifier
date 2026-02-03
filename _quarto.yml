@@ -6,7 +6,9 @@ website:
   title: "EDA Simplifier"
   navbar:
     left:
-      - text: "Home"
+      - text: "Tutorial/Demo"
+        href: tutorial.qmd
+      - text: "README"
         href: index.qmd
       - text: "Reference"
         href: reference/index.html

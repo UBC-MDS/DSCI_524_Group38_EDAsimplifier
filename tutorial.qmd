@@ -1,0 +1,191 @@
+---
+title: "Getting Started with eda_simplifier"
+format: html
+---
+
+The `eda_simplifier` package streamlines exploratory data analysis (EDA) by consolidating common pandas and visualization tasks into simple, reusable functions. This tutorial demonstrates all four main functions with practical examples.
+
+# Installation
+
+Please first refer to the [installation found in README](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/README.html/#installation) to first install the package.
+
+The full documentation for each function can be found at [Referances](https://ubc-mds.github.io/DSCI_524_Group38_EDAsimplifier/reference/).
+
+# Sample Data
+
+```{python}
+import pandas as pd
+import numpy as np
+from eda_simplifier.simplify import (
+    dataset_overview, 
+    numeric, 
+    categorical_plot, 
+    all_distributions
+)
+
+# Create sample music dataset with various feature types
+np.random.seed(524)
+music_data = pd.DataFrame({
+    'artist': ['Taylor Swift', 'Ed Sheeran', 'Billie Eilish', 'The Weeknd', 
+               'Ariana Grande', 'Drake', 'Taylor Swift', 'Ed Sheeran', 
+               'Billie Eilish', 'The Weeknd', 'Ariana Grande', 'Drake'],
+    'genre': ['Pop', 'Pop', 'Alternative', 'R&B', 'Pop', 'Hip-Hop', 
+              'Pop', 'Pop', 'Alternative', 'R&B', 'Pop', 'Hip-Hop'],
+    'year': [2023, 2023, 2022, 2023, 2022, 2023, 2022, 2022, 2023, 2022, 2023, 2022],
+    'popularity': [95, 88, 92, 90, 87, 94, 93, 85, 89, 91, 86, 92],
+    'danceability': [0.8, 0.7, 0.6, 0.75, 0.82, 0.88, 0.79, 0.68, 0.65, 0.78, 0.80, 0.85],
+    'energy': [0.7, 0.6, 0.4, 0.8, 0.75, 0.85, 0.72, 0.58, 0.45, 0.82, 0.73, 0.87],
+    'valence': [0.6, 0.8, 0.3, 0.5, 0.7, 0.6, 0.65, 0.75, 0.35, 0.55, 0.68, 0.62],
+    'streams_millions': [150.5, 120.3, 98.7, 135.2, 110.8, None, 145.6, 115.2, 95.4, 130.1, 108.9, 140.3]
+})
+
+print(music_data.head())    
+```
+
+# Functions Demo: 
+
+## `dataset_overview()`
+
+This function provides a comprehensive, single-function overview of your dataset by combining information you'd normally get from multiple pandas methods (`.info()`, `.describe()`, `.shape`, `.isna().sum()`). Instead of running 4-5 different commands to understand a dataset's basic structure, missing values, and statistics - you'll get everything organized in one structured dictionary.
+
+
+```{python}
+# Get complete dataset overview in one call
+overview = dataset_overview(music_data)
+
+# Display shape and structure
+print(f"Dataset shape: {overview['shape']}")
+print(f"\nColumns: {overview['columns']}")
+
+# Check data types
+print("\nData types:")
+for col, dtype in overview['dtypes'].items():
+    print(f"  {col}: {dtype}")
+
+# Identify missing values
+print("\nMissing values:")
+for col, count in overview['missing_values'].items():
+    if count > 0:
+        print(f"  {col}: {count} missing")
+
+# View summary statistics for numeric columns
+print("\nSummary statistics for 'popularity':")
+print(overview['summary_statistics']['popularity'])
+```
+------------------------------------------------------------------------
+
+## `numeric()`
+
+This generates comprehensive visualizations for numerical features including histograms, correlation plots, missing value analysis, and outlier detection. It will lead to quickly understand the distributions, and alert data quality issues for the numeric columns of a DataFrame.
+
+```{python}
+# Analyze all numeric features at once
+numeric_features = music_data[['popularity', 'danceability', 'energy', 'valence', 'streams_millions']]
+
+result = numeric(numeric_features, target='popularity')
+
+# Access different plot types
+print("Available visualizations:")
+print(result.keys())
+
+# Check correlations between features
+result['correlation'].display()
+
+# Identify distributions
+result['distribution'].display()
+```
+
+------------------------------------------------------------------------
+
+## `categorical_plot()`
+
+This function creates sorted frequency bar charts for categorical features and automatically generates relationship plots in relation to a target variable. Ex: box plots for numeric targets, stacked bar charts for categorical targets. It handles both categorical and numeric targets automatically, adjusting the visualization type accordingly.
+
+Example with Numeric Target:
+
+```{python}
+# Explore categorical features against a numeric target
+plots = categorical_plot(
+    df=music_data,
+    target_column='popularity',
+    categorical_target=False,  # popularity is numeric
+    max_categories=10,
+    categorical_features=['genre', 'artist']
+)
+
+# Display plots
+for i, plot in enumerate(plots):
+    print(f"\nPlot {i+1}:")
+    plot.display()
+```
+
+Example with Categorical Target:
+
+```{python}
+# Create a categorical target for demonstration
+music_data['hit_status'] = music_data['popularity'].apply(
+    lambda x: 'Hit' if x >= 90 else 'Not Hit'
+)
+
+categorical_plots = categorical_plot(
+    df=music_data,
+    target_column='hit_status',
+    categorical_target=True,
+    categorical_features=['genre', 'artist']
+)
+
+# Display stacked bar charts
+for plot in categorical_plots:
+    plot.display()
+```
+
+------------------------------------------------------------------------
+
+## `all_distributions()`
+
+This is the maina and comprehensive wrapper function that automatically analyzes ALL features in a dataset (both numeric and categorical) by routing them to the appropriate visualization functions. It also handles ambiguous cases where numeric columns should be treated as categorical (like year, ZIP codes) through the `ambiguous_column_types` parameter. While EDA can be done by individually separating numeric and categorical columns - calling different the `categorical_plot()` and `numeric()` functions respectively:  `all_distributions()` does it all automatically. The ambiguous column handling is especially powerful as it can handel messy data where column types don't always match their semantic meaning.
+
+### Example with Ambiguous Column Types
+
+```{python}
+# Notice 'year' is stored as numeric but should be treated as categorical
+# Use ambiguous_column_types to override automatic type detection
+
+all_plots = all_distributions(
+    pd_dataframe=music_data,
+    target_column='popularity',
+    categorical_target=False,
+    max_categories=10,
+    categorical_features=None,  # Use all categorical columns
+    ambiguous_column_types={
+        "numeric": [],  # No categorical columns to treat as numeric
+        "categorical": ['year']  # Treat 'year' as categorical despite the numeric dtype
+    }
+)
+
+# Access numeric visualizations
+print("Numeric plots available:")
+print(all_plots['numeric'].keys())
+
+# Display numeric feature distributions
+all_plots['numeric']['distribution'].display()
+all_plots['numeric']['box_plot'].display()
+
+# Access categorical visualizations (includes 'year' now!)
+print(f"\nNumber of categorical plots: {len(all_plots['categorical'])}")
+
+# Display categorical plots (frequency + vs target for each feature)
+for i, plot in enumerate(all_plots['categorical']):
+    print(f"\nCategorical plot {i+1}:")
+    plot.display()
+```
+
+# Summary
+
+| Function | Purpose | Best Used For |
+|---------------------|-------------------|-------------------------------|
+| `dataset_overview()` | Quick statistical summary | First step: understand dataset structure |
+| `numeric()` | Numeric feature visualization | Analyzing distributions, correlations, outliers |
+| `categorical_plot()` | Categorical feature visualization | Understanding category frequencies and relationships |
+| `all_distributions()` | Complete distribution analysis | Comprehensive EDA with custom type handling |
+
